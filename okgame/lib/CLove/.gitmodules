@@ -1,3 +1,0 @@
-[submodule "src/3rdparty/microui"]
-	path = src/3rdparty/microui
-	url = https://github.com/rxi/microui
