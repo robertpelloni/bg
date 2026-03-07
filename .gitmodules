@@ -4,3 +4,6 @@
 [submodule "okgame"]
 	path = okgame
 	url = https://github.com/robertpelloni/okgame
+[submodule "bobsgameweb"]
+	path = bobsgameweb
+	url = https://github.com/robertpelloni/bobsgameweb.git
