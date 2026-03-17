@@ -1,0 +1,40 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Users\\hyper\\workspace\\bg\\logs\\.dc038e1499454ef5c1af7a6c570dc23d58ee7a14-audit.json",
+    "files": [
+        {
+            "date": 1773282005564,
+            "name": "C:\\Users\\hyper\\workspace\\bg\\logs\\mcp-puppeteer-2026-03-11.log",
+            "hash": "23d521b872e29dd614b5366ffbd1567d85ad339be3a757039c5ca1b00c02325f"
+        },
+        {
+            "date": 1773288106326,
+            "name": "C:\\Users\\hyper\\workspace\\bg\\logs\\mcp-puppeteer-2026-03-12.log",
+            "hash": "56d5297ad8be6e512f6681ecd6a1acdec999333630d14a3545da68eee3ce82f5"
+        },
+        {
+            "date": 1773547025937,
+            "name": "C:\\Users\\hyper\\workspace\\bg\\logs\\mcp-puppeteer-2026-03-14.log",
+            "hash": "fef32b4dd24f80a8efc37bad8bcdb33c34faa5e3acbfd8e9cb679feeeafc8acd"
+        },
+        {
+            "date": 1773548529621,
+            "name": "C:\\Users\\hyper\\workspace\\bg\\logs\\mcp-puppeteer-2026-03-15.log",
+            "hash": "f65bd8e149471600c3699260f446f3ebfb1f017fbd20a98c34524540d40aa3de"
+        },
+        {
+            "date": 1773671226411,
+            "name": "C:\\Users\\hyper\\workspace\\bg\\logs\\mcp-puppeteer-2026-03-16.log",
+            "hash": "b7ac3ae61301b08314c9e67449932c7c4b546c11076db746c74cc80717b63366"
+        },
+        {
+            "date": 1773780671852,
+            "name": "C:\\Users\\hyper\\workspace\\bg\\logs\\mcp-puppeteer-2026-03-17.log",
+            "hash": "72f168683b727dfe65c80ef4117926c05f29bc68b7a230fc2f12f62e8d081551"
+        }
+    ],
+    "hashType": "sha256"
+}
