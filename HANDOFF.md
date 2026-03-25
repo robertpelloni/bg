@@ -14,7 +14,14 @@
 - **Lua API (C++):**
     - Integrated Lua 5.1 engine into `okgame` by adding sources from `CLove` submodule to `CMakeLists.txt`.
     - Created `LuaManager.h` and `LuaManager.cpp` in `okgame/src/Utility/`.
-    - Provided engine bindings (`getScore`, `getLevel`, `sendGarbage`, `receiveGarbage`) for Lua scripts.
+    - **Deep Bindings:** Provided extensive engine bindings for Lua scripts:
+        - `log(msg)`, `logError(msg)`
+        - `getScore()`, `getLevel()`
+        - `sendGarbage(amt)`, `receiveGarbage(amt)`
+        - `getGridWidth()`, `getGridHeight()`
+        - `getTile(x, y)`, `setTile(x, y, typeName)`
+        - `shakeScreen()`, `wiggleScreen()`
+        - `getPieceInfo()` (returns table with x, y, rotation, type)
 - **Lobby & Tournament Improvements (C++):**
     - **Lobby State Machine:** Implemented state-based views (Rooms, Stats, Leaderboard) with `CANCEL`/`Back` navigation and dynamic menu repopulation.
     - **Tournament Mode:** Implemented specialized "TOURNAMENT RESULTS" screen in `showResultsRanking` and enabled tournament room filtering in the lobby.
@@ -26,7 +33,7 @@
 ## 2. Current Status
 - **Root:** Ready for 2.0.0 deployment.
 - **Java Client:** Modernized UI and enhanced editor tools. Logic modernization ongoing.
-- **C++ Client:** Steam, Lua, and Lobby View systems fully functional and integrated.
+- **C++ Client:** Steam, Lua, and Lobby View systems fully functional and integrated with deep scripting bindings.
 - **Web Client:** Stable with new parity serialization logic.
 
 ## 3. Blockers & Roadblocks
@@ -34,10 +41,10 @@
 - **Submodule Sync:** Some deep-nested submodules (e.g., `lib/brotli`) have missing refs on origin. Manual cleanup was performed but recursion remains fragile.
 
 ## 4. Next Steps
-1.  **Lua Deep Bindings:** Expose more complex engine internals (`Grid`, `Piece`, `Map`) to the Lua scripting layer.
-2.  **Tournament Brackets:** Focus on server-side automated tournament orchestration and C++ bracket UI.
-3.  **Java UI Upgrade:** Continue transition to LibGDX Scene2D for all remaining legacy dialogs.
-4.  **Mobile Deployment:** Prototype Capacitor/LibGDX builds for iOS/Android parity.
+1.  **Tournament Brackets:** Focus on server-side automated tournament orchestration and C++ bracket UI.
+2.  **Java UI Upgrade:** Continue transition to LibGDX Scene2D for all remaining legacy dialogs.
+3.  **Mobile Prototyping:** Test Capacitor deployment for the Web fork.
+4.  **Lua Modding:** Create a sample `init.lua` script to demonstrate the new bindings.
 
 ## 5. Deployment Notes
 Refer to `DEPLOY.md` for the current multi-platform strategy. Ensure Java 21 is used for the Java build.

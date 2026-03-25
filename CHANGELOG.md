@@ -10,6 +10,7 @@
 - **Map Editor (Java):** Implemented "Shift Map Up/Down/Left/Right" functionality with full `UndoableEdit` support and Shift+Arrow key shortcuts.
 - **Sprite Editor (Java):** Added "Random PNGs" export button to the UI for batch exporting procedurally generated sprites.
 - **Lua API (C++):** Integrated Lua 5.1 engine into `okgame` and established `LuaManager` with extensive engine bindings including grid dimensions, tile get/set, piece info, garbage control, and screen effects.
+- **Modding Framework (C++):** Created `data/scripts/init.lua` framework and comprehensive `docs/LUA_API.md` documentation for engine modding.
 - **Lobby View System (C++):** Implemented state-based lobby views (Rooms, Stats, Leaderboard) with CANCEL/Back navigation and dynamic repopulation.
 - **Steam Integration (C++):** Implemented "Add friends from Steam" with persona name synchronization and initialized Steamworks SDK.
 - **Tournament Mode (C++):** Implemented specialized "TOURNAMENT RESULTS" screen and tournament room filtering in the lobby.
