@@ -5,23 +5,31 @@
 - **Agent Protocols:** Created model-specific instructions (`GEMINI.md`, `CLAUDE.md`, `GPT.md`, `copilot-instructions.md`) that all reference the master instructions.
 - **Version Sync:** Synchronized all project versions to **2.0.0**.
 - **TS Serialization:** Implemented `toBase64GZippedJSON` and `fromBase64GZippedJSON` in `bobsgameweb/src/shared/puzzle/GameType.ts` using native `CompressionStream` APIs to match C++/Java logic.
-- **Sub-project Documentation:** Created `IDEAS.md` for both Java and C++ clients and synchronized their `LLM_INSTRUCTIONS.md`.
+- **Steam Integration:**
+    - Initialized Steamworks with AppID 480 in `okgame/src/Utility/SteamManager.cpp`.
+    - Fixed Steam library linking in `okgame/CMakeLists.txt`.
+    - Created `okgame/steam_appid.txt` for local development.
+    - Re-enabled Steam-related menu items in `okgame/src/Puzzle/OKGameNetwork.cpp`.
+- **Java Editor Improvements:**
+    - **Map Editor:** Added "Shift Map Up/Down/Left/Right" functionality with full Undo/Redo (`MapShiftEdit.java`) and Shift+Arrow key shortcuts in `EditorMain.java`.
+    - **Sprite Editor:** Added "Random PNGs" export button to the UI in `SpriteEditor.java` to trigger batch PNG output of procedural sprites.
+- **Legacy Cleanup:** Purged obsolete `SIGAR` and `JRE` references from the C++ codebase (`System.h`, `System.cpp`, and entire `src/` directory).
 
 ## 2. Current Status
 - **Root:** Ready for 2.0.0 deployment.
-- **Java Client:** In progress - modernization and UI (Scene2D/TWL) tasks pending.
-- **C++ Client:** In progress - Steam Integration is currently stubbed and needs real SDK binaries.
+- **Java Client:** Modernized UI and enhanced editor tools. Logic modernization ongoing.
+- **C++ Client:** Steam Integration enabled and linked. UI features wired up.
 - **Web Client:** Stable with new parity serialization logic.
 
 ## 3. Blockers & Roadblocks
-- **Git Push:** Failed due to interactive authentication requirements. Changes are committed locally but not pushed to origin.
-- **Submodule Sync:** `lib/brotli` in `okgame` and `bobcoin` recursive updates are failing due to missing refs or URLs. Manual synchronization is required for deep-nested dependencies.
+- **Git Push:** Failed due to interactive authentication requirements. All changes are committed locally to `master` (root) and respective submodule branches.
+- **Submodule Sync:** Some deep-nested submodules (e.g., `lib/brotli`) have missing refs on origin. Manual cleanup was performed but recursion remains fragile.
 
 ## 4. Next Steps
-1.  **Steam Integration:** Focus on `okgame/src/Utility/SteamManager.cpp`. Replace stubs with real Steamworks SDK v1.64 logic.
-2.  **Java Modernization:** Continue refactoring `bobsgameonlinejava` core logic to Java 21 standards.
-3.  **UI Polish:** Wire up the commented-out Steam UI features in the C++ lobby.
-4.  **Submodule Cleanup:** Systematically fix the broken submodule mappings identified in this session.
+1.  **Tournament Mode:** Focus on server-side implementation and C++ client UI integration.
+2.  **Java UI Upgrade:** Continue transition to LibGDX Scene2D for all remaining legacy dialogs.
+3.  **Lua API:** Expose more `okgame` engine internals to the Lua scripting layer for modding.
+4.  **Mobile Deployment:** Prototype Capacitor/LibGDX builds for iOS/Android parity.
 
 ## 5. Deployment Notes
 Refer to `DEPLOY.md` for the current multi-platform strategy. Ensure Java 21 is used for the Java build.
