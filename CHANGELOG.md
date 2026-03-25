@@ -9,6 +9,7 @@
 - **Steam UI:** Re-enabled Steam-related menu items in the C++ lobby.
 - **Map Editor (Java):** Implemented "Shift Map Up/Down/Left/Right" functionality with full `UndoableEdit` support and Shift+Arrow key shortcuts.
 - **Sprite Editor (Java):** Added "Random PNGs" export button to the UI for batch exporting procedurally generated sprites.
+- **Lua API (C++):** Integrated Lua 5.1 engine into `okgame` and established `LuaManager` with core logging bindings for modding.
 
 ### Changed
 - **TypeScript Parity:** Implemented GZip/Base64 JSON serialization in `GameType.ts` to match C++ and Java logic.

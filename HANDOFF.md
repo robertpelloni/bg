@@ -10,6 +10,10 @@
     - Fixed Steam library linking in `okgame/CMakeLists.txt`.
     - Created `okgame/steam_appid.txt` for local development.
     - Re-enabled Steam-related menu items in `okgame/src/Puzzle/OKGameNetwork.cpp`.
+- **Lua API (C++):**
+    - Integrated Lua 5.1 engine into `okgame` by adding sources from `CLove` submodule to `CMakeLists.txt`.
+    - Created `LuaManager.h` and `LuaManager.cpp` in `okgame/src/Utility/`.
+    - Provided core logging bindings (`log`, `logError`) for Lua scripts.
 - **Java Editor Improvements:**
     - **Map Editor:** Added "Shift Map Up/Down/Left/Right" functionality with full Undo/Redo (`MapShiftEdit.java`) and Shift+Arrow key shortcuts in `EditorMain.java`.
     - **Sprite Editor:** Added "Random PNGs" export button to the UI in `SpriteEditor.java` to trigger batch PNG output of procedural sprites.
@@ -18,7 +22,7 @@
 ## 2. Current Status
 - **Root:** Ready for 2.0.0 deployment.
 - **Java Client:** Modernized UI and enhanced editor tools. Logic modernization ongoing.
-- **C++ Client:** Steam Integration enabled and linked. UI features wired up.
+- **C++ Client:** Steam and Lua integrations enabled and initialized. UI features wired up.
 - **Web Client:** Stable with new parity serialization logic.
 
 ## 3. Blockers & Roadblocks
@@ -26,9 +30,9 @@
 - **Submodule Sync:** Some deep-nested submodules (e.g., `lib/brotli`) have missing refs on origin. Manual cleanup was performed but recursion remains fragile.
 
 ## 4. Next Steps
-1.  **Tournament Mode:** Focus on server-side implementation and C++ client UI integration.
-2.  **Java UI Upgrade:** Continue transition to LibGDX Scene2D for all remaining legacy dialogs.
-3.  **Lua API:** Expose more `okgame` engine internals to the Lua scripting layer for modding.
+1.  **Lua Bindings:** Expose more `okgame` engine internals (e.g., `GameState`, `PuzzleLogic`) to the Lua scripting layer.
+2.  **Tournament Mode:** Focus on server-side implementation and C++ client UI integration.
+3.  **Java UI Upgrade:** Continue transition to LibGDX Scene2D for all remaining legacy dialogs.
 4.  **Mobile Deployment:** Prototype Capacitor/LibGDX builds for iOS/Android parity.
 
 ## 5. Deployment Notes
