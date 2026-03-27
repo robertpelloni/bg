@@ -11,40 +11,40 @@
     - Created `okgame/steam_appid.txt` for local development.
     - Re-enabled Steam-related menu items in `okgame/src/Puzzle/OKGameNetwork.cpp`.
     - **Steam Friends:** Implemented `SteamManager::getFriends()` and integrated "Add friends from Steam" into the lobby with persona name synchronization.
+- **Java Server Implementation:**
+    - Implemented major core stubs in `GameServerTCP.java`:
+        - `incomingBobsGameRoomListRequest`: Sends encoded room list to clients.
+        - `incomingAddFriendByUserNameRequest`: Adds friends via DB lookup.
+        - `incomingBobsGameGameStats`: Stores game results in Amazon RDS.
+        - `incomingBobsGameGetHighScoresAndLeaderboardsRequest`: Queries and sends leaderboards.
+        - `incomingBobsGameActivityStreamRequest`: Returns recent server activity.
+        - `incomingChatMessage`: Broadcasts chat messages to all clients.
 - **Lua API & Modding (C++):**
-    - Integrated Lua 5.1 engine into `okgame` by adding sources from `CLove` submodule to `CMakeLists.txt`.
+    - Integrated Lua 5.1 engine into `okgame`.
     - Created `LuaManager.h` and `LuaManager.cpp` in `okgame/src/Utility/`.
-    - **Deep Bindings:** Provided extensive engine bindings for Lua scripts:
-        - `log(msg)`, `logError(msg)`
-        - `getScore()`, `getLevel()`
-        - `sendGarbage(amt)`, `receiveGarbage(amt)`
-        - `getGridWidth()`, `getGridHeight()`
-        - `getTile(x, y)`, `setTile(x, y, typeName)`
-        - `shakeScreen()`, `wiggleScreen()`
-        - `getPieceInfo()` (returns table with x, y, rotation, type)
-    - **Modding Framework:** Created `okgame/data/scripts/init.lua` framework and comprehensive `docs/LUA_API.md` documentation.
-    - **Frame Hook:** Integrated `LuaManager::update()` into `BobsGame::update()`, enabling per-frame Lua logic via the global `onUpdate()` Lua function.
-    - **Advanced Sample:** Provided a sample `init.lua` demonstrating real-time score monitoring and dynamic screen effects.
+    - **Deep Bindings:** Provided extensive engine bindings (`log`, `getScore`, `getGridWidth`, `setTile`, `shakeScreen`, etc.).
+    - **Frame Hook:** Integrated `LuaManager::update()` into `BobsGame::update()`, enabling per-frame Lua logic via `onUpdate()`.
+    - **Modding Framework:** Created `okgame/data/scripts/init.lua` framework and comprehensive `docs/LUA_API.md`.
 - **Lobby & Tournament Improvements (C++):**
-    - **Lobby State Machine:** Implemented state-based views (Rooms, Stats, Leaderboard) with `CANCEL`/`Back` navigation and dynamic menu repopulation.
-    - **Tournament Mode:** Implemented specialized "TOURNAMENT RESULTS" screen in `showResultsRanking` and enabled tournament room filtering in the lobby.
+    - **Lobby State Machine:** Implemented state-based views (Rooms, Stats, Leaderboard) with `CANCEL`/`Back` navigation.
+    - **Tournament Mode:** Implemented specialized "TOURNAMENT RESULTS" screen in `showResultsRanking`.
 - **Java Editor Improvements:**
-    - **Map Editor:** Added "Shift Map Up/Down/Left/Right" functionality with full Undo/Redo (`MapShiftEdit.java`) and Shift+Arrow key shortcuts in `EditorMain.java`.
-    - **Sprite Editor:** Added "Random PNGs" export button to the UI in `SpriteEditor.java` to trigger batch PNG output of procedural sprites.
-- **Legacy Cleanup:** Purged obsolete `SIGAR` and `JRE` references from the C++ codebase (`System.h`, `System.cpp`, and entire `src/` directory).
+    - **Map Editor:** Added "Shift Map Up/Down/Left/Right" functionality with full Undo/Redo (`MapShiftEdit.java`).
+    - **Sprite Editor:** Added "Random PNGs" export button to the UI.
+- **Legacy Cleanup:** Purged obsolete `SIGAR` and `JRE` references from the C++ codebase.
 
 ## 2. Current Status
 - **Root:** Ready for 2.0.0 deployment.
-- **Java Client:** Modernized UI and enhanced editor tools. Logic modernization ongoing.
-- **C++ Client:** Steam, Lua, and Lobby View systems fully functional and integrated with real-time scripting capabilities.
+- **Java Server:** Highly functional with Room, Friend, Stat, and Chat logic implemented.
+- **C++ Client:** Steam, Lua, and Lobby View systems fully functional and integrated with real-time scripting.
 - **Web Client:** Stable with new parity serialization logic.
 
 ## 3. Blockers & Roadblocks
-- **Git Push:** Failed due to interactive authentication requirements. All changes are committed locally to `master` (root) and respective submodule branches.
-- **Submodule Sync:** Some deep-nested submodules (e.g., `lib/brotli`) have missing refs on origin. Manual cleanup was performed but recursion remains fragile.
+- **Git Push:** Failed due to interactive authentication requirements. All changes are committed locally to `master`.
+- **Submodule Sync:** Some deep-nested submodules have missing refs on origin. Recursion remains fragile.
 
 ## 4. Next Steps
-1.  **Tournament Brackets:** Focus on server-side automated tournament orchestration and C++ bracket UI.
+1.  **Tournament Brackets:** Implement server-side automated tournament orchestration and C++ bracket UI.
 2.  **Java UI Upgrade:** Continue transition to LibGDX Scene2D for all remaining legacy dialogs.
 3.  **Mobile Prototyping:** Test Capacitor deployment for the Web fork.
 4.  **Lua Expansion:** Add bindings for audio control and sprite manipulation.

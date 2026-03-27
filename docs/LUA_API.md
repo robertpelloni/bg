@@ -70,5 +70,29 @@ Queues a specific amount of VS garbage to be sent to opponents.
 Triggers the immediate reception of a specific amount of garbage.
 - `amount`: (number) Number of garbage blocks.
 
+## 7. Audio Control
+
+### `playSound(name, [volume], [pitch])`
+Plays a sound effect.
+- `name`: (string) The name of the sound asset.
+- `volume`: (number, optional) Volume from 0.0 to 1.0 (default: 1.0).
+- `pitch`: (number, optional) Pitch/frequency multiplier (default: 1.0).
+
+### `playMusic(name, [volume])`
+Plays music in a loop.
+- `name`: (string) The name of the music asset.
+- `volume`: (number, optional) Volume from 0.0 to 1.0 (default: 1.0).
+
+### `stopMusic()`
+Stops all currently playing music.
+
+## 8. Sprites & UI
+
+### `createScreenSprite(name, assetName, x, y)`
+Creates a screen-space sprite (overlay/UI).
+- `name`: (string) Unique identifier for this instance.
+- `assetName`: (string) Name of the sprite asset.
+- `x`, `y`: (number) Screen coordinates.
+
 ---
 *Documentation for version 2.0.0 (Lua 5.1 Integration).*
