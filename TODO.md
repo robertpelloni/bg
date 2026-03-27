@@ -15,18 +15,20 @@
 - [x] **Clean Legacy Code:** Remove legacy `SIGAR` and `JRE` references from C++ codebase.
 - [x] **Lua API:** Integrate Lua 5.1 engine into `okgame` and establish `LuaManager` with basic logging bindings.
 - [x] **Engine Bindings:** Expose `getScore`, `getLevel`, `sendGarbage`, `getTile`, `setTile`, and screen effects to Lua.
-- [x] **Java Server Implementation:** Implemented major stubs in `GameServerTCP.java` (Rooms, Friends, Stats, Leaderboards, Activity, Chat).
+- [x] **Java Server Implementation:** Implemented major stubs in `GameServerTCP.java`.
+- [x] **Tournament Orchestration:** Implemented `TournamentManager` with recursive bracket generation and protocol strings in `BobNet`.
 
 ## 3. Feature Polish (From Roadmaps)
 - [x] **Lobby View System:** Implemented state-based lobby views (Rooms, Stats, Leaderboard) with CANCEL/Back navigation.
 - [x] **Tournament Results:** Implemented specialized "TOURNAMENT RESULTS" screen in `showResultsRanking`.
+- [x] **Tournament Brackets:** Added "Tournament Bracket" UI methods and rendering hooks in C++ client.
 - [x] **Steam Friends:** Implemented "Add friends from Steam" with persona name synchronization.
 - [x] **Lua Framework:** Established `data/scripts/init.lua` loading and per-frame `onUpdate` hook.
 - [x] **Map Editor:** Added "Shift Map Up/Down/Left/Right" functionality with full Undo/Redo.
 - [x] **Sprite Editor:** Added "Random PNGs" export button to the UI.
 
 ## 4. Advanced Features
-- [ ] **Tournament Brackets:** Implement server-side automated tournament orchestration and C++ bracket UI.
+- [ ] **Bracket UI Implementation:** Finalize the C++ bracket tree rendering logic.
 - [ ] **Java UI Upgrade:** Continue transition to LibGDX Scene2D for all remaining legacy dialogs.
 - [ ] **Mobile Prototyping:** Test Capacitor deployment for the Web fork.
 - [ ] **Lua Expansion:** Add bindings for audio control and sprite manipulation.

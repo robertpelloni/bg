@@ -13,7 +13,8 @@
 - **Lua API & Modding (C++):** Integrated Lua 5.1 engine into `okgame`, established `LuaManager` with deep engine bindings, per-frame `onUpdate` hook, and provided `docs/LUA_API.md` documentation.
 - **Lobby View System (C++):** Implemented state-based lobby views (Rooms, Stats, Leaderboard) with CANCEL/Back navigation and dynamic repopulation.
 - **Steam Integration (C++):** Implemented "Add friends from Steam" with persona name synchronization and initialized Steamworks SDK.
-- **Tournament Mode (C++):** Implemented specialized "TOURNAMENT RESULTS" screen and tournament room filtering in the lobby.
+- **Tournament Mode (C++):** Implemented specialized "TOURNAMENT RESULTS" screen, tournament room filtering, and "Tournament Bracket" UI methods.
+- **Tournament Orchestration (Java):** Created `TournamentManager` on the server with recursive single-elimination bracket generation and protocol strings in `BobNet`.
 
 ### Changed
 - **TypeScript Parity:** Implemented GZip/Base64 JSON serialization in `GameType.ts` to match C++ and Java logic.
