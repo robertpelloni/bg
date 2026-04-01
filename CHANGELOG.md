@@ -15,6 +15,9 @@
 - **Steam Integration (C++):** Implemented "Add friends from Steam" with persona name synchronization and initialized Steamworks SDK.
 - **Tournament Mode (C++):** Implemented specialized "TOURNAMENT RESULTS" screen, tournament room filtering, and "Tournament Bracket" UI methods.
 - **Tournament Orchestration (Java):** Created `TournamentManager` on the server with recursive single-elimination bracket generation and protocol strings in `BobNet`.
+- **Tournament Bracket Rendering (C++):** Implemented client-side visual bracket tree rendering with round-based column layout and line connectors.
+- **Lua Engine Refinement (C++):** Added per-frame `onUpdate` hook integration in `OKGame` update loop and finalized deep engine bindings.
+- **Protocol Parity (C++):** Synchronized `BobNet.cpp` with `BobNet.java` to support the new tournament bracket network protocol.
 
 ### Changed
 - **TypeScript Parity:** Implemented GZip/Base64 JSON serialization in `GameType.ts` to match C++ and Java logic.

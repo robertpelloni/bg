@@ -28,7 +28,9 @@
 - [x] **Sprite Editor:** Added "Random PNGs" export button to the UI.
 
 ## 4. Advanced Features
-- [ ] **Bracket UI Implementation:** Finalize the C++ bracket tree rendering logic.
-- [ ] **Java UI Upgrade:** Continue transition to LibGDX Scene2D for all remaining legacy dialogs.
-- [ ] **Mobile Prototyping:** Test Capacitor deployment for the Web fork.
-- [ ] **Lua Expansion:** Add bindings for audio control and sprite manipulation.
+- [x] **Bracket UI Implementation:** Finalized the C++ bracket tree rendering logic and network parsing.
+- [x] **Lua Expansion:** Added bindings for audio control, sprite manipulation, and per-frame update hook.
+- [x] **Java UI Upgrade:** Implemented `Scene2DStringDialog` and `Scene2DYesNoDialog` with `GUIManager` integration.
+- [ ] **Java UI Modernization:** Replace remaining legacy AWT/Swing dialogs with Scene2D equivalents.
+- [x] **Mobile Prototyping:** Established Capacitor foundation in the Web fork with `capacitor.config.ts` and platform dependencies.
+- [ ] **Mobile Deployment:** Test actual Android/iOS builds via Capacitor.
