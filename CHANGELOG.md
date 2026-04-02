@@ -1,5 +1,11 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.0.1] - 2026-04-01
+### Added
+- **Global Documentation Overhaul:** Initiated massive update to all root-level project documentation per new comprehensive steering instructions.
+- **Submodule Dashboard:** Created `SUBMODULE_DASHBOARD.md` to track all repository components, versions, and locations.
+- **LLM Instructions Alignment:** Rewrote `GEMINI.md`, `CLAUDE.md`, `GPT.md`, `AGENTS.md`, and `copilot-instructions.md` to cleanly reference `docs/UNIVERSAL_LLM_INSTRUCTIONS.md`.
+
 ## [2.0.0] - 2026-03-22
 ### Added
 - **Root Documentation:** Established `UNIVERSAL_LLM_INSTRUCTIONS.md`, `VISION.md`, `MEMORY.md`, and `DEPLOY.md`.

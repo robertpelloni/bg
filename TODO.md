@@ -1,36 +1,30 @@
-# TODO: Short-Term Tasks & Bug Fixes
+# TODO List - Omni-Workspace
 
-## 1. Documentation & Standards
-- [x] Create root `AGENTS.md`, `GEMINI.md`, `CLAUDE.md`, `GPT.md`, `copilot-instructions.md`.
-- [x] Create root `VISION.md`, `MEMORY.md`.
-- [x] Create root `DEPLOY.md`.
-- [x] Create root `SUBMODULE_DASHBOARD.md`.
-- [x] Sync all sub-project LLM instruction files to reference root `docs/UNIVERSAL_LLM_INSTRUCTIONS.md`.
-- [x] Update all `CHANGELOG.md` files with recent accomplishments.
+## Highest Priority: Web Port (`bobsgameweb`) Parity for Deployment
 
-## 2. Infrastructure & Parity
-- [x] **TS Networking Parity:** Implement GZip/JSON serialization in `bobsgameweb/src/shared/puzzle/GameType.ts`.
-- [x] **Steam SDK Polish:** Replace C++ SDK stubs with real Steamworks calls in `okgame/src/Utility/SteamManager.cpp`.
-- [x] **Steam UI Hooks:** Uncomment and wire up Steam features in `okgame/src/Puzzle/OKGameNetwork.cpp`.
-- [x] **Clean Legacy Code:** Remove legacy `SIGAR` and `JRE` references from C++ codebase.
-- [x] **Lua API:** Integrate Lua 5.1 engine into `okgame` and establish `LuaManager` with basic logging bindings.
-- [x] **Engine Bindings:** Expose `getScore`, `getLevel`, `sendGarbage`, `getTile`, `setTile`, and screen effects to Lua.
-- [x] **Java Server Implementation:** Implemented major stubs in `GameServerTCP.java`.
-- [x] **Tournament Orchestration:** Implemented `TournamentManager` with recursive bracket generation and protocol strings in `BobNet`.
+### 1. Networking (`BobNet.ts` vs Java `BobNet.java`)
+- [ ] Audit `BobNet.ts` against the Java server communication protocol.
+- [ ] Ensure 100% protocol parity for multiplayer and online features (Tournament bracket packets, Chat, Stats, Leaderboard, Room Lists).
+- [ ] Handle GZip/Base64 JSON serialization edge cases if any remain.
 
-## 3. Feature Polish (From Roadmaps)
-- [x] **Lobby View System:** Implemented state-based lobby views (Rooms, Stats, Leaderboard) with CANCEL/Back navigation.
-- [x] **Tournament Results:** Implemented specialized "TOURNAMENT RESULTS" screen in `showResultsRanking`.
-- [x] **Tournament Brackets:** Added "Tournament Bracket" UI methods and rendering hooks in C++ client.
-- [x] **Steam Friends:** Implemented "Add friends from Steam" with persona name synchronization.
-- [x] **Lua Framework:** Established `data/scripts/init.lua` loading and per-frame `onUpdate` hook.
-- [x] **Map Editor:** Added "Shift Map Up/Down/Left/Right" functionality with full Undo/Redo.
-- [x] **Sprite Editor:** Added "Random PNGs" export button to the UI.
+### 2. Audio Engine
+- [ ] Audit `bobsgameweb/src/renderer/audio/`.
+- [ ] Implement or integrate Web Audio API support for tracker music formats (MOD/S3M/XM/IT) present in the original Java version (which used `micromod` and `ibxm`).
 
-## 4. Advanced Features
-- [x] **Bracket UI Implementation:** Finalized the C++ bracket tree rendering logic and network parsing.
-- [x] **Lua Expansion:** Added bindings for audio control, sprite manipulation, and per-frame update hook.
-- [x] **Java UI Upgrade:** Implemented `Scene2DStringDialog` and `Scene2DYesNoDialog` with `GUIManager` integration.
-- [ ] **Java UI Modernization:** Replace remaining legacy AWT/Swing dialogs with Scene2D equivalents.
-- [x] **Mobile Prototyping:** Established Capacitor foundation in the Web fork with `capacitor.config.ts` and platform dependencies.
-- [ ] **Mobile Deployment:** Test actual Android/iOS builds via Capacitor.
+### 3. Game Logic
+- [ ] Line-by-line audit of `src/shared/puzzle` in the web port against the Java `puzzle` package to ensure identical physics, RNG, and frame timing.
+- [ ] Implement any missing game modes or piece types.
+
+### 4. UI / Menus
+- [ ] Ensure all settings, modes, and screens from the original game are present in the web UI.
+- [ ] Implement the "TOURNAMENT RESULTS" screen and tournament room filtering.
+- [ ] Implement the visual tournament bracket tree rendering (like the C++ version).
+
+### 5. Editor Functionality
+- [ ] Port the massive `EditorMain.java` functionality to the web version's `src/renderer/editor/`.
+- [ ] Implement "Shift Map" features, Undo/Redo buffers, and "Random PNGs" export.
+
+## Ongoing Maintenance
+- [ ] Continuously merge AI feature branches into `main`.
+- [ ] Keep `SUBMODULE_DASHBOARD.md` updated with every submodule version change.
+- [ ] Resolve any conflicts intelligently without losing feature progress.
