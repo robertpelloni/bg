@@ -1,5 +1,22 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.1.0] - 2026-04-02
+### Fixed
+- **PixiJS v8 API Migration:** Fixed `LobbyScene.ts` and `SettingsScene.ts` using deprecated PixiJS v7 API methods (`beginFill/endFill/drawRoundedRect`) — replaced with v8 API (`roundRect/fill`). These scenes would crash at runtime on PixiJS 8.x.
+- **Game Ticker Not Starting:** Fixed `Game.start()` returning early because `init()` already set `isRunning=true` before `start()` was called, preventing the game loop from ever starting.
+- **Scene Manager Back-Reference:** Fixed `Scene.manager` property never being assigned — `StateManager.push()` now assigns the manager back-reference to Scene instances so `this.manager.pop()` and `this.manager.push()` work correctly for navigation.
+- **NetworkManager Event Forwarding:** Added missing socket event forwarding for `roomCreated`, `joinedRoom`, `gameStart`, `error`, and `connected`/`disconnected` events. Without this, the LobbyScene could never receive responses from the server for room creation or game start.
+- **Settings/Lobby Navigation:** Replaced fragile `this.manager.pop()` calls with `SceneTransition.popWithFade()` for safer navigation with transition effects.
+
+### Added
+- **Server Leaderboard Persistence:** The multiplayer server now persists leaderboard scores to `leaderboards.json`, handles `reportScore` events, and serves top scores via `getLeaderboard` events. Previously scores were never stored.
+- **Dynamic Tournament Brackets:** Server now generates tournament brackets dynamically based on actual connected players instead of returning hardcoded dummy data.
+- **Server Input Validation:** Added input sanitization for room names, player names, chat messages, and score reports to prevent injection and overflow.
+
+### Changed
+- **Server Architecture:** Complete rewrite of `server/index.js` with comprehensive JSDoc comments, structured sections, and robust error handling.
+- Version bump to 2.1.0 across all version files.
+
 ## [2.0.3] - 2026-04-01
 ### Added
 - **Map Editor v2.0:** Overhauled the web map editor with a professional UI, full 17-layer support, and real-time tile painting using PixiJS.

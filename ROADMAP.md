@@ -1,7 +1,7 @@
 # Omni-Workspace Roadmap: bob's game / OKGame
 
 ## Status: Active Development
-**Current Version:** 2.0.1
+**Current Version:** 2.1.0
 
 ## 1. Documentation & Multi-Agent Alignment (COMPLETED)
 - [x] Establish root `UNIVERSAL_LLM_INSTRUCTIONS.md`.
@@ -15,15 +15,32 @@
 - [x] **Server Orchestration:** Implemented `TournamentManager` for automated recursive bracket generation.
 - [x] **Steam Integration:** Finalized C++ Steam integration for stats and persona sync.
 
-## 3. Web Port Deployment Readiness (Current Phase)
+## 3. Web Port Core Functionality (COMPLETED)
 - [x] **Audio Parity:** Integrated `chiptune3` (AudioWorklet) for tracker music support (MOD/XM).
 - [x] **Networking Parity:** Implemented GZip/Base64 serialization and matched all packet constants.
 - [x] **Tournament UI:** Implemented visual bracket rendering and specialized results screen.
 - [x] **Puzzle Parity:** Achieved 100% logic parity for Piece rotation sets, RNG, and multiplayer garbage rules.
-- [ ] **Editor Parity:** Port remaining `EditorMain.java` tile and entity placement logic to the web port.
-- [ ] **Asset Pipeline:** Ensure web client can dynamically load assets from the S3 big data URL.
+- [x] **PixiJS v8 Migration:** Fixed all scenes to use the PixiJS v8 Graphics API (roundRect/fill/stroke).
+- [x] **Networking Event Forwarding:** Fixed socket-to-EventEmitter event bridging for lobby/room events.
+- [x] **Game Loop Fix:** Fixed ticker not starting due to premature `isRunning` flag.
+- [x] **Leaderboard Persistence:** Server now persists and serves leaderboard scores.
 
-## 4. Mobile & Unified Deployment (Future)
+## 4. Web Port Deployment Readiness (Current Phase)
+- [ ] **Custom Game Editor UI:** Wire up `CustomGameEditor.ts` with full rule customization UI.
+- [ ] **Editor Parity:** Port remaining `EditorMain.java` tile and entity placement logic to the web port.
+- [ ] **Asset Pipeline:** Ensure web client can dynamically load assets from the S3 big data URL. Create a `data/` directory with placeholder assets for dev mode.
+- [x] **Version Display:** Show version number prominently in the main menu UI.
+- [x] **Game Over Screen Integration:** Wire GameOver flow to actually show `GameOverScene` with stats after game over.
+- [x] **Options Menu:** Add `Options` menu item to main menu.
+- [x] **Production Server URL:** Make the server URL configurable.
+- [ ] **Responsive Layout:** Ensure all scenes properly handle window resize events.
+
+## 5. Native C++ Port (`okgame`) Modernization (In Progress)
+- [ ] **Build Recovery:** Resolve remaining compile/link errors after CMake configure succeeds.
+- [ ] **WebSocket Lobby:** Complete lobby parity work for `roomCreated`, `joinedRoom`, `gameStart`.
+- [ ] **Lua Bindings:** Continue extending Lua deep bindings for grid, piece, and map data.
+
+## 6. Mobile & Unified Deployment (Future)
 - [ ] **Capacitor Build:** Perform final validation of iOS and Android builds from the `bobsgameweb` source.
 - [ ] **bobsgame.com:** Deploy the 100% functional web port to the production domain.
 - [ ] **Cross-Platform Tournament:** Conduct the first official tournament spanning Native, Web, and Java clients.

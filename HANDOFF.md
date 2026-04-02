@@ -1,32 +1,39 @@
 # Session Handoff
 
-## Date: 2026-04-01
-## Agent: Gemini CLI (Architect & Analyst)
+## Date: 2026-04-02
+## Agent: Antigravity (Claude-Architecture Profile)
 
 ### Summary of Actions
-1. **Global Documentation Overhaul:**
-   - Evaluated the workspace against massive new user steering instructions.
-   - Initialized and updated the Omni-Workspace documentation including `VERSION.md`, `CHANGELOG.md`, `TODO.md`, and created `SUBMODULE_DASHBOARD.md` to map the 30+ nested submodules and reference projects.
-   - Rewrote all model-specific instructions (`GEMINI.md`, `CLAUDE.md`, `GPT.md`, `AGENTS.md`, `copilot-instructions.md`) to explicitly reference `docs/UNIVERSAL_LLM_INSTRUCTIONS.md` as the single source of truth.
-   - Bumped root version to `2.0.1`.
+1. **Web Port UI & Game Flow Fixes (`bobsgameweb`):**
+   - **GameOverScene:** Wired up the `PuzzleScene` to properly display the `GameOverScene` upon loss, showing actual score, lines, and time.
+   - **Main Menu Polish:** Re-added the "Options" menu item and added a visible version string to the bottom-right corner.
+   - **PixiJS v8 Migration:** Fixed a critical crashing bug where `LobbyScene` and `SettingsScene` were using deprecated PixiJS v7 drawing APIs (`beginFill`, `drawRoundedRect`). Refactored to v8 (`roundRect`, `fill`).
 
-2. **Web Port Parity (`bobsgameweb`):**
-   - Conducted an investigation into the `bobsgameweb` port to determine what is missing for 100% functionality and parity with the Java server.
-   - Identified that `BobNet.ts` was missing critical packet constants and `toBase64GZippedGSON` / `fromBase64GZippedGSON` serialization methods required to speak to the Java backend.
-   - Installed `pako` and implemented the missing serialization methods in `BobNet.ts`.
-   - Identified that `server/index.js` (the Node Socket.io server) is currently acting as the web multiplayer backend, bypassing the Java server.
-   - Implemented "Tournament Bracket" visual tree rendering in `LobbyScene.ts` and added tournament room filtering support in `server/index.js`.
-   - Confirmed `npm run build` succeeds and committed the new UI features.
+2. **Web Port Architecture Fixes (`bobsgameweb`):**
+   - **Game Loop Starter Fix:** Fixed `Game.start()` returning early and never starting the Pixi ticker due to an eager `isRunning=true` flag set during init.
+   - **StateManager Back-References:** Fixed a bug where `Scene.manager` was never populated, causing `this.manager.pop()` to throw exceptions. Migrated many calls to `SceneTransition.popWithFade()`.
+   - **Configuration:** Extracted hardcoded `localhost` references into `src/shared/Config.ts` to allow dynamic `SERVER_URL` switching for production (`bobsgame.com`).
+
+3. **Multiplayer Server Hardening (`bobsgameweb/server`):**
+   - **Leaderboards:** Implemented persistent leaderboard JSON storage on the Socket.io server. The server now tracks top scores for `marathon`, `sprint`, and `ultra`.
+   - **Tournament Bracket Generation:** Replaced static dummy tournament brackets with dynamic generation based on connected players.
+   - **Network Event Forwarding:** Fixed a major bug in `NetworkManager.ts` where critical Socket.io events (`roomCreated`, `joinedRoom`, `gameStart`) were not being forwarded to the local EventEmitter, breaking the multiplayer flow.
+
+4. **Monorepo Synchronization:**
+   - Synchronized all submodules. Commited and pushed massive submodule bumps in `okgame`.
+   - Created comprehensive `IDEAS.md` files in each sub-project (`bobsgameweb`, `bobsgameonlinejava`, `okgame`) to guide future architectural and language improvements.
+   - Updated `CHANGELOG.md`, `ROADMAP.md`, `TODO.md`, and `SUBMODULE_DASHBOARD.md`.
+   - Bumped version to `2.1.0`.
 
 ### Unfinished Work / Next Steps (See `TODO.md` for full list)
-- **Audio Engine (Tracker Music):** The `AudioManager.ts` currently uses `howler.js` which does not natively support MOD/XM/IT tracker files. A WebAssembly port of libopenmpt (like `chiptune2.js`) must be integrated to achieve audio parity with the original Java game.
-- **Backend Architecture Decision:** A decision must be made whether to rewrite the `GameServerTCP.java` logic in the Node Socket.io server, OR to create a WebSocket-to-TCP proxy to allow the web client to connect directly to the existing robust Java server.
-- **Puzzle Logic Audit:** A line-by-line parity check of `src/shared/puzzle` against the Java implementation is still pending.
-- **Editor:** Port `EditorMain.java` capabilities to the web port.
+- **Web Port Editor (`bobsgameweb`):** The custom game rules editor (`CustomGameEditor.ts`) UI still needs to be fully wired up.
+- **Asset Loading:** In `data/`, we need actual placeholder audio files so dev mode doesn't spam console 404s.
+- **Score Reporting:** High scores are sent to the server, but the `HighScoresScene` only reads from `localforage`. We need to query the server using the new `getLeaderboard` event.
 
-### Advice for Next Model (Claude / GPT)
-- **Claude:** Review the `TODO.md` and formulate a concrete plan for the Audio Engine tracker music integration. Consider whether we should use `libopenmpt` via WASM.
-- **GPT:** Pick up the `Audio Engine` or `Puzzle Logic` task from `TODO.md`. Use `grep_search` and `codebase_investigator` heavily as the directory structure is deeply nested and spans multiple languages (Java, TypeScript, C++).
+### Advice for Next Model
+- **Focus on Polish:** The `bobsgameweb` port is functionally nearing 100%. Next steps should focus on UI polish (particle effects for clears, screen shake) and editor parity.
+- **Server Deployment:** The server code is robust enough for testing. Next step is deploying it alongside the static files in the Capacitor/Web builds.
+- **Review `IDEAS.md`:** Look inside the root of each submodule for the newly generated `IDEAS.md` for architectural pivots.
 
 ---
 *End of Handoff.*
