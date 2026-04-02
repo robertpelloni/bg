@@ -13,19 +13,19 @@
 
 ### 3. Game Logic
 - [x] Achieved parity for `Piece` rotation sets (SRS, SEGA, NES, GB, DTET) and `DifficultyType`.
-- [ ] Line-by-line audit of `src/shared/puzzle` in the web port against the Java `puzzle` package to ensure identical physics, RNG, and frame timing.
-- [ ] Implement any missing game modes or piece types.
+- [x] Complete deep audit and port of `GameLogic.ts` core physics, Seeded RNG, and multiplayer garbage routing for 100% parity.
 
 ### 4. UI / Menus
 - [x] Implement the visual tournament bracket tree rendering.
 - [x] Implement tournament room filtering in the Lobby.
+- [x] Implement the "TOURNAMENT RESULTS" screen with bracket visualization and session stats.
 - [ ] Ensure all settings, modes, and screens from the original game are present in the web UI.
-- [ ] Implement the "TOURNAMENT RESULTS" screen.
 
 ### 5. Editor Functionality
-- [x] Port core RPG data structures (`AssetData`, `MapData`, `MapStateData`, `EventData`, `DoorData`) to the web port `shared` folder.
-- [x] Established `MapEditor.ts` foundation with PixiJS viewport and HTML UI panels.
-- [ ] Port the massive `EditorMain.java` functionality (Tile painting, Entity placement, Layer management).
+- [x] Port core RPG data structures (`AssetData`, `MapData`, `MapStateData`, `EventData`, `DoorData`).
+- [x] Implement `Palette` and `Tileset` logic for 8x8 RPG tiles.
+- [x] Overhaul `MapEditor.ts` with full layer selection (17 layers) and real-time tile painting.
+- [ ] Port the massive `EditorMain.java` functionality (Flood fill, Rect tool, Entity placement).
 - [ ] Implement "Shift Map" features, Undo/Redo buffers, and "Random PNGs" export.
 
 ## Ongoing Maintenance
