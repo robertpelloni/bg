@@ -38,7 +38,8 @@
 
 ## 5. The Omni-Engine Expansion (RPG Engine Parity Phase)
 - [x] **Defold Parity (ECS):** Created a deterministic Entity-Component-System mirroring Defold's architecture in TS, Java, and C++.
-- [ ] **Phaser Parity (Rendering):** Establish WebWorker-based multi-threaded logic and WebGL/WebGPU fractionally-zoomed multi-target camera systems.
+- [x] **Phaser Parity (Rendering):** Established a robust multi-target camera system with interpolation, viewport bounds, and native screen shake.
+- [x] **WebWorker Multi-Threading:** Scaffolded the `GameWorker` architecture for offloading heavy deterministic logic from the main thread.
 - [x] **LÖVE Parity (Scripting):** Provide raw, immediate-mode shader (SPIR-V/GLSL) and draw hooks bound securely to Lua/TS scripts. (Initial ECS scaffolding complete).
 - [x] **Construct Parity (Behaviors):** Implemented attachable "Behaviors" (Platformer, 8-Direction) as ECS components with a dedicated logic system.
 - [ ] **GameMaker Parity (Room Editor):** Upgrade the `MapEditor` to surpass GM's room editor with infinite procedural mapping and real-time concurrent multiplayer editing.
