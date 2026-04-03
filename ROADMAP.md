@@ -61,6 +61,7 @@
 - [x] **ECS Parity:** Ported core ECS systems and behaviors to C++.
 
 ## 7. Mobile & Unified Deployment (Future)
+- [x] **Deep Linking & Sharing:** Share custom game rules and deterministic replays instantly via base64 compressed URL hashes (e.g., `#play=...` and `#replay=...`).
 - [ ] **Capacitor Build:** Perform final validation of iOS and Android builds.
 - [x] **bobsgame.com:** Initial web port deployment successful.
 - [ ] **Unified MMR:** Deploy the unified cross-platform player rating system.

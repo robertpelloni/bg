@@ -47,12 +47,13 @@
 - [x] Implement "Shift Map" features, Undo/Redo buffers, and "Random PNGs" export.
 - [x] Wire `CustomGameEditor.ts` to allow creating and saving custom game types/rules.
 
-### 7. Visual Polish
+### 7. Visual Polish & Extras
 - [x] Add particle effects for line clears (explosion/sparkle).
 - [x] Add screen shake on hard drop and garbage receive.
 - [x] Implement smooth piece drop animation (interpolated movement).
 - [x] Add combo counter popup text (DOUBLE!, TRIPLE!, TETRIS!, etc.).
 - [x] Animate the stats panel (score counter rolling up effect).
+- [x] Implement Base64 compressed Deep Links for Custom Games and Replays (Shareable Links).
 - [x] Advanced RPG Combat: Floating damage numbers, screen shake, hit flashes.
 
 ## Ongoing Maintenance
