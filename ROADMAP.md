@@ -65,3 +65,4 @@
 - [ ] **Capacitor Build:** Perform final validation of iOS and Android builds.
 - [x] **bobsgame.com:** Initial web port deployment successful.
 - [x] **Unified MMR:** Deployed the unified cross-platform Elo rating system, broadcast globally on `bobsgame.com`.
+- [x] **Leaderboard Replay VODs:** Added "Watch Replay" buttons directly to the Global Rankings scene, downloading and playing matches directly from the server.
