@@ -27,7 +27,7 @@
 
 ## 4. Web Port Deployment Readiness (Current Phase)
 - [x] **Custom Game Editor UI:** Fully wired the rule customization interface to the internal logic.
-- [ ] **Editor Parity:** Port remaining `EditorMain.java` tile and entity placement logic to the web port.
+- [x] **Aseprite Parity (Sprite Editor):** Enhance the `MapEditor.ts` to include a full pixel canvas with flood fill, onion skinning, and multi-frame support.
 - [x] **Asset Pipeline:** Hardened the `AssetLoader` with dynamic path resolution and dummy asset generation.
 - [x] **Version Display:** Show version number prominently in the main menu UI.
 - [x] **Game Over Screen Integration:** Wired GameOver flow to show stats and handle replay/exit logic.
