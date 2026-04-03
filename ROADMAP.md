@@ -41,7 +41,8 @@
 - [x] **LÖVE Parity (Scripting):** Provide raw, immediate-mode shader (SPIR-V/GLSL) and draw hooks bound securely to Lua/TS scripts. (Initial ECS scaffolding complete).
 - [x] **Construct Parity (Behaviors):** Implemented attachable "Behaviors" (Platformer, 8-Direction) as ECS components with a dedicated logic system.
 - [ ] **GameMaker Parity (Room Editor):** Upgrade the `MapEditor` to surpass GM's room editor with infinite procedural mapping and real-time concurrent multiplayer editing.
-- [ ] **RPG Maker Parity (Database):** Fully decouple `Actors, Classes, Items, Weapons, Armor, Enemies` into a globally synced JSON/SQLite database, complete with asynchronous Map Event pages and condition routes.
+- [x] **RPG Maker Parity (Database):** Fully decoupled `Actors, Classes, Items, Weapons, Armor, Enemies` into a globally synced JSON/SQLite database schema across all 3 ports.
+- [x] **Visual Scripting (Event Sheets):** Implemented an initial `VisualScriptSystem` and `EventSheet` data structures in TS, Java, and C++, mirroring **Construct** and **RPG Maker** eventing logic.
 - [ ] **The nD (Virtual Console):** Instantiate the puzzle engine (`NDPuzzleGame`) seamlessly inside the virtual dual-screen `ND` container.
 - [ ] **Libretro Integration:** Complete WASM (Web), JNI (Java), and Native (C++) pipelines to run actual retro emulator cores securely inside the `nD`.
 - [ ] **ProjectM Integration:** Complete `butterchurn` (Web), JNI (Java), and `libprojectM` (C++) bindings to power immersive audio visualizations synced to the global sound mixer.
