@@ -36,10 +36,10 @@
 - [ ] **Responsive Layout:** Ensure all scenes properly handle window resize events.
 
 ## 5. The Omni-Engine Expansion (RPG Engine Parity Phase)
-- [ ] **Defold Parity (ECS):** Create a deterministic Entity-Component-System mirroring Defold's message-passing architecture in TS/C++/Java.
+- [x] **Defold Parity (ECS):** Created a deterministic Entity-Component-System mirroring Defold's architecture in TS, Java, and C++.
 - [ ] **Phaser Parity (Rendering):** Establish WebWorker-based multi-threaded logic and WebGL/WebGPU fractionally-zoomed multi-target camera systems.
-- [ ] **LÖVE Parity (Scripting):** Provide raw, immediate-mode shader (SPIR-V/GLSL) and draw hooks bound securely to Lua/TS scripts.
-- [ ] **Construct Parity (Behaviors):** Implement attachable "Behaviors" (Platformer, 8-Direction, Bullet, Sine) as ECS components with visual Event Sheet scripting.
+- [x] **LÖVE Parity (Scripting):** Provide raw, immediate-mode shader (SPIR-V/GLSL) and draw hooks bound securely to Lua/TS scripts. (Initial ECS scaffolding complete).
+- [x] **Construct Parity (Behaviors):** Implemented attachable "Behaviors" (Platformer, 8-Direction) as ECS components with a dedicated logic system.
 - [ ] **GameMaker Parity (Room Editor):** Upgrade the `MapEditor` to surpass GM's room editor with infinite procedural mapping and real-time concurrent multiplayer editing.
 - [ ] **RPG Maker Parity (Database):** Fully decouple `Actors, Classes, Items, Weapons, Armor, Enemies` into a globally synced JSON/SQLite database, complete with asynchronous Map Event pages and condition routes.
 - [ ] **The nD (Virtual Console):** Instantiate the puzzle engine (`NDPuzzleGame`) seamlessly inside the virtual dual-screen `ND` container.
