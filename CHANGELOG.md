@@ -1,5 +1,18 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.1.1] - 2026-04-02
+### Added
+- **Global High Scores:** The `HighScoresScene` now fetches and displays real-time global leaderboards from the WebSocket server, gracefully merging with local scores if needed.
+- **Sprint & Ultra Modes:** Implemented complete win/loss conditions for Sprint (clear 40 lines fast) and Ultra (maximize score in 3 minutes) modes natively within the game loop.
+- **Visual Polish:** Implemented a new particle emission system (`spawnLineClearParticles`) that generates explosive physics-based particles on line clears.
+- **Screen Shake:** Added a dynamic `shake()` effect to the `PuzzleRenderer` that triggers on Hard Drops and when receiving VS Garbage from opponents.
+- **Lobby Enhancements:** The multiplayer Lobby now displays the actual names of players in a room (instead of just a count), shows real-time `[LOBBY]` vs `[PLAYING]` states, and features a "Connecting..." / "Disconnected" overlay status.
+- **Audio Testing:** Added a "Test Sound" button to the `OptionsScene` so players can preview SFX volume changes.
+- **Help Overlay:** Added a persistent F1 Help overlay that displays all keyboard bindings during a match.
+
+### Fixed
+- **Multiplayer Disconnection:** Fixed an issue where clicking "Quit to Menu" during a multiplayer match would leave the player's socket connected to the active room, causing ghost players.
+
 ## [2.1.0] - 2026-04-02
 ### Fixed
 - **PixiJS v8 API Migration:** Fixed `LobbyScene.ts` and `SettingsScene.ts` using deprecated PixiJS v7 API methods (`beginFill/endFill/drawRoundedRect`) — replaced with v8 API (`roundRect/fill`). These scenes would crash at runtime on PixiJS 8.x.

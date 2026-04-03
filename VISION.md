@@ -1,29 +1,34 @@
-# VISION: bob's game / OKGame (Omni-Workspace)
+# VISION: The Omni-Engine (bob's game / OKGame)
 
 ## 1. The Ultimate Goal
-The vision for **bob's game / OKGame** is to create the most robust, cross-platform, and technologically advanced puzzle game ecosystem in existence. This involves a unified logic core implemented across C++, Java, and TypeScript, enabling seamless multiplayer and global persistence across all devices (Desktop, Web, and Mobile). 
+The vision for **bob's game / OKGame** has transcended a cross-platform puzzle game. It is the **Omni-Engine**—a massively multiplayer game creation ecosystem designed to achieve 100% feature parity, and 1:1 functionality (but *better*), with the six leading 2D engines: **Defold, LÖVE, Phaser, Construct, GameMaker, and RPG Maker**.
 
-The Omni-Workspace acts as a "Single Source of Truth" where development in one language informs and synchronizes with the others, maintaining 100% behavioral parity.
+This involves a unified deterministic core implemented flawlessly across C++, Java, and TypeScript, enabling seamless MMO-scale multiplayer, global persistence, and hot-reloading across Desktop, Web, and Mobile.
+
+The Omni-Workspace acts as a "Single Source of Truth" where an RPG Maker-style database, Construct-style event sheets, Defold-style ECS, and GameMaker-style room editors all compile down into a universal, deterministic, multiplayer-native format.
 
 ## 2. Core Pillars
 
-### A. Omni-Logic (The Deterministic Core)
-- **1:1 Behavioral Parity:** Every rotation (SRS, NES, GB, SEGA, DTET), every garbage calculation, and every RNG tick must produce identical results across C++, Java, and TypeScript.
-- **Deterministic Simulation:** The game engine is designed as a pure-state machine. Given the same seed and input stream, any client on any platform will render an identical frame.
-- **Unified Serialization:** Utilizing GZip/Base64 GSON/JSON for state snapshots, allowing a Java server to process a TypeScript client's frame and broadcast it to a C++ client seamlessly.
+### A. Omni-Logic (The Deterministic Core & ECS)
+- **1:1 Behavioral Parity:** Every entity behavior (Platformer, 8-Direction, Bullet), every RPG event condition, every piece rotation (SRS, NES), and every RNG tick must produce identical results across C++, Java, and TypeScript.
+- **Deterministic ECS:** The game engine is designed as a strict Entity-Component-System state machine, allowing rollback netcode and absolute sync across the globe.
+- **Universal Serialization:** Utilizing GZip/Base64 GSON/JSON to serialize the entire GameMaker/RPG Maker style database (Maps, Actors, Items, Event Sheets) so it can be streamed from the Java Server to any C++ or Web client instantly.
 
-### B. Technological Excellence & Modernization
+### B. The Superset Feature Matrix
+- **Defold (Better):** A heavily typed, network-synced message-passing architecture that hot-reloads instantly across languages.
+- **LÖVE (Better):** Complete raw immediate-mode access to the GPU and Audio graph (WebGPU/Vulkan/OpenGL) wrapped in safe bindings, scriptable in Lua, TS, or C++.
+- **Phaser (Better):** Multi-threaded architecture leveraging WebWorkers and native compiled backends instead of single-threaded JS, with fractionally zoomed multi-target cameras.
+- **Construct (Better):** An **Omni-Event Sheet System** that compiles visual node blocks directly into highly optimized C++/TS code, supporting deeply nested conditions and actions.
+- **GameMaker (Better):** A collaborative, multiplayer map editor (Google Docs style) that surpasses the Room Editor, featuring infinite procedural layers and raw GML-equivalent script editing.
+- **RPG Maker (Better):** A fully decoupled, MMO-ready relational database (Actors, Classes, Items, Weapons, Armor, Enemies) with classic map event pages and conditions, executing asynchronously.
+
+### C. Technological Excellence & Modernization
 - **Modern Standards:**
-    - **C++:** SDL3, C++20, and Modern OpenGL (Core Profile).
-    - **Java:** Java 21 LTS, LibGDX 1.14.0, and Netty for high-performance TCP.
-    - **Web:** Vite, TypeScript 5+, PixiJS v8, and Socket.io.
-- **Visual Sophistication:** Deep integration of `projectM` and `MilkDrop` visualizers. Native C++ logic is bridged into Java via Project Panama (Foreign Function API) to ensure zero-compromise performance.
-- **Audio Fidelity:** A hybrid audio engine supporting both high-quality PCM (Howler.js) and authentic tracker music (MOD/XM/S3M/IT) via libopenmpt WASM.
-
-### C. Universal Identity & Global Persistence
-- **Single Sign-On:** Integrated Facebook and custom account management across all platforms.
-- **Cross-Platform Play:** A centralized Java server facilitating real-time matchmaking, high-frequency state sync, and global leaderboards.
-- **Steam Integration:** Full utilization of Steamworks (Achievements, Stats, Cloud Saves, Multiplayer) for the native desktop experience.
+    - **C++:** SDL3, C++20, Modern Vulkan/OpenGL, EnTT (ECS).
+    - **Java:** Java 21 LTS, LibGDX 1.14.0, Netty TCP.
+    - **Web:** Vite, TypeScript 5+, PixiJS v8 (WebGPU), WebWorkers, WebRTC.
+- **Visual Sophistication & The nD:** Deep integration of `libprojectM` (audio visualizers) and `libretro` (native emulators). These run natively inside virtual screens (the "nD" handheld) seamlessly across Web (WASM), Java (JNI), and C++.
+- **Audio Fidelity:** A hybrid audio engine supporting both high-quality PCM and authentic tracker music (MOD/XM/S3M/IT) via libopenmpt across all ports.
 
 ## 3. Structural Design & Submodules
 The monorepo is composed of specialized sub-projects:
