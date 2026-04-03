@@ -33,7 +33,8 @@
 - [x] **Game Over Screen Integration:** Wire GameOver flow to actually show `GameOverScene` with stats after game over.
 - [x] **Options Menu:** Add `Options` menu item to main menu.
 - [x] **Production Server URL:** Make the server URL configurable.
-- [ ] **Responsive Layout:** Ensure all scenes properly handle window resize events.
+- [x] **Responsive Layout:** Implemented workspace-wide resize handling across all scenes and the virtual nD console.
+- [x] **Asset Pipeline:** Hardened the `AssetLoader` to dynamically resolve paths using the central `BIG_DATA_URL` for cloud/local switching.
 
 ## 5. The Omni-Engine Expansion (RPG Engine Parity Phase)
 - [x] **Defold Parity (ECS):** Created a deterministic Entity-Component-System mirroring Defold's architecture in TS, Java, and C++.
