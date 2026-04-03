@@ -43,7 +43,8 @@
 - [ ] **GameMaker Parity (Room Editor):** Upgrade the `MapEditor` to surpass GM's room editor with infinite procedural mapping and real-time concurrent multiplayer editing.
 - [x] **RPG Maker Parity (Database):** Fully decoupled `Actors, Classes, Items, Weapons, Armor, Enemies` into a globally synced JSON/SQLite database schema across all 3 ports.
 - [x] **Visual Scripting (Event Sheets):** Implemented an initial `VisualScriptSystem` and `EventSheet` data structures in TS, Java, and C++, mirroring **Construct** and **RPG Maker** eventing logic.
-- [ ] **The nD (Virtual Console):** Instantiate the puzzle engine (`NDPuzzleGame`) seamlessly inside the virtual dual-screen `ND` container.
+- [x] **The nD (Virtual Console):** Implemented the dual-screen virtual handheld system with hardware masking and hinged dual-display rendering.
+- [x] **Virtual nD Puzzle Game:** Successfully instantiated the puzzle engine inside the `nD` container, with top-screen rendering and bottom-screen interactive touch menus.
 - [ ] **Libretro Integration:** Complete WASM (Web), JNI (Java), and Native (C++) pipelines to run actual retro emulator cores securely inside the `nD`.
 - [ ] **ProjectM Integration:** Complete `butterchurn` (Web), JNI (Java), and `libprojectM` (C++) bindings to power immersive audio visualizations synced to the global sound mixer.
 
