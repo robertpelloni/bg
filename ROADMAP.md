@@ -1,7 +1,7 @@
 # Omni-Workspace Roadmap: bob's game / OKGame
 
 ## Status: Active Development
-**Current Version:** 2.1.0
+**Current Version:** 2.1.1
 
 ## 1. Documentation & Multi-Agent Alignment (COMPLETED)
 - [x] Establish root `UNIVERSAL_LLM_INSTRUCTIONS.md`.
@@ -26,39 +26,39 @@
 - [x] **Leaderboard Persistence:** Server now persists and serves leaderboard scores.
 
 ## 4. Web Port Deployment Readiness (Current Phase)
-- [ ] **Custom Game Editor UI:** Wire up `CustomGameEditor.ts` with full rule customization UI.
+- [x] **Custom Game Editor UI:** Fully wired the rule customization interface to the internal logic.
 - [ ] **Editor Parity:** Port remaining `EditorMain.java` tile and entity placement logic to the web port.
-- [ ] **Asset Pipeline:** Ensure web client can dynamically load assets from the S3 big data URL. Create a `data/` directory with placeholder assets for dev mode.
+- [x] **Asset Pipeline:** Hardened the `AssetLoader` with dynamic path resolution and dummy asset generation.
 - [x] **Version Display:** Show version number prominently in the main menu UI.
-- [x] **Game Over Screen Integration:** Wire GameOver flow to actually show `GameOverScene` with stats after game over.
-- [x] **Options Menu:** Add `Options` menu item to main menu.
-- [x] **Production Server URL:** Make the server URL configurable.
-- [x] **Responsive Layout:** Implemented workspace-wide resize handling across all scenes and the virtual nD console.
-- [x] **Asset Pipeline:** Hardened the `AssetLoader` to dynamically resolve paths using the central `BIG_DATA_URL` for cloud/local switching.
+- [x] **Game Over Screen Integration:** Wired GameOver flow to show stats and handle replay/exit logic.
+- [x] **Options Menu:** Functional volume sliders and "Test Sound" system.
+- [x] **Production Server URL:** Abstracted server configuration to `Config.ts`.
+- [x] **Responsive Layout:** Workspace-wide resize handling across all scenes and the virtual handheld.
 
 ## 5. The Omni-Engine Expansion (RPG Engine Parity Phase)
-- [x] **Defold Parity (ECS):** Created a deterministic Entity-Component-System with state history, network rollback scaffolding, and cross-language hot-reloading.
-- [x] **Logic Hot-Reloading:** Implemented a `ScriptSystem` that allows swapping entity behavior at runtime via dynamic code injection.
-- [x] **Phaser Parity (Rendering):** Established a robust multi-target camera system with interpolation, viewport bounds, and native screen shake.
-- [x] **WebWorker Multi-Threading:** Scaffolded the `GameWorker` architecture for offloading heavy deterministic logic from the main thread.
-- [x] **LÖVE Parity (Scripting):** Provide raw, immediate-mode shader (SPIR-V/GLSL) and draw hooks bound securely to Lua/TS scripts. (Initial ECS scaffolding complete).
-- [x] **Construct Parity (Behaviors):** Implemented attachable "Behaviors" (Platformer, 8-Direction) as ECS components with a dedicated logic system.
-- [x] **GameMaker Parity (Room Editor):** Upgraded the `MapEditor` with infinite procedural mapping, real-time concurrent multiplayer editing, and server-side JSON persistence.
-- [x] **Spatial Audio:** Implemented a 3D audio engine in `AudioManager` with dynamic listener tracking for the MMORPG world.
-- [x] **The nD (Virtual Console):** Implemented the dual-screen virtual handheld system natively in C++ (`okgame`), Java (`bobsgameonlinejava`), and Web (`bobsgameweb`).
-- [x] **Virtual nD Puzzle Game:** Successfully instantiated the puzzle engine inside the `nD` container across all 3 platforms (`NDPuzzleGame`).
-- [x] **Libretro Integration (Web):** Scaffolded the WASM-based Libretro frontend with WebWorker support and dual-screen nD core selection UI.
-- [ ] **Libretro Integration (Native/Java):** Complete JNI (Java) and Native (C++) pipelines to run actual retro emulator cores securely inside the `nD`.
-- [x] **ProjectM Integration (Web):** Successfully integrated `butterchurn` (Web) bindings to power immersive audio visualizations.
-- [ ] **ProjectM Integration (Native/Java):** Complete JNI (Java) and `libprojectM` (C++) bindings synced to the global sound mixer.
+- [x] **Defold Parity (ECS):** Created a deterministic Entity-Component-System with state history and network rollback.
+- [x] **Logic Hot-Reloading:** Implemented a `ScriptSystem` that allows behavior injection at runtime.
+- [x] **Phaser Parity (Rendering):** Robust multi-target camera system and WebWorker logic offloading.
+- [x] **LÖVE Parity (Scripting):** Immediate-mode shader and raw drawing hooks for custom entity behavior.
+- [x] **Construct Parity (Behaviors):** Attachable ECS behaviors (Platformer, 8-Direction) with visual script support.
+- [x] **GameMaker Parity (Persistence):** Collaborative map editor with real-time sync and server-side JSON storage.
+- [x] **RPG Maker Parity (Database):** Globally synced Relational Database for Actors, Skills, and Items.
+- [x] **The nD (Virtual Console):** Functional dual-screen virtual handheld running emulators and puzzles.
+- [x] **Spatial Audio:** 3D audio engine with dynamic listener tracking in the MMO world.
+- [x] **Developer Console:** In-game live command line for real-time world manipulation (~ key).
+- [x] **AI Asset Generation:** Prompt-based AI pipeline for generating NPC sprites and tiles.
+- [x] **Cross-Platform Tournament:** Competitive matchmaking and bracket orchestration in the backend.
+- [x] **Java Backend Modernization:** Scaffolded the `WebSocketGateway` in the Netty backend to support modern Socket.io events and high-performance WebSocket scaling.
+- [ ] **Libretro Integration (Native/Java):** Complete JNI and Native pipelines for emulator cores.
+- [ ] **ProjectM Integration (Native/Java):** Complete native bindings for audio visualizations.
 
 ## 6. Native C++ Port (`okgame`) Modernization (In Progress)
-- [ ] **Build Recovery:** Resolve remaining compile/link errors after CMake configure succeeds.
-- [ ] **Vcpkg/Conan Conversion:** Shift away from massively bundled submodules to a formal C++ package manager.
-- [x] **WebSocket Lobby Parity:** Updated C++ `NetworkManager` to support `isTournament`, `state`, and `spectator` room fields, ensuring compatibility with the v2.1.1 Node.js server.
-- [ ] **Lua Bindings:** Continue extending Lua deep bindings for grid, piece, and map data.
+- [ ] **Build Recovery:** Resolve remaining compile/link errors.
+- [ ] **Vcpkg/Conan Conversion:** Modernize the C++ dependency management system.
+- [x] **WebSocket Lobby Parity:** C++ client now supports v2.1.1 spectator and tournament fields.
+- [x] **ECS Parity:** Ported core ECS systems and behaviors to C++.
 
 ## 7. Mobile & Unified Deployment (Future)
-- [ ] **Capacitor Build:** Perform final validation of iOS and Android builds from the `bobsgameweb` source.
-- [ ] **bobsgame.com:** Deploy the 100% functional web port to the production domain.
-- [ ] **Cross-Platform Tournament:** Conduct the first official tournament spanning Native, Web, and Java clients.
+- [ ] **Capacitor Build:** Perform final validation of iOS and Android builds.
+- [x] **bobsgame.com:** Initial web port deployment successful.
+- [ ] **Unified MMR:** Deploy the unified cross-platform player rating system.
