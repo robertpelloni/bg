@@ -41,7 +41,8 @@
 - [x] **Phaser Parity (Rendering):** Robust multi-target camera system and WebWorker logic offloading.
 - [x] **LÖVE Parity (Scripting):** Immediate-mode shader and raw drawing hooks for custom entity behavior.
 - [x] **Construct Parity (Behaviors):** Attachable ECS behaviors (Platformer, 8-Direction) with visual script support.
-- [x] **GameMaker Parity (Persistence):** Collaborative map editor with real-time sync and server-side JSON storage.
+- [x] **GameMaker Parity (Persistence):** Collaborative map editor with real-time sync, server-side JSON storage, and advanced **Auto-Tiling Bitmask algorithms**.
+- [x] **RPG Maker Parity (Combat):** Fully animated Turn-Based Battle System featuring dynamic health bars, screen shake, hit flashes, and floating damage numbers.
 - [x] **RPG Maker Parity (Database):** Globally synced Relational Database for Actors, Skills, and Items.
 - [x] **The nD (Virtual Console):** Functional dual-screen virtual handheld running emulators and puzzles.
 - [x] **Spatial Audio:** 3D audio engine with dynamic listener tracking in the MMO world.

@@ -43,7 +43,7 @@
 - [x] Port core RPG data structures (`AssetData`, `MapData`, `MapStateData`, `EventData`, `DoorData`).
 - [x] Implement `Palette` and `Tileset` logic for 8x8 RPG tiles.
 - [x] Overhaul `MapEditor.ts` with full layer selection (17 layers) and real-time tile painting.
-- [ ] Port the massive `EditorMain.java` functionality (Flood fill, Rect tool, Entity placement).
+- [x] Port the massive `EditorMain.java` functionality (Flood fill, Rect tool, Entity placement).
 - [x] Implement "Shift Map" features, Undo/Redo buffers, and "Random PNGs" export.
 - [x] Wire `CustomGameEditor.ts` to allow creating and saving custom game types/rules.
 
@@ -53,6 +53,7 @@
 - [x] Implement smooth piece drop animation (interpolated movement).
 - [x] Add combo counter popup text (DOUBLE!, TRIPLE!, TETRIS!, etc.).
 - [x] Animate the stats panel (score counter rolling up effect).
+- [x] Advanced RPG Combat: Floating damage numbers, screen shake, hit flashes.
 
 ## Ongoing Maintenance
 - [x] Synchronize all submodules and merge feature branches across the monorepo.
