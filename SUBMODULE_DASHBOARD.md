@@ -14,8 +14,8 @@ This document tracks all submodules across the Omni-Workspace, their versions, a
 
 | Submodule | Branch/Commit | Location |
 | :--- | :--- | :--- |
-| bobsgameonlinejava | main (f9fda3a) | `bobsgameonlinejava` |
-| bobsgameweb | master (5b9328a) | `bobsgameweb` |
-| okgame | main (508de69) | `okgame` |
+| bobsgameonlinejava | main (099200a) | `bobsgameonlinejava` |
+| bobsgameweb | master (a2fcb11) | `bobsgameweb` |
+| okgame | main (d70fb82) | `okgame` |
 
 *(Note: This is a summarized list of major submodules. See `git submodule status --recursive` for the full exhaustive list.)*
