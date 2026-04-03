@@ -52,7 +52,7 @@
 ## 6. Native C++ Port (`okgame`) Modernization (In Progress)
 - [ ] **Build Recovery:** Resolve remaining compile/link errors after CMake configure succeeds.
 - [ ] **Vcpkg/Conan Conversion:** Shift away from massively bundled submodules to a formal C++ package manager.
-- [ ] **WebSocket Lobby:** Complete lobby parity work for `roomCreated`, `joinedRoom`, `gameStart`.
+- [x] **WebSocket Lobby Parity:** Updated C++ `NetworkManager` to support `isTournament`, `state`, and `spectator` room fields, ensuring compatibility with the v2.1.1 Node.js server.
 - [ ] **Lua Bindings:** Continue extending Lua deep bindings for grid, piece, and map data.
 
 ## 7. Mobile & Unified Deployment (Future)
