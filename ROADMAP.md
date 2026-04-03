@@ -45,6 +45,9 @@
 - [x] **Construct Parity (Behaviors):** Implemented attachable "Behaviors" (Platformer, 8-Direction) as ECS components with a dedicated logic system.
 - [x] **GameMaker Parity (Room Editor):** Upgraded the `MapEditor` with infinite procedural mapping, real-time concurrent multiplayer editing, and server-side JSON persistence.
 - [x] **Spatial Audio:** Implemented a 3D audio engine in `AudioManager` with dynamic listener tracking for the MMORPG world.
+- [x] **The nD (Virtual Console):** Implemented the dual-screen virtual handheld system natively in C++ (`okgame`), Java (`bobsgameonlinejava`), and Web (`bobsgameweb`).
+- [x] **Virtual nD Puzzle Game:** Successfully instantiated the puzzle engine inside the `nD` container across all 3 platforms (`NDPuzzleGame`).
+- [x] **Libretro Integration (Web):** Scaffolded the WASM-based Libretro frontend with WebWorker support and dual-screen nD core selection UI.
 - [ ] **Libretro Integration (Native/Java):** Complete JNI (Java) and Native (C++) pipelines to run actual retro emulator cores securely inside the `nD`.
 - [x] **ProjectM Integration (Web):** Successfully integrated `butterchurn` (Web) bindings to power immersive audio visualizations.
 - [ ] **ProjectM Integration (Native/Java):** Complete JNI (Java) and `libprojectM` (C++) bindings synced to the global sound mixer.
