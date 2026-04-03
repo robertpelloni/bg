@@ -13,8 +13,8 @@
 - [x] Ensure 100% protocol parity for multiplayer and online features.
 - [x] Handle GZip/Base64 JSON serialization edge cases using `pako`.
 - [x] Fix socket-to-EventEmitter event forwarding for `roomCreated`, `joinedRoom`, `gameStart`, `error`.
-- [ ] Implement reconnection logic — if the socket disconnects, auto-reconnect with exponential backoff.
-- [ ] Implement spectator mode support (watch matches without playing).
+- [x] Implement reconnection logic — if the socket disconnects, auto-reconnect with exponential backoff.
+- [x] Implement spectator mode support (watch matches without playing).
 
 ### 3. Audio Engine
 - [x] Implement Web Audio API support for tracker music formats (MOD/S3M/XM/IT) using `chiptune3` and AudioWorklet.
@@ -44,15 +44,15 @@
 - [x] Implement `Palette` and `Tileset` logic for 8x8 RPG tiles.
 - [x] Overhaul `MapEditor.ts` with full layer selection (17 layers) and real-time tile painting.
 - [ ] Port the massive `EditorMain.java` functionality (Flood fill, Rect tool, Entity placement).
-- [ ] Implement "Shift Map" features, Undo/Redo buffers, and "Random PNGs" export.
-- [ ] Wire `CustomGameEditor.ts` to allow creating and saving custom game types/rules.
+- [x] Implement "Shift Map" features, Undo/Redo buffers, and "Random PNGs" export.
+- [x] Wire `CustomGameEditor.ts` to allow creating and saving custom game types/rules.
 
 ### 7. Visual Polish
 - [x] Add particle effects for line clears (explosion/sparkle).
 - [x] Add screen shake on hard drop and garbage receive.
 - [ ] Implement smooth piece drop animation (interpolated movement).
-- [ ] Add combo counter popup text (DOUBLE!, TRIPLE!, TETRIS!, etc.).
-- [ ] Animate the stats panel (score counter rolling up effect).
+- [x] Add combo counter popup text (DOUBLE!, TRIPLE!, TETRIS!, etc.).
+- [x] Animate the stats panel (score counter rolling up effect).
 
 ## Ongoing Maintenance
 - [x] Synchronize all submodules and merge feature branches across the monorepo.
