@@ -38,6 +38,7 @@
 ## 5. The Omni-Engine Expansion (RPG Engine Parity Phase)
 - [x] **Defold Parity (ECS):** Created a deterministic Entity-Component-System with state history and network rollback.
 - [x] **Logic Hot-Reloading:** Implemented a `ScriptSystem` that allows behavior injection at runtime.
+- [x] **Deterministic Replays:** Engine now features 100% deterministic input logging and playback via `ReplayRecorder` and `ReplayPlayer`, essential for AI training and speedrun validation.
 - [x] **Phaser Parity (Rendering):** Robust multi-target camera system and WebWorker logic offloading.
 - [x] **LÖVE Parity (Scripting):** Immediate-mode shader and raw drawing hooks for custom entity behavior.
 - [x] **Construct Parity (Behaviors):** Attachable ECS behaviors (Platformer, 8-Direction) with visual script support.
