@@ -33,7 +33,7 @@ This final session was heavily focused on resolving compiler warnings, improving
 -   The `TODO.md` file reflects that 95% of tasks are completed (the remaining items are minor polish tasks like smooth-dropping ghost pieces).
 
 ### 🔧 Next Steps for Future Models
--   **Native C++ Build:** The C++ port (`okgame`) is heavily out of sync with these new TypeScript ECS updates. The next phase must focus strictly on mirroring `GameWorker`, `VisualScriptSystem`, and the `MapData` chunking system into C++.
+-   **Native C++ Build:** The C++ port (`okgame`) is heavily out of sync with these new TypeScript ECS updates. While the **Networking Manager has been updated for v2.1.1 parity**, the next phase must focus strictly on mirroring `GameWorker`, `VisualScriptSystem`, and the `MapData` chunking system into C++.
 -   **Java Server Optimizations:** The Node.js server acts as an excellent prototype, but for thousands of concurrent users, the MMO/WebSocket logic needs to be completely ported to the `bobsgameonlinejava` Netty backend.
 
 ### 📁 Versioning
