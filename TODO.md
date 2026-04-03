@@ -38,6 +38,7 @@
 - [x] Implement "Quit to Menu" button during multiplayer games with proper disconnect.
 - [x] Add a "Connecting..." overlay when waiting for server connection.
 - [x] Add keyboard shortcut help overlay (F1 or ?).
+- [x] Full Gamepad/Controller Support (UI Navigation and Haptic Feedback/Rumble).
 
 ### 6. Editor Functionality
 - [x] Port core RPG data structures (`AssetData`, `MapData`, `MapStateData`, `EventData`, `DoorData`).

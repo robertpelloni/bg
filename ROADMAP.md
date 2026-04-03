@@ -50,7 +50,7 @@
 - [x] **Developer Console:** In-game live command line for real-time world manipulation (~ key).
 - [x] **AI Asset Generation:** Prompt-based AI pipeline for generating NPC sprites and tiles.
 - [x] **Cross-Platform Tournament:** Competitive matchmaking and bracket orchestration in the backend.
-- [x] **Java Backend Modernization:** Scaffolded the `WebSocketGateway` in the Netty backend to support modern Socket.io events and high-performance WebSocket scaling.
+- [x] **Java Backend Modernization:** Implemented full MMO parity in the Java Netty `WebSocketGateway` (Room Management, Character Sync, Map Persistence, RPG Database), enabling it as a production-ready alternative to the Node.js prototype server.
 - [ ] **Libretro Integration (Native/Java):** Complete JNI and Native pipelines for emulator cores.
 - [ ] **ProjectM Integration (Native/Java):** Complete native bindings for audio visualizations.
 
@@ -64,4 +64,4 @@
 - [x] **Deep Linking & Sharing:** Share custom game rules and deterministic replays instantly via base64 compressed URL hashes (e.g., `#play=...` and `#replay=...`).
 - [ ] **Capacitor Build:** Perform final validation of iOS and Android builds.
 - [x] **bobsgame.com:** Initial web port deployment successful.
-- [ ] **Unified MMR:** Deploy the unified cross-platform player rating system.
+- [x] **Unified MMR:** Deployed the unified cross-platform Elo rating system, broadcast globally on `bobsgame.com`.
