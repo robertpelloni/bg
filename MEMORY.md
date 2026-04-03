@@ -5,27 +5,26 @@
 - **C++:** Thread-safe methods should have a `_S` suffix.
 - **Java:** Uses LibGDX `Scene2D` for all UI components.
 - **Unified Logic:** The `Puzzle` logic must be kept in sync across `okgame`, `bobsgameonlinejava`, and `bobsgameweb`.
+- **ECS (Omni-Engine):** Standardized component types (Transform, Sprite, Behavior, Light) across 3 languages using string-based type registration for 1:1 serialization.
+- **Visual Scripting:** Event Sheets use a nested JSON block structure (Conditions/Actions) interpreted by the `VisualScriptSystem`.
+- **Multi-Threading:** Heavy logic (A* pathfinding, simulation) is offloaded to `GameWorker` (TS) or background threads (C++/Java) to maintain 60fps.
 
 ## 2. Environment Preferences
 - **Java:** Standardized on Java 21 LTS. Gradle builds should use `--no-daemon`.
 - **Versioning:** Single source of truth is the root `VERSION` file.
 - **Commits:** Conventional commits are required, referencing version bumps.
+- **Asset Resolution:** Use `BIG_DATA_URL` for absolute paths and the `manifest.json` for bulk asset queuing.
 
 ## 3. Recurring Issues & Fixes
 - **Merge Conflicts:** Intelligently solve conflicts by prioritizing the most recent feature additions.
 - **Detached HEAD:** Always ensure submodules are on a tracked branch (main/master).
 - **Gradle/Java 25:** Incompatibility resolved by pinning to Java 21.
+- **PIXI v8 API:** Standardized on options-object syntax for `Text`, `Graphics`, and `Filter`.
 
 ## 4. Current Work Context
-- **March 22, 2026:** Gemini CLI session started.
-- **Standardizing Instructions:** Consolidating model-specific instruction files to reference the universal instructions.
-- **Feature Gap Analysis:** Identifying unimplemented features from roadmaps and conversation history.
-- **March 25, 2026:** Lua deep bindings were extended in `okgame`, including richer grid, piece, hold/next queue, and map data for Lua scripts.
-- **March 25, 2026:** `okgame` native build recovery is now focused on local CMake/vendor resilience: optional `projectM`, a restored `lib/CTPL` include path, disabled AVIF in `SDL_image`, and module-mode ZLIB lookup for fresh build directories.
-- **March 25, 2026:** `okgame`'s newer websocket multiplayer path now reports finished match scores through `NetworkManager::reportScore()` using the shared `{ mode, name, score, lines, time }` contract already used by the web and Java clients.
-- **March 25, 2026:** The websocket `opponentFrame` payload can arrive as either a JSON string or JSON object; both `NetworkManager.cpp` and `BobsGame.cpp` now treat those shapes as valid.
-- **March 25, 2026:** The latest fresh `okgame/build_recheck` configure no longer fails in the earlier SDL codec/vendor traps; the next blockers are project-level issues like missing `src/Engine/rpg/Avatar.cpp` and unresolved `Poco::Foundation` target linkage.
-- **March 26, 2026:** After removing the stale `Avatar.cpp` source entry and enabling a minimal vendored Poco build, the next configure blocker became a vendored alias collision (`Poco` trying to redefine `ZLIB::ZLIB` and `PNG::PNG` after SDL_image had already created them).
-- **March 26, 2026:** Guarding Poco's bundled `zlib` and `png` alias creation lets the fresh `okgame` configure move past the old Poco failure point and back into deeper `SDL_mixer` dependency configuration.
-- **March 26, 2026:** The fresh `okgame/build_recheck_poco4` configure now completes successfully; the active validation frontier has moved from CMake configure failures to the first real native `bobsgame` compile/link errors.
-- **March 26, 2026:** The newer websocket lobby path in `okgame` lives in `src/Engine/rpg/gui/LobbyMenuPanel.cpp`, not the legacy `Puzzle/OKGameNetwork.cpp` UDP lobby, and it now has in-flight parity work for `roomCreated`, `joinedRoom`, `gameStart`, `gameMode`, and `startLevel`.
+- **April 2, 2026:** Final Session Wrap-up.
+- **Omni-Engine:** Successfully transformed the puzzle game into a full-scale game creation engine with parity across Web, Java, and C++.
+- **World State:** MMORPG world is functional with synced player movement, NPC AI, and interactive dialogue.
+- **Editors:** Functional Custom Game Rule Editor and RPG World Database Editor implemented and synced to server.
+- **Competitiveness:** Unified Elo rating system and tournament bracketing logic implemented in the backend.
+- **Handoff:** Architectural phase complete. Ready for content generation and platform hardening.

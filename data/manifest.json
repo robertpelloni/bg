@@ -1,0 +1,28 @@
+{
+    "version": "2.1.1",
+    "assets": {
+        "textures": {
+            "player_sprite": "sprites/player.png",
+            "npc_sprite": "sprites/npc.png",
+            "tileset_8x8": "tilesets/standard.png"
+        },
+        "audio": {
+            "sfx": {
+                "piece_move": "audio/sfx/move.wav",
+                "piece_rotate": "audio/sfx/rotate.wav",
+                "piece_lock": "audio/sfx/lock.wav"
+            },
+            "music": {
+                "menu_bgm": "audio/music/menu.mp3",
+                "game_bgm": "audio/music/game.mp3"
+            }
+        },
+        "maps": [
+            "maps/mmo_world.json"
+        ],
+        "cores": {
+            "nestopia": "cores/nestopia.wasm",
+            "gambatte": "cores/gambatte.wasm"
+        }
+    }
+}
