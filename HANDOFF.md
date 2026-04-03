@@ -9,9 +9,15 @@ This final session was heavily focused on resolving compiler warnings, improving
 ### 🚀 Key Technical Achievements
 
 1.  **Visual Polish & Animation:**
+    *   **Smooth Piece Drop:** Implemented sub-pixel rendering and interpolation (`lerp`) in `PuzzleRenderer.ts`. Pieces no longer snap rigidly; instead, they glide smoothly between grid cells, providing a modern, high-end block-stacking feel.
     *   **Combo Popups:** Implemented dynamic floating text (e.g., "DOUBLE!", "TETRIS!", "4 COMBO!") that spawns directly on the puzzle grid when lines are cleared. The popups utilize the PIXI v8 render loop to drift upwards, scale rhythmically, and fade out smoothly.
     *   **Score Ticking:** Added an interpolation effect to the `displayScore` within the `PuzzleRenderer`. When players score points, the UI counter rapidly rolls up to the target value instead of instantly snapping, providing a much more satisfying game feel.
     *   **Action Sounds:** Added a dedicated "Test Sound" button to the `OptionsScene` and improved the fallback sound triggering in the menu.
+
+2.  **Spectator Mode & Assets:**
+    *   **Spectator UI:** Added a high-visibility "SPECTATOR MODE" banner to the PuzzleScene when a player joins a room to watch.
+    *   **Opponent Frame Mapping:** Fixed a multiplayer bug where spectator clients couldn't distinguish between Player 1 and Player 2 frames. The `PuzzleScene` now maps incoming `opponentFrame` packets by socket ID to the correct local `PuzzleGame` instances.
+    *   **Dev Mode Dummy Assets:** Wrote a Node.js script (`scripts/generate-dummy-assets.cjs`) that generates 44-byte valid WAV and MP3 files. This completely eliminates the console 404 spam when loading the `AssetLoader` locally.
 
 2.  **Type Safety & Compilation Hardening:**
     *   **Worker & Libretro Fixes:** Resolved complex TypeScript errors related to `postMessage` overload signatures and `Uint8ClampedArray` vs `ArrayBuffer` type conflicts in the `LibretroWorker`.

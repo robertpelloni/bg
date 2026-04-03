@@ -18,7 +18,7 @@
 
 ### 3. Audio Engine
 - [x] Implement Web Audio API support for tracker music formats (MOD/S3M/XM/IT) using `chiptune3` and AudioWorklet.
-- [ ] Create placeholder audio files in `data/audio/` so dev mode doesn't spam console with 404 warnings.
+- [x] Create placeholder audio files in `data/audio/` so dev mode doesn't spam console with 404 warnings.
 - [x] Add a "Test Sound" button in Options to verify audio is working.
 
 ### 4. Game Logic
@@ -50,7 +50,7 @@
 ### 7. Visual Polish
 - [x] Add particle effects for line clears (explosion/sparkle).
 - [x] Add screen shake on hard drop and garbage receive.
-- [ ] Implement smooth piece drop animation (interpolated movement).
+- [x] Implement smooth piece drop animation (interpolated movement).
 - [x] Add combo counter popup text (DOUBLE!, TRIPLE!, TETRIS!, etc.).
 - [x] Animate the stats panel (score counter rolling up effect).
 
@@ -58,5 +58,5 @@
 - [x] Synchronize all submodules and merge feature branches across the monorepo.
 - [x] Keep `SUBMODULE_DASHBOARD.md` updated with every submodule version change.
 - [x] Resolve any conflicts intelligently without losing feature progress.
-- [ ] Update `SUBMODULE_DASHBOARD.md` with current commit hashes.
-- [ ] Merge any upstream changes for all forked submodules.
+- [x] Update `SUBMODULE_DASHBOARD.md` with current commit hashes.
+- [x] Merge any upstream changes for all forked submodules.
