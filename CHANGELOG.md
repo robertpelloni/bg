@@ -1,5 +1,19 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.1.7] - 2026-04-03
+### Added
+- **Shared Persistence Identity:** Extended the stable local profile identity model into character saves and emulator save-state persistence so those systems can begin migrating away from mutable display-name keys.
+- **Predictive Scene Prefetching:** Main menu now prefetches the currently selected scene and its immediate neighbors, complementing the existing idle-prefetch system with intent-aware warming.
+
+### Changed
+- **Server Persistence Compatibility:** Character, emulator, and achievement persistence endpoints now accept structured identity payloads with backward-compatible fallback to legacy name-based lookups.
+- **Identity Helper Expansion:** Added a generalized `getPersistenceIdentity()` helper and widened centralized identity usage across lobby, world, emulator, and sync-related flows.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.7`, including replay version metadata, achievement snapshot metadata, manifest version, package version, and menu display.
+
+### Verified
+- **TypeScript + Build:** `npx tsc --noEmit && npm run build` passes in `bobsgameweb`.
+- **Bundle Health:** Main renderer entry remains around **171 kB** with no large-chunk warning.
+
 ## [2.1.6] - 2026-04-03
 ### Added
 - **Stable Achievement Profile IDs:** Added a shared identity layer that now creates and persists a stable local `profileId` for achievement snapshot sync, alongside the existing player display name.

@@ -1,96 +1,84 @@
-# Handoff — 2026-04-03 — Version 2.1.6
+# Handoff — 2026-04-03 — Version 2.1.7
 
 ## Agent
 GPT
 
 ## Session Focus
-Advance the achievement sync work from simple name-keyed scaffolding toward something more **account-ready**, while also making the new lazy-loaded shell feel faster through **idle prefetching**.
+Push the profile/identity work one step further by extending it beyond achievements into other persistence systems, while also making scene prefetching smarter and more intent-aware.
 
 ## What I Implemented
 
-### 1. Stable Local Profile Identity
+### 1. Shared Persistence Identity
 Updated:
 - `bobsgameweb/src/renderer/data/AchievementIdentity.ts`
-- `bobsgameweb/src/shared/puzzle/NetworkManager.ts`
 - `bobsgameweb/server/index.js`
-
-Implemented in `AchievementIdentity.ts`:
-- `AchievementIdentity` interface
-- `getPlayerDisplayName()`
-- `setPlayerDisplayName()`
-- `getOrCreateAchievementProfileId()`
-- `getAchievementIdentity()`
-- retained `getAchievementProfileName()` as compatibility sugar
-
-Behavior:
-- a stable local `profileId` is generated once and persisted to localStorage
-- display name remains user-facing and editable
-- achievement sync can now use `{ profileId, name }` instead of a mutable name alone
-
-Implemented in `NetworkManager.ts`:
-- `loadAchievementData(...)` now accepts either a string or a structured identity object
-- `saveAchievementData(...)` now accepts either a string or structured identity object
-
-Implemented in `server/index.js`:
-- achievement save/load is now profile-aware
-- server stores snapshots by `profileId` when present, otherwise falls back to name
-- load path checks both profile ID and legacy name-style key paths for compatibility
-- snapshot file format now preserves identity metadata alongside the snapshot payload
-
-### 2. Identity Call-Site Cleanup
-Updated:
-- `PuzzleScene.ts`
-- `CustomGameEditor.ts`
-- `MapEditor.ts`
-- `WorldEditor.ts`
-- `LobbyScene.ts`
-- `WorldScene.ts`
-- `LibretroGame.ts`
-- `SettingsScene.ts`
+- `bobsgameweb/src/renderer/scenes/WorldScene.ts`
+- `bobsgameweb/src/renderer/engine/nd/LibretroGame.ts`
 
 Implemented:
-- achievement sync call sites now use structured identity where appropriate
-- display-name call sites use centralized helper access instead of raw `localStorage` reads
-- settings scene now shows the local profile ID and uses helper-based save semantics for player name changes
+- added `PersistenceIdentity` and `getPersistenceIdentity()`
+- extended server persistence handlers for:
+  - `saveCharacter` / `loadCharacter`
+  - `saveEmulatorState` / `loadEmulatorState`
+- these endpoints now accept structured identity payloads with:
+  - `profileId`
+  - `name`
+- server keeps backward-compatible fallback behavior for legacy name-based loads
 
-### 3. Idle Scene Prefetching
+Result:
+- character saves and emulator save states are now beginning to migrate toward the same stable identity model as achievements
+- future account binding will not need a persistence rewrite for these systems
+
+### 2. Predictive Menu Prefetching
 Updated:
 - `bobsgameweb/src/renderer/scenes/MainMenuScene.ts`
 
 Implemented:
-- background idle prefetch of high-likelihood secondary shell scenes:
-  - Options
-  - Achievements
-  - High Scores
-  - Rankings
-  - Lobby
-- uses `requestIdleCallback` when available, falls back to `setTimeout`
+- added optional `prefetch` handlers to menu items
+- menu selection changes now prefetch:
+  - current selected item
+  - immediate previous item
+  - immediate next item
+- this complements the existing idle prefetching rather than replacing it
 
-Why this matters:
-- preserves the bundle-size advantage of lazy loading
-- reduces the first-open penalty for common secondary scenes
+Result:
+- scene loading is now warmed both by:
+  - passive idle-time prediction for common shell scenes
+  - active selection-neighborhood prediction based on current user intent
 
-### 4. Validation / Build Health
-Ran:
-- `cd bobsgameweb && npx tsc --noEmit`
-- `cd bobsgameweb && npm run build`
+### 3. Identity Call-Site Expansion
+Updated:
+- `LobbyScene.ts`
+- `WorldScene.ts`
+- `LibretroGame.ts`
+
+Implemented:
+- centralized helper usage widened across lobby, world, and emulator flows
+- display names still drive presentation/chat where appropriate
+- structured identity now drives more persistence-oriented flows
+
+## Validation Performed
+Ran in `bobsgameweb`:
+- `npx tsc --noEmit`
+- `npm run build`
 
 Result:
 - both passed
+- main renderer entry remains around **171 kB**
 - no large-chunk warning
-- renderer entry remains around **170 kB**
-- lazy scene chunking remains intact
 
-## Design Findings
-- **Stable profile IDs are the right next bridge** between local-only progression and future account auth.
-- **Display names should remain mutable and cosmetic**; persistence keys should not.
-- **Idle prefetching is a strong complement to lazy loading**: it keeps initial boot lighter while smoothing real user navigation to common menus.
+## Key Findings
+- The stable identity model is becoming reusable beyond achievements, which is exactly the right direction for eventual account auth.
+- Selection-neighborhood prefetching is a good complement to idle prefetching because it reacts to user intent without forcing eager loads everywhere.
+- The architecture now has a clearer split:
+  - **display name** for UX/social presentation
+  - **profile ID** for persistence and future auth binding
 
 ## Recommended Next Steps
-1. Add a true **authenticated account binding** so profile IDs can sync to real user accounts.
-2. Add **prefetch heuristics** based on actual menu selection/hover patterns, not just a fixed idle bundle warm-up.
-3. Consider widening structured identity usage into other persistence systems (character saves, emulator saves) once the auth story solidifies.
-4. Add a lightweight migration note for older local-only achievement data if profile-backed sync becomes canonical.
+1. Add a true **auth/account binding layer** so `profileId` can be associated with a real backend identity.
+2. Consider migrating more persistence systems to structured identity payloads where it makes sense.
+3. Add lightweight telemetry/debug logging around prefetch hits if you want to tune which scenes deserve proactive warming.
+4. Continue polishing editor/world persistence toward a uniform profile-aware persistence contract.
 
 ## Constraints Respected
 - No processes were killed.

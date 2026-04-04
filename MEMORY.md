@@ -31,7 +31,7 @@
 - **Editors:** Map Editor, Game Rule Editor, and World Database Editor are 100% functional and synced.
 - **Mobile:** Web port is mobile-ready with touch controls and automated Capacitor builds.
 - **Backend:** Persistence, Elo, Matchmaking, and WebSocket gateways are established.
-- **Released:** Version 2.1.6 is ready for content creation.
+- **Released:** Version 2.1.7 is ready for content creation.
 - **Achievements System:** Web port now includes a persistent local achievement/stat tracker plus toast notifications. Use whole-second batching for long-running meta stats like playtime instead of per-frame persistence.
 - **Dialogue Metrics:** Only count NPC/player-initiated dialogue toward social/RPG interaction achievements; system prompts and console messages should not increment interaction stats.
 - **Replay VOD Progression:** Leaderboard replay viewing is now a meaningful meta-loop and can feed spectator/social achievements.
@@ -39,5 +39,6 @@
 - **Editor Progression Pattern:** Hook achievement stats to explicit editor intents (save, share, first meaningful draw, actor creation, AI generation) rather than every low-level edit event to avoid noisy progression inflation.
 - **Achievement Sync Strategy:** Merge server snapshots with local progress using numeric max + unlocked-id union. This is safe for cumulative stats and avoids deleting newer local progress when reconnecting from another device.
 - **Achievement Identity Pattern:** Centralize player-name/profile derivation for achievement sync in one helper instead of sprinkling raw `localStorage` lookups across scenes. A stable local `profileId` is now preferable to mutable display-name keys and should be the long-term bridge into real account auth.
+- **Shared Persistence Identity:** Character saves and emulator state saves should move toward the same stable identity model as achievements, with server fallback support for legacy name-only data.
 - **Web Performance Pattern:** Prefer lazy scene imports for rarely used shells/tools and keep manual chunking limited to stable vendor groupings; over-eager source chunk rules can create circular-chunk warnings.
-- **Prefetch Pattern:** Once lazy loading is in place, selectively prefetch the most common secondary scenes during idle time rather than eagerly importing everything on boot.
+- **Prefetch Pattern:** Once lazy loading is in place, combine idle prefetching for common scenes with selection-neighborhood prefetching for likely next transitions.

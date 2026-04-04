@@ -44,6 +44,7 @@
 - [x] Add achievement snapshot save/load scaffolding and World Database Editor progression hooks.
 - [x] Split heavy web renderer bundles using lazy scene imports and manual vendor chunking.
 - [x] Add stable profile-ID scaffolding for achievement sync and background prefetching for common lazy-loaded scenes.
+- [x] Extend structured profile identity into character/emulator persistence and predictive menu prefetching.
 
 ### 6. Editor Functionality
 - [x] Port core RPG data structures (`AssetData`, `MapData`, `MapStateData`, `EventData`, `DoorData`).

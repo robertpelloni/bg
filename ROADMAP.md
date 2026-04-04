@@ -1,7 +1,7 @@
 # Omni-Workspace Roadmap: bob's game / OKGame
 
 ## Status: Active Development
-**Current Version:** 2.1.6
+**Current Version:** 2.1.7
 
 ## 1. Documentation & Multi-Agent Alignment (COMPLETED)
 - [x] Establish root `UNIVERSAL_LLM_INSTRUCTIONS.md`.
@@ -71,3 +71,4 @@
 - [x] **Achievement Sync Scaffolding:** Added server-side achievement snapshot save/load endpoints plus client merge/export plumbing so progression can begin following a player name across online sessions and editor tools.
 - [x] **Web Bundle Optimization:** Introduced lazy-loaded scene transitions and vendor chunk splitting, dropping the main renderer bundle to ~170 kB and eliminating the prior large-chunk build warning.
 - [x] **Account-Ready Identity Scaffolding:** Added stable local profile IDs for achievement sync plus idle scene prefetching so cloud-progression migration paths and lazy-loaded UX are both cleaner.
+- [x] **Shared Persistence Identity:** Extended profile-aware identity handling into character and emulator persistence, and added predictive menu-selection prefetching for likely next scene transitions.
