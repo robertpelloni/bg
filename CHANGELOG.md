@@ -1,5 +1,20 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.1.8] - 2026-04-03
+### Added
+- **Windows Deployment Script:** Added `scripts/deploy.ps1` for PowerShell-based deployment workflows on Windows machines.
+- **SCP Fallback Deployment:** Upgraded `scripts/deploy.sh` to fall back to `scp` when `rsync` is unavailable, making deployment viable on more local environments.
+- **Env-Driven Deploy Controls:** Added support for `DEPLOY_PASSWORD`, `DEPLOY_INSTALL_SERVER`, `DEPLOY_RESTART_SERVER`, and related deploy environment variables.
+
+### Changed
+- **Deployment Documentation:** Rewrote `DEPLOY.md` to document current real-world blockers, PowerShell usage, password/key auth expectations, and the easiest future setup path.
+- **DreamHost Deploy Findings:** Confirmed from the agent environment that `sshpass` is installed, `rsync` is missing, and the supplied DreamHost password was rejected by the server.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.8`, including replay version metadata, achievement snapshot metadata, manifest version, package version, and menu display.
+
+### Verified
+- **Build:** `npm run build` passes in `bobsgameweb` before deploy attempts.
+- **Connectivity Attempt:** SSH connection to `pdx1-shared-a1-33.dreamhost.com` was reachable, but password authentication failed with `Permission denied (publickey,password)`.
+
 ## [2.1.7] - 2026-04-03
 ### Added
 - **Shared Persistence Identity:** Extended the stable local profile identity model into character saves and emulator save-state persistence so those systems can begin migrating away from mutable display-name keys.

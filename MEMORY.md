@@ -31,7 +31,7 @@
 - **Editors:** Map Editor, Game Rule Editor, and World Database Editor are 100% functional and synced.
 - **Mobile:** Web port is mobile-ready with touch controls and automated Capacitor builds.
 - **Backend:** Persistence, Elo, Matchmaking, and WebSocket gateways are established.
-- **Released:** Version 2.1.7 is ready for content creation.
+- **Released:** Version 2.1.8 is ready for content creation.
 - **Achievements System:** Web port now includes a persistent local achievement/stat tracker plus toast notifications. Use whole-second batching for long-running meta stats like playtime instead of per-frame persistence.
 - **Dialogue Metrics:** Only count NPC/player-initiated dialogue toward social/RPG interaction achievements; system prompts and console messages should not increment interaction stats.
 - **Replay VOD Progression:** Leaderboard replay viewing is now a meaningful meta-loop and can feed spectator/social achievements.
@@ -42,3 +42,4 @@
 - **Shared Persistence Identity:** Character saves and emulator state saves should move toward the same stable identity model as achievements, with server fallback support for legacy name-only data.
 - **Web Performance Pattern:** Prefer lazy scene imports for rarely used shells/tools and keep manual chunking limited to stable vendor groupings; over-eager source chunk rules can create circular-chunk warnings.
 - **Prefetch Pattern:** Once lazy loading is in place, combine idle prefetching for common scenes with selection-neighborhood prefetching for likely next transitions.
+- **Deploy Reality Check:** In this agent environment, `sshpass` is available, `rsync` is not, `scp` is available, and DreamHost password auth may still fail even when the host is reachable. Key-based auth is the most reliable path for scripted deployment.
