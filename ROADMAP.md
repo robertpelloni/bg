@@ -1,7 +1,7 @@
 # Omni-Workspace Roadmap: bob's game / OKGame
 
 ## Status: Active Development
-**Current Version:** 2.1.2
+**Current Version:** 2.1.3
 
 ## 1. Documentation & Multi-Agent Alignment (COMPLETED)
 - [x] Establish root `UNIVERSAL_LLM_INSTRUCTIONS.md`.
@@ -67,3 +67,4 @@
 - [x] **Unified MMR:** Deployed the unified cross-platform Elo rating system, broadcast globally on `bobsgame.com`.
 - [x] **Leaderboard Replay VODs:** Added "Watch Replay" buttons directly to the Global Rankings scene, downloading and playing matches directly from the server.
 - [x] **Console Meta Layer:** Added a persistent Achievements/Trophies system, animated unlock toasts, and a browsable Achievement Cabinet scene with category filters and controller navigation.
+- [x] **In-Session Meta Access:** Added pause-menu access to the Achievement Cabinet and wired editor actions (custom game save/share, sprite drawing, map save scaffolding) into meta progression.

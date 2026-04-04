@@ -1,5 +1,19 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.1.3] - 2026-04-03
+### Added
+- **Pause-Menu Achievement Access:** Added an `Achievements` action to the puzzle pause overlay so the trophy cabinet is now reachable during active play sessions instead of only from the main menu.
+- **Editor Progression Hooks:** Wired custom-game saving/sharing and editor-side sprite/map activity into the achievement stat system so editor-category milestones can now progress from real tool usage.
+- **Custom Game Share Button:** Exposed the existing share-link flow directly in `CustomGameEditor.ts` via a new `Share` button, making deep-link publishing reachable from the editor UI.
+
+### Changed
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.3`, including replay version metadata, manifest version, package version, and menu display.
+- **Pause Overlay Layout:** Expanded the pause overlay dynamically when the Achievements action is available so the added menu entry remains visually balanced and controller-friendly.
+- **Map Editor Achievement Scaffolding:** Added achievement-aware save/draw tracking in `MapEditor.ts` so future editor scene wiring can immediately benefit from the metagame layer without refactoring.
+
+### Verified
+- **TypeScript + Build:** `npx tsc --noEmit && npm run build` passes in `bobsgameweb`.
+
 ## [2.1.2] - 2026-04-03
 ### Added
 - **Achievements / Trophy Cabinet:** Added a new persistent `AchievementManager` to the web port with cross-mode stat tracking for puzzle, RPG, social, editor, and meta milestones.
