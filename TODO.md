@@ -39,6 +39,7 @@
 - [x] Add a "Connecting..." overlay when waiting for server connection.
 - [x] Add keyboard shortcut help overlay (F1 or ?).
 - [x] Full Gamepad/Controller Support (UI Navigation and Haptic Feedback/Rumble).
+- [x] Add a persistent Achievement/Trophy system with an Achievements menu and unlock pop-up notifications.
 
 ### 6. Editor Functionality
 - [x] Port core RPG data structures (`AssetData`, `MapData`, `MapStateData`, `EventData`, `DoorData`).

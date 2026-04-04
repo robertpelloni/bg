@@ -31,4 +31,7 @@
 - **Editors:** Map Editor, Game Rule Editor, and World Database Editor are 100% functional and synced.
 - **Mobile:** Web port is mobile-ready with touch controls and automated Capacitor builds.
 - **Backend:** Persistence, Elo, Matchmaking, and WebSocket gateways are established.
-- **Released:** Version 2.1.1 is ready for content creation.
+- **Released:** Version 2.1.2 is ready for content creation.
+- **Achievements System:** Web port now includes a persistent local achievement/stat tracker plus toast notifications. Use whole-second batching for long-running meta stats like playtime instead of per-frame persistence.
+- **Dialogue Metrics:** Only count NPC/player-initiated dialogue toward social/RPG interaction achievements; system prompts and console messages should not increment interaction stats.
+- **Replay VOD Progression:** Leaderboard replay viewing is now a meaningful meta-loop and can feed spectator/social achievements.

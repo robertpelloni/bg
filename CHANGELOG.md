@@ -1,5 +1,22 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.1.2] - 2026-04-03
+### Added
+- **Achievements / Trophy Cabinet:** Added a new persistent `AchievementManager` to the web port with cross-mode stat tracking for puzzle, RPG, social, editor, and meta milestones.
+- **Achievement UI Scene:** Added `AchievementsScene.ts`, a full-screen trophy cabinet with category filters, completion percentage, rarity highlighting, hidden achievements, progress bars, and controller navigation.
+- **Toast Notifications:** Added `ToastManager.ts` for animated unlock toasts with slide-in presentation, rarity accents, countdown bars, and controller rumble feedback.
+- **Main Menu Entry:** Added an `Achievements` option to the main menu so the metagame layer is accessible without developer tooling.
+
+### Changed
+- **Replay / Version Metadata:** Bumped workspace and web version metadata to `2.1.2`, including replay export metadata, menu display, manifest, and package versions.
+- **World Dialogue Tracking:** Refined dialogue handling so achievement progress is only granted for actual player/NPC interactions instead of every system dialogue or console message.
+- **Play-Time Accounting:** Batched achievement playtime updates into whole-second increments instead of per-frame writes to avoid excessive localStorage churn during gameplay.
+- **Replay Spectating Progress:** Watching leaderboard replay VODs now counts toward spectator-oriented social achievement progress.
+
+### Verified
+- **TypeScript:** `npx tsc --noEmit` passes in `bobsgameweb`.
+- **Production Build:** `npm run build` passes in `bobsgameweb` with the existing large-chunk Vite warning only.
+
 ## [2.1.1] - 2026-04-02
 ### Added
 - **Global High Scores:** The `HighScoresScene` now fetches and displays real-time global leaderboards from the WebSocket server, gracefully merging with local scores if needed.

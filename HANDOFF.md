@@ -1,49 +1,143 @@
-# Final Session Handoff: The Omni-Engine Milestone (Version 2.1.1)
+# Handoff — 2026-04-03 — Version 2.1.2
 
-## Date: 2026-04-02
-## Agent: Antigravity (Claude-Architecture Profile)
+## Agent
+GPT
 
-### 🌟 Executive Summary
-We have completed the most comprehensive architectural expansion in the project's history. The Omni-Engine is now a fully realized, three-port game creation ecosystem that matches or exceeds the features of **Defold, Construct, GameMaker, LÖVE, Phaser, and RPG Maker**.
+## Session Focus
+Finish and ship the new **console-quality metagame layer** for the web port instead of leaving the partially-added achievement work in an inconsistent state.
 
-### 🚀 Key Technical Achievements
+## What I Implemented
 
-1.  **3-Port ECS & Logic Parity:**
-    *   Deterministic Entity-Component-System implemented in **Web (TS), Java (LibGDX), and Native (C++/SDL3)**.
-    *   Standardized components for Transform, Sprite, Behavior, Combat, Pathfinding, and Light.
+### 1. Persistent Achievements / Trophy System
+Added `bobsgameweb/src/renderer/data/AchievementManager.ts`.
 
-2.  **Visual Scripting & World Building:**
-    *   Implemented the **Omni-Event Sheet** interpreter for cross-language visual logic.
-    *   Built real-time collaborative **Map and Database Editors** with server-side JSON persistence.
-    *   Implemented a prompt-based **AI Asset Generation** pipeline in the editor.
+Implemented:
+- persistent local stat storage via `localStorage`
+- unlock evaluation for puzzle, RPG, social, editor, and meta achievements
+- rarity metadata (`common` → `legendary`)
+- hidden achievements
+- progress-aware achievements (line clears, playtime, wins, etc.)
+- unlock callback system for UI notifications
 
-3.  **Advanced Rendering & MMORPG:**
-    *   Built a persistent, synced **MMORPG World** with NPC AI (Worker-based A* pathfinding).
-    *   Implemented **3D Spatial Audio**, sub-pixel piece interpolation, and custom GLSL shader hooks.
-    *   Added a live **Developer Console** for real-time world manipulation.
+Important design choice:
+- achievements are currently **client-persistent** and local-first, which avoids blocking UX on backend work and fits the current web deployment stage
+- the API is structured so future server sync can be added without rewriting scene logic
 
-4.  **Competitive & Virtual Hardware:**
-    *   Fully functional **nD Virtual Handheld** running puzzles and WASM emulators.
-    *   Unified **Elo/MMR Rating System** and automated tournament bracketing.
+### 2. Achievement Unlock Toast Notifications
+Added `bobsgameweb/src/renderer/ui/ToastManager.ts`.
 
-5.  **Mobile & Deployment Readiness:**
-    *   Implemented responsive **Touch Controls** (D-Pad/Buttons) for mobile browsers.
-    *   Automated the **Capacitor Mobile Build** process and created a **Unified release generator**.
+Implemented:
+- animated slide-in toast notifications
+- stacked toast queueing
+- rarity-colored borders/accent bars
+- countdown/progress bar visualization
+- haptic feedback on unlock
+- integration with `AchievementManager.onUnlock(...)`
 
-### 🧠 Not Obvious Session Learnings
--   **Z-Index vs Layers:** In a cross-platform engine, explicit layers (the 17-layer RPG Maker model) are more robust for serialization than floating-point Z-indices, as they map perfectly to chunked grid data.
--   **Interpolation vs Logic:** Decoupling the visual `displayY` (lerped) from the logical `gridY` (integer) is the key to making a deterministic grid-based game feel like a modern 60+fps native application.
--   **Worker Transferables:** Transferring `Uint8ClampedArray` buffers to the nD emulator instead of cloning them is the only way to achieve 60fps retro emulation in a browser environment.
+### 3. Achievement Cabinet Scene
+Added `bobsgameweb/src/renderer/scenes/AchievementsScene.ts`.
 
-### 🔧 Recommendations for Next Session
--   **Content Generation:** Utilize the AI pipeline to populate the MMORPG world with unique NPCs and quests.
--   **Server Migration:** Move the MMO logic from the Node.js prototype to the established **Java Netty WebSocketGateway** for true massive scaling.
--   **Native Hardening:** Finalize the C++ `okgame` link-time dependencies to enable a high-performance native desktop release.
+Implemented:
+- category tabs (`ALL`, `PUZZLE`, `RPG`, `EDITOR`, `SOCIAL`, `META`)
+- completion percentage header
+- rarity-sorted card layout
+- hidden-achievement masking
+- progress bars for incremental achievements
+- controller navigation and cancel/back handling
 
-### 📁 Final Status
--   **Version:** 2.1.1
--   **Monorepo:** Locked, Synchronized, Pushed.
--   **Builds:** 100% Error-free.
+### 4. Main Menu Integration
+Updated `bobsgameweb/src/renderer/scenes/MainMenuScene.ts`.
 
----
-**The Omni-Engine is complete. The party never stops!** 🎊🚀🔥💯✨
+Implemented:
+- new `Achievements` menu item
+- scene transition into `AchievementsScene`
+- version text bumped to `v2.1.2`
+
+### 5. Runtime Wiring
+Updated `bobsgameweb/src/renderer/Game.ts`.
+
+Implemented:
+- achievement system initialization during game boot
+- toast manager initialization during game boot
+- global toast updates every frame
+- **playtime batching fix**: changed achievement playtime updates from per-frame writes to whole-second increments to avoid unnecessary `localStorage` churn
+
+### 6. Gameplay Hooks Added
+Updated `PuzzleScene.ts`, `BattleScene.ts`, `WorldScene.ts`, `RankingsScene.ts`, `NPCBehavior.ts`, and `EightDirectionBehavior.ts`.
+
+Now tracked:
+- total lines cleared
+- max combo
+- tetris clears
+- hard drops
+- highest score
+- sprint under 60 / 30 seconds
+- modes played
+- battles won
+- replay spectating
+- NPC / player interaction dialogue
+
+Important fix:
+- `WorldScene.showDialogue(...)` now accepts an optional boolean so **only genuine NPC/player interactions** increment dialogue-related achievement stats
+- system dialogues like welcome text, map-entry text, localization tests, and console output no longer inflate RPG interaction progress
+
+### 7. Versioning / Documentation
+Bumped workspace and web metadata from `2.1.1` → `2.1.2`.
+
+Updated:
+- `VERSION.md`
+- `bobsgameweb/VERSION.md`
+- `bobsgameweb/package.json`
+- `bobsgameweb/package-lock.json` (top-level package version entries)
+- `data/manifest.json`
+- `bobsgameweb/src/shared/puzzle/Replay.ts`
+- `ROADMAP.md`
+- `TODO.md`
+- `CHANGELOG.md`
+- `MEMORY.md`
+- `VISION.md`
+
+## Validation Performed
+
+### Type Check
+Ran:
+- `cd bobsgameweb && npx tsc --noEmit`
+
+Result:
+- passed
+
+### Production Build
+Ran:
+- `cd bobsgameweb && npm run build`
+
+Result:
+- passed
+- existing Vite large-chunk warning remains for the main renderer bundle, but build succeeds cleanly
+
+## Issues Found and Fixed During Session
+1. **Missing import:** `MainMenuScene.ts` referenced `AchievementsScene` without importing it.
+   - fixed
+2. **Performance issue:** playtime achievement updates originally wrote to storage every frame.
+   - fixed by batching whole seconds in `Game.ts`
+3. **Incorrect achievement counting:** all world dialogues were incrementing NPC interaction progress.
+   - fixed by adding explicit opt-in counting in `WorldScene.showDialogue(...)`
+4. **Replay metagame gap:** leaderboard replay viewing did not contribute to spectator progression.
+   - fixed by incrementing `matchesSpectated` when launching replay VODs from rankings
+
+## Commits Expected From This Session
+- `feat(web): add achievement system and trophy cabinet`
+- `chore: bump version to 2.1.2`
+
+(If the current agent is continuing, combine into a clean minimal set of conventional commits before pushing.)
+
+## Recommended Next Steps
+1. Add a dedicated **Achievement sync payload** to the multiplayer backend so unlocks and stat snapshots can persist across devices.
+2. Add an **Achievements button / shortcut** in pause or options so the cabinet is reachable mid-session.
+3. Expand achievement hooks into the **Map Editor / Custom Game Editor** so editor-category trophies are triggered by real actions instead of only being scaffolded.
+4. Add an **unlock history / timestamp persistence** layer instead of storing unlocked IDs only.
+5. Consider a lightweight **manual chunk split** in Vite for the main renderer bundle to reduce the current large-chunk warning.
+
+## Constraints Respected
+- No processes were killed.
+- Work stayed within the web port / workspace docs.
+- Build validation was performed before handoff.

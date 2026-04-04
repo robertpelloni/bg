@@ -29,6 +29,7 @@ The Omni-Workspace acts as a "Single Source of Truth" where an RPG Maker-style d
     - **Web:** Vite, TypeScript 5+, PixiJS v8 (WebGPU), WebWorkers, WebRTC.
 - **Visual Sophistication & The nD:** Deep integration of `libprojectM` (audio visualizers) and `libretro` (native emulators). These run natively inside virtual screens (the "nD" handheld) seamlessly across Web (WASM), Java (JNI), and C++.
 - **Audio Fidelity:** A hybrid audio engine supporting both high-quality PCM and authentic tracker music (MOD/XM/S3M/IT) via libopenmpt across all ports.
+- **Console-Quality Metagame:** The engine should not stop at runtime parity; it must also provide a platform-level metagame layer including achievements, replay VODs, rankings, haptics, progression feedback, and polished notification UX across every target.
 
 ## 3. Structural Design & Submodules
 The monorepo is composed of specialized sub-projects:
