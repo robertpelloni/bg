@@ -1,5 +1,20 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.1.11] - 2026-04-04
+### Added
+- **Provider-Neutral Backend Deploy Guide:** Added `BACKEND_DEPLOY.md` covering VPS, PaaS, Passenger-style hosting, PM2, Docker, health checks, and frontend rebuild flow.
+- **Backend Runtime Files:** Added `server/.env.example` and `server/ecosystem.config.cjs` for environment-based runtime config and PM2 startup.
+
+### Changed
+- **Backend Runtime Config:** The Socket.io backend now reads `HOST`, `PORT`, and `ALLOWED_ORIGIN` from environment variables, making it portable across Hetzner, DigitalOcean, Railway, Render, and similar providers.
+- **Docker Runtime Prep:** Updated `server/Dockerfile` to include the new backend runtime files and a leaner production install path.
+- **Server Package Metadata:** Updated `server/package.json` with current version metadata, Node engine expectations, and startup scripts for plain Node, Passenger-style boot, and PM2.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.11`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, config version string, and backend version string.
+
+### Verified
+- **Frontend Build:** `npm run build` passes in `bobsgameweb`.
+- **Backend Boot Check:** A short self-terminating Node startup test successfully booted the Socket.io backend and logged health/version/origin information.
+
 ## [2.1.10] - 2026-04-04
 ### Added
 - **Backend Smoke-Test Endpoints:** Added plain HTTP responses for `/` and `/healthz` in the Socket.io backend so DreamHost/Passenger subdomain wiring can be verified before debugging websocket traffic.

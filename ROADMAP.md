@@ -1,7 +1,7 @@
 # Omni-Workspace Roadmap: bob's game / OKGame
 
 ## Status: Active Development
-**Current Version:** 2.1.10
+**Current Version:** 2.1.11
 
 ## 1. Documentation & Multi-Agent Alignment (COMPLETED)
 - [x] Establish root `UNIVERSAL_LLM_INSTRUCTIONS.md`.
@@ -75,3 +75,4 @@
 - [x] **Deployment Tooling Upgrade:** Added Windows/PowerShell deployment support, `scp` fallback when `rsync` is unavailable, env-driven remote install/restart hooks, and documented the current DreamHost authentication blocker.
 - [x] **Production Backend Prep:** Added build-time `VITE_SERVER_URL` override support, corrected app-version config drift, and added a Passenger-friendly Node app entrypoint for a likely DreamHost websocket subdomain deployment shape.
 - [x] **Backend Smoke Test Path:** Added `/healthz` and root backend responses plus a dedicated `WS_BACKEND_SETUP.md` checklist so DreamHost subdomain verification can be done before attempting full Socket.io traffic.
+- [x] **Provider-Neutral Backend Runtime:** Added env-driven backend host/port/origin config, PM2 runtime support, Docker/runtime polish, and a provider-neutral `BACKEND_DEPLOY.md` guide for VPS/PaaS deployment paths.

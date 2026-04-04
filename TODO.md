@@ -48,6 +48,7 @@
 - [x] Improve deployment scripts/docs with Windows support, `scp` fallback, and explicit auth/setup guidance.
 - [x] Add production backend host override support and Passenger-friendly server entrypoint preparation.
 - [x] Add backend smoke-test endpoints and a DreamHost `ws.bobsgame.com` setup checklist.
+- [x] Add provider-neutral backend deployment/runtime files (`.env`, PM2, Docker, startup docs).
 
 ### 6. Editor Functionality
 - [x] Port core RPG data structures (`AssetData`, `MapData`, `MapStateData`, `EventData`, `DoorData`).

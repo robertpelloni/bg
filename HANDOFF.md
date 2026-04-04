@@ -1,75 +1,75 @@
-# Handoff — 2026-04-04 — Version 2.1.10
+# Handoff — 2026-04-04 — Version 2.1.11
 
 ## Agent
 GPT
 
 ## Session Focus
-Proceed from backend-host preparation into the next practical step: add a simple health/smoke-test path for a future DreamHost backend subdomain so infrastructure can be verified before debugging Socket.io.
+Resume the backend deployment-prep work and finish the provider-neutral runtime layer so the Socket.io service is easier to run on Hetzner, DigitalOcean, Railway, Render, or any other practical production backend host.
 
 ## What I Implemented
 
-### 1. Backend Smoke-Test Endpoints
+### 1. Provider-Neutral Backend Runtime Config
 Updated:
 - `bobsgameweb/server/index.js`
 
-Added plain HTTP routes on the same Node server used by Socket.io:
-- `GET /` → simple text response (`bob's game backend is running`)
-- `GET /healthz` → JSON health payload with:
-  - `ok`
-  - `service`
-  - `version`
-  - `time`
+Implemented:
+- env-driven `HOST`
+- env-driven `PORT`
+- env-driven `ALLOWED_ORIGIN`
+- startup logging now reports:
+  - bind host/port
+  - allowed origin
+  - server version
+  - health endpoint
 
-Why this matters:
-- DreamHost/Passenger subdomain wiring can now be tested with simple HTTP before introducing websocket debugging complexity
-- if `ws.bobsgame.com/healthz` works, the app is at least attached and serving traffic
+Why it matters:
+- the backend can now run cleanly behind a VPS reverse proxy or a PaaS-assigned port without code edits
 
-### 2. Dedicated Backend Subdomain Checklist
+### 2. Runtime Helper Files
 Added:
-- `bobsgameweb/WS_BACKEND_SETUP.md`
+- `bobsgameweb/server/.env.example`
+- `bobsgameweb/server/ecosystem.config.cjs`
+- `bobsgameweb/BACKEND_DEPLOY.md`
 
-Covers:
-- recommended `ws.bobsgame.com` topology
-- DreamHost panel steps
-- expected smoke-test curl commands
-- frontend rebuild command using `VITE_SERVER_URL`
-- debugging interpretations for `/healthz` vs `/socket.io`
+These provide:
+- example backend env vars
+- PM2 startup config
+- provider-neutral deploy notes for:
+  - VPS
+  - PaaS
+  - Passenger-style hosting
+  - Docker
 
-### 3. Deployment Documentation Tightening
+### 3. Backend Package/Docker Polish
 Updated:
-- `bobsgameweb/DEPLOY.md`
+- `bobsgameweb/server/package.json`
+- `bobsgameweb/server/Dockerfile`
 
-Added:
-- explicit `/healthz` verification step for the dedicated backend subdomain before rebuilding the frontend
-- clear pointer to `WS_BACKEND_SETUP.md`
+Implemented:
+- server package version aligned with current workspace progress
+- startup scripts for:
+  - `start`
+  - `start:passenger`
+  - `start:pm2`
+- Node engine expectation metadata
+- Dockerfile now includes additional runtime files and uses a leaner production install path
 
-## Validation Performed
-- `npm run build` in `bobsgameweb` ✅
-- static frontend remains live on `bobsgame.com` ✅
+### 4. Validation
+Ran:
+- `cd bobsgameweb && npm run build`
+- `cd bobsgameweb/server && node -e "import('./index.js'); setTimeout(()=>process.exit(0), 1200)"`
 
-## Production State Summary
-### Working now
-- static site is deployed and live on `bobsgame.com`
-
-### Not yet wired
-- backend subdomain not yet configured
-- `/socket.io` on the main domain still does not serve the multiplayer backend
+Result:
+- frontend build passed
+- backend booted successfully and self-terminated after logging runtime info
 
 ## Recommended Next Steps
-1. Create/configure `ws.bobsgame.com` in DreamHost.
-2. Point it at `~/bobsgame.com/server` as a Node/Passenger app if supported.
-3. Verify:
-   ```bash
-   curl -i https://ws.bobsgame.com/healthz
-   ```
-4. Rebuild frontend with:
-   ```bash
-   VITE_SERVER_URL=https://ws.bobsgame.com npm run build
-   ```
-5. Redeploy frontend static files.
-6. Test multiplayer.
+1. Choose the real backend host (Hetzner / DO / Railway / etc.).
+2. Stand up the backend using the new provider-neutral runtime files.
+3. Verify backend health at `/healthz`.
+4. Rebuild frontend with `VITE_SERVER_URL=https://YOUR-BACKEND-HOST`.
+5. Redeploy the static frontend.
 
 ## Constraints Respected
 - No processes were killed.
-- Static frontend deploy remains intact.
 - Pre-existing dirty submodule working trees in `bobsgameonlinejava` and `okgame` were left untouched.

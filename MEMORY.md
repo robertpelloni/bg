@@ -31,7 +31,7 @@
 - **Editors:** Map Editor, Game Rule Editor, and World Database Editor are 100% functional and synced.
 - **Mobile:** Web port is mobile-ready with touch controls and automated Capacitor builds.
 - **Backend:** Persistence, Elo, Matchmaking, and WebSocket gateways are established.
-- **Released:** Version 2.1.10 is ready for content creation.
+- **Released:** Version 2.1.11 is ready for content creation.
 - **Achievements System:** Web port now includes a persistent local achievement/stat tracker plus toast notifications. Use whole-second batching for long-running meta stats like playtime instead of per-frame persistence.
 - **Dialogue Metrics:** Only count NPC/player-initiated dialogue toward social/RPG interaction achievements; system prompts and console messages should not increment interaction stats.
 - **Replay VOD Progression:** Leaderboard replay viewing is now a meaningful meta-loop and can feed spectator/social achievements.
@@ -45,3 +45,4 @@
 - **Deploy Reality Check:** In this agent environment, `sshpass` is available, `scp` is available, and DreamHost static hosting works. However, DreamHost password auth may fail, `/socket.io` on `bobsgame.com` currently returns `404`, and a dedicated Passenger-backed backend host is likely the cleanest production shape.
 - **DreamHost Backend Shape:** The most realistic path is static frontend on `bobsgame.com` plus Node/Socket.io on a separate subdomain such as `ws.bobsgame.com`, with the web build pointed there via `VITE_SERVER_URL`.
 - **Smoke-Test Principle:** Before debugging Socket.io/upgrade issues on DreamHost, first make sure the backend subdomain answers plain HTTP at `/healthz` and `/` from the Node app.
+- **Backend Runtime Pattern:** Keep backend runtime provider-neutral with env-driven `HOST`, `PORT`, and `ALLOWED_ORIGIN`, plus a PM2 ecosystem file and Docker support so moving between VPS and PaaS is low-friction.
