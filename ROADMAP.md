@@ -1,7 +1,7 @@
 # Omni-Workspace Roadmap: bob's game / OKGame
 
 ## Status: Active Development
-**Current Version:** 2.1.4
+**Current Version:** 2.1.5
 
 ## 1. Documentation & Multi-Agent Alignment (COMPLETED)
 - [x] Establish root `UNIVERSAL_LLM_INSTRUCTIONS.md`.
@@ -69,3 +69,4 @@
 - [x] **Console Meta Layer:** Added a persistent Achievements/Trophies system, animated unlock toasts, and a browsable Achievement Cabinet scene with category filters and controller navigation.
 - [x] **In-Session Meta Access:** Added pause-menu access to the Achievement Cabinet and wired editor actions (custom game save/share, sprite drawing, map save scaffolding) into meta progression.
 - [x] **Achievement Sync Scaffolding:** Added server-side achievement snapshot save/load endpoints plus client merge/export plumbing so progression can begin following a player name across online sessions and editor tools.
+- [x] **Web Bundle Optimization:** Introduced lazy-loaded scene transitions and vendor chunk splitting, dropping the main renderer bundle to ~169 kB and eliminating the prior large-chunk build warning.

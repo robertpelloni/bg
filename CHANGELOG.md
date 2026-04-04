@@ -1,5 +1,19 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.1.5] - 2026-04-03
+### Added
+- **Achievement Identity Helper:** Added a shared `getAchievementProfileName()` helper so achievement snapshot save/load flows stop duplicating ad hoc `localStorage` identity lookups across scenes and editors.
+- **Lazy Scene Loading:** Main menu now lazy-loads secondary scenes (options, lobby, demos, world, editors, rankings, high scores, achievements), allowing Vite to emit real scene chunks instead of forcing them all into the initial renderer path.
+
+### Changed
+- **Web Bundle Architecture:** Added explicit vendor chunking in `vite.config.ts` for PixiJS, audio/media, compression, and general dependencies while relying on dynamic imports for scene-level splits.
+- **Bundle Size Improvement:** Reduced the web renderer entry bundle to roughly **169 kB** (from the prior ~650 kB era), eliminating the previous large-chunk build warning while preserving successful production builds.
+- **Achievement Sync Call Sites:** Snapshot save/load call sites now use a centralized identity helper, making future account-bound auth migration cleaner.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.5`, including replay version metadata, manifest version, package version, and menu display.
+
+### Verified
+- **TypeScript + Build:** `npx tsc --noEmit && npm run build` passes in `bobsgameweb` with no large-chunk warning.
+
 ## [2.1.4] - 2026-04-03
 ### Added
 - **Achievement Snapshot Sync Scaffolding:** Added `saveAchievementData` / `loadAchievementData` support to the Socket.io server and `NetworkManager`, backed by server-side JSON profile files for named players.

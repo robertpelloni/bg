@@ -1,94 +1,88 @@
-# Handoff — 2026-04-03 — Version 2.1.4
+# Handoff — 2026-04-03 — Version 2.1.5
 
 ## Agent
 GPT
 
 ## Session Focus
-Build the next layer after local achievements: **server-side achievement snapshot scaffolding**, **World Database Editor progression hooks**, and **editor UX feedback polish**.
+Take the freshly-added achievement sync work and improve the **web delivery architecture** around it: centralize identity lookup for snapshot sync and aggressively reduce the initial renderer payload using lazy scene loading and smarter Vite chunking.
 
 ## What I Implemented
 
-### 1. Achievement Snapshot Sync Scaffolding
+### 1. Achievement Identity Helper
+Added:
+- `bobsgameweb/src/renderer/data/AchievementIdentity.ts`
+
+Purpose:
+- centralize achievement/profile name lookup behind `getAchievementProfileName()`
+- remove repeated ad hoc `localStorage.getItem('playerName') || 'WebPlayer'` logic from multiple call sites
+
+Updated call sites:
+- `PuzzleScene.ts`
+- `CustomGameEditor.ts`
+- `MapEditor.ts`
+- `WorldEditor.ts`
+
+Why it matters:
+- makes the current name-based sync scaffolding more maintainable
+- creates a cleaner seam for eventual account/auth-backed identity
+
+### 2. Lazy Scene Loading / Code Splitting
 Updated:
-- `bobsgameweb/src/renderer/data/AchievementManager.ts`
-- `bobsgameweb/src/shared/puzzle/NetworkManager.ts`
-- `bobsgameweb/server/index.js`
-
-Implemented in `AchievementManager.ts`:
-- `AchievementSnapshot` interface
-- `exportSnapshot()`
-- `mergeSnapshot()`
-- safe merge behavior using:
-  - numeric stat **max** for cumulative/high-water values
-  - unlocked-id **union** for unlock preservation
-- added new editor achievements:
-  - `first_actor`
-  - `ai_sprite`
-
-Implemented in `NetworkManager.ts`:
-- `loadAchievementData(name, callback)`
-- `saveAchievementData(name, snapshot, callback?)`
-
-Implemented in `server/index.js`:
-- new `achievement_profiles/` persistence directory
-- `saveAchievementData` socket endpoint
-- `loadAchievementData` socket endpoint
-- JSON-based named profile persistence keyed by player name
-
-### 2. Puzzle Online Sync Hook
-Updated:
+- `bobsgameweb/src/renderer/scenes/MainMenuScene.ts`
 - `bobsgameweb/src/renderer/puzzle/PuzzleScene.ts`
 
 Implemented:
-- load achievement snapshot when multiplayer connectivity comes online
-- save updated snapshot after score-reporting/game-over flow
+- lazy loading for secondary scenes opened from the main menu:
+  - Options
+  - Lobby
+  - Engine Demo
+  - nD Demo
+  - World
+  - Custom Editor
+  - World Editor
+  - Rankings
+  - High Scores
+  - Achievements
+- kept `PuzzleScene` as a static import in the main menu because it is already statically depended upon elsewhere and dynamic-importing it produced no meaningful chunking benefit
+- changed pause-menu achievement opening in `PuzzleScene` to lazy-load `AchievementsScene`, eliminating the mixed static/dynamic import warning for that scene
 
-This is intentionally **scaffolding**, not full account-platform auth. The current model is:
-- local progress remains authoritative enough for offline UX
-- server profile can merge in when the player reconnects under the same name
-
-### 3. World Database Editor Progression Hooks
+### 3. Vite Bundle Optimization
 Updated:
-- `bobsgameweb/src/renderer/editor/WorldEditor.ts`
+- `bobsgameweb/vite.config.ts`
 
 Implemented:
-- WorldEditor now ensures a network connection exists
-- actor creation increments `actorsCreated`
-- AI sprite generation increments `aiSpritesGenerated`
-- world editor loads achievement snapshot on connection
-- world editor saves snapshots after achievement-relevant actions
-- world editor now uses `ToastManager` for feedback instead of only blocking alerts in key flows
+- vendor-oriented manual chunking for:
+  - `pixi`
+  - `audio-vendor`
+  - `compression-vendor`
+  - general `vendor`
+- deliberately removed earlier over-aggressive source chunk rules after they produced circular chunk warnings
 
-### 4. Editor Feedback Polish
-Updated:
-- `bobsgameweb/src/renderer/editor/CustomGameEditor.ts`
-- `bobsgameweb/src/renderer/editor/MapEditor.ts`
+### 4. Validation / Build Result
+Ran:
+- `cd bobsgameweb && npx tsc --noEmit`
+- `cd bobsgameweb && npm run build`
 
-Implemented:
-- Custom Game Editor now uses toast feedback for saves/shares
-- Custom Game Editor attempts achievement snapshot save when network is available
-- Map Editor now emits toast feedback for map save/load flows
-- Map Editor saves achievement snapshots after map-save progression events
-
-## Validation Performed
-Ran in `bobsgameweb`:
-- `npx tsc --noEmit`
-- `npm run build`
-
-Result:
+Final result:
 - both passed
-- Vite large-chunk warning still exists but remains non-blocking
+- no large-chunk warning remains
+- no circular chunk warning remains
+- no mixed static/dynamic warning remains for `AchievementsScene`
 
-## Important Design Findings
-- **Max + union is the right merge strategy** for this stage of achievement sync. It avoids deleting newer local progress and behaves safely for cumulative stats.
-- **Scaffolding before auth is still valuable**: named-player snapshot storage already makes cross-session persistence possible without waiting on a full account system.
-- **Editor UX feels substantially better with non-blocking toasts**. Metagame and editor workflows now feel more like a modern console/engine shell and less like a debug tool.
+Observed output improvement:
+- main renderer entry bundle now builds to roughly **169 kB** (down from the earlier ~650 kB-era build before this optimization line of work)
+- Pixi is isolated into its own ~495 kB vendor chunk, which is much healthier than forcing everything through one monolithic application entry
+
+## Design Findings
+- **Dynamic imports only help when the module is not already pinned into the graph elsewhere.** Trying to lazy-load `PuzzleScene` from the main menu did not buy real savings because multiple other static imports already kept it hot.
+- **Manual chunking should stay conservative.** Vendor-focused chunking is stable; forcing internal source groups too aggressively can create circular chunk warnings and make output harder to reason about.
+- **Centralized identity helpers matter early.** Even before auth exists, centralizing player/profile lookup keeps sync migration paths clean.
 
 ## Recommended Next Steps
-1. Add **authenticated identity / account binding** for achievement snapshots so name collisions do not become the long-term key.
-2. Expand snapshot save/load into more scenes, especially ones that can progress achievements without multiplayer connectivity.
-3. Add `WorldEditorScene` / `MapEditor` lifecycle-level snapshot load hooks if those editors become more independently network-driven.
-4. Start a focused pass on the **Vite bundle warning** with manual chunking/code splitting.
+1. Add an actual **account/auth identity layer** so achievement snapshots stop depending on mutable display names.
+2. Audit other large feature entry points for more **true lazy-load opportunities**.
+3. Consider a lightweight **asset prefetch strategy** for frequently opened scenes so lazy loading stays fast on production networks.
+4. Continue widening achievement sync coverage to other systems that can progress while offline and reconcile later.
 
 ## Constraints Respected
 - No processes were killed.

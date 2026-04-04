@@ -31,10 +31,12 @@
 - **Editors:** Map Editor, Game Rule Editor, and World Database Editor are 100% functional and synced.
 - **Mobile:** Web port is mobile-ready with touch controls and automated Capacitor builds.
 - **Backend:** Persistence, Elo, Matchmaking, and WebSocket gateways are established.
-- **Released:** Version 2.1.4 is ready for content creation.
+- **Released:** Version 2.1.5 is ready for content creation.
 - **Achievements System:** Web port now includes a persistent local achievement/stat tracker plus toast notifications. Use whole-second batching for long-running meta stats like playtime instead of per-frame persistence.
 - **Dialogue Metrics:** Only count NPC/player-initiated dialogue toward social/RPG interaction achievements; system prompts and console messages should not increment interaction stats.
 - **Replay VOD Progression:** Leaderboard replay viewing is now a meaningful meta-loop and can feed spectator/social achievements.
 - **Pause Access Pattern:** When adding metagame UX to active gameplay, prefer pause-menu entry points over modal hotkeys so controller users get consistent, discoverable access.
 - **Editor Progression Pattern:** Hook achievement stats to explicit editor intents (save, share, first meaningful draw, actor creation, AI generation) rather than every low-level edit event to avoid noisy progression inflation.
 - **Achievement Sync Strategy:** Merge server snapshots with local progress using numeric max + unlocked-id union. This is safe for cumulative stats and avoids deleting newer local progress when reconnecting from another device.
+- **Achievement Identity Pattern:** Centralize player-name/profile derivation for achievement sync in one helper instead of sprinkling raw `localStorage` lookups across scenes.
+- **Web Performance Pattern:** Prefer lazy scene imports for rarely used shells/tools and keep manual chunking limited to stable vendor groupings; over-eager source chunk rules can create circular-chunk warnings.
