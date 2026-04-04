@@ -1,5 +1,20 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.1.6] - 2026-04-03
+### Added
+- **Stable Achievement Profile IDs:** Added a shared identity layer that now creates and persists a stable local `profileId` for achievement snapshot sync, alongside the existing player display name.
+- **Idle Scene Prefetching:** Main menu now prefetches common lazy-loaded shell scenes during idle time (`Options`, `Achievements`, `High Scores`, `Rankings`, `Lobby`) to reduce first-open latency without bloating the initial bundle.
+- **Settings Identity Visibility:** Settings now surfaces the local profile ID so the current identity model is visible and easier to reason about during testing and future account migration.
+
+### Changed
+- **Achievement Sync Payloads:** Snapshot save/load calls now pass a structured identity object (`profileId` + `name`) instead of raw display-name strings, while the server keeps backward-compatible fallback behavior.
+- **Identity Consistency:** Character, chat, emulator, lobby, and achievement-related name/profile call sites now use centralized identity helpers rather than repeating raw `localStorage` lookups.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.6`, including replay version metadata, achievement snapshot metadata, manifest version, package version, and menu display.
+
+### Verified
+- **TypeScript + Build:** `npx tsc --noEmit && npm run build` passes in `bobsgameweb`.
+- **Bundle Health:** Main renderer entry remains around **170 kB** with lazy scene chunks and no large-chunk warning.
+
 ## [2.1.5] - 2026-04-03
 ### Added
 - **Achievement Identity Helper:** Added a shared `getAchievementProfileName()` helper so achievement snapshot save/load flows stop duplicating ad hoc `localStorage` identity lookups across scenes and editors.

@@ -1,90 +1,98 @@
-# Handoff — 2026-04-03 — Version 2.1.5
+# Handoff — 2026-04-03 — Version 2.1.6
 
 ## Agent
 GPT
 
 ## Session Focus
-Take the freshly-added achievement sync work and improve the **web delivery architecture** around it: centralize identity lookup for snapshot sync and aggressively reduce the initial renderer payload using lazy scene loading and smarter Vite chunking.
+Advance the achievement sync work from simple name-keyed scaffolding toward something more **account-ready**, while also making the new lazy-loaded shell feel faster through **idle prefetching**.
 
 ## What I Implemented
 
-### 1. Achievement Identity Helper
-Added:
+### 1. Stable Local Profile Identity
+Updated:
 - `bobsgameweb/src/renderer/data/AchievementIdentity.ts`
+- `bobsgameweb/src/shared/puzzle/NetworkManager.ts`
+- `bobsgameweb/server/index.js`
 
-Purpose:
-- centralize achievement/profile name lookup behind `getAchievementProfileName()`
-- remove repeated ad hoc `localStorage.getItem('playerName') || 'WebPlayer'` logic from multiple call sites
+Implemented in `AchievementIdentity.ts`:
+- `AchievementIdentity` interface
+- `getPlayerDisplayName()`
+- `setPlayerDisplayName()`
+- `getOrCreateAchievementProfileId()`
+- `getAchievementIdentity()`
+- retained `getAchievementProfileName()` as compatibility sugar
 
-Updated call sites:
+Behavior:
+- a stable local `profileId` is generated once and persisted to localStorage
+- display name remains user-facing and editable
+- achievement sync can now use `{ profileId, name }` instead of a mutable name alone
+
+Implemented in `NetworkManager.ts`:
+- `loadAchievementData(...)` now accepts either a string or a structured identity object
+- `saveAchievementData(...)` now accepts either a string or structured identity object
+
+Implemented in `server/index.js`:
+- achievement save/load is now profile-aware
+- server stores snapshots by `profileId` when present, otherwise falls back to name
+- load path checks both profile ID and legacy name-style key paths for compatibility
+- snapshot file format now preserves identity metadata alongside the snapshot payload
+
+### 2. Identity Call-Site Cleanup
+Updated:
 - `PuzzleScene.ts`
 - `CustomGameEditor.ts`
 - `MapEditor.ts`
 - `WorldEditor.ts`
+- `LobbyScene.ts`
+- `WorldScene.ts`
+- `LibretroGame.ts`
+- `SettingsScene.ts`
 
-Why it matters:
-- makes the current name-based sync scaffolding more maintainable
-- creates a cleaner seam for eventual account/auth-backed identity
+Implemented:
+- achievement sync call sites now use structured identity where appropriate
+- display-name call sites use centralized helper access instead of raw `localStorage` reads
+- settings scene now shows the local profile ID and uses helper-based save semantics for player name changes
 
-### 2. Lazy Scene Loading / Code Splitting
+### 3. Idle Scene Prefetching
 Updated:
 - `bobsgameweb/src/renderer/scenes/MainMenuScene.ts`
-- `bobsgameweb/src/renderer/puzzle/PuzzleScene.ts`
 
 Implemented:
-- lazy loading for secondary scenes opened from the main menu:
+- background idle prefetch of high-likelihood secondary shell scenes:
   - Options
-  - Lobby
-  - Engine Demo
-  - nD Demo
-  - World
-  - Custom Editor
-  - World Editor
-  - Rankings
-  - High Scores
   - Achievements
-- kept `PuzzleScene` as a static import in the main menu because it is already statically depended upon elsewhere and dynamic-importing it produced no meaningful chunking benefit
-- changed pause-menu achievement opening in `PuzzleScene` to lazy-load `AchievementsScene`, eliminating the mixed static/dynamic import warning for that scene
+  - High Scores
+  - Rankings
+  - Lobby
+- uses `requestIdleCallback` when available, falls back to `setTimeout`
 
-### 3. Vite Bundle Optimization
-Updated:
-- `bobsgameweb/vite.config.ts`
+Why this matters:
+- preserves the bundle-size advantage of lazy loading
+- reduces the first-open penalty for common secondary scenes
 
-Implemented:
-- vendor-oriented manual chunking for:
-  - `pixi`
-  - `audio-vendor`
-  - `compression-vendor`
-  - general `vendor`
-- deliberately removed earlier over-aggressive source chunk rules after they produced circular chunk warnings
-
-### 4. Validation / Build Result
+### 4. Validation / Build Health
 Ran:
 - `cd bobsgameweb && npx tsc --noEmit`
 - `cd bobsgameweb && npm run build`
 
-Final result:
+Result:
 - both passed
-- no large-chunk warning remains
-- no circular chunk warning remains
-- no mixed static/dynamic warning remains for `AchievementsScene`
-
-Observed output improvement:
-- main renderer entry bundle now builds to roughly **169 kB** (down from the earlier ~650 kB-era build before this optimization line of work)
-- Pixi is isolated into its own ~495 kB vendor chunk, which is much healthier than forcing everything through one monolithic application entry
+- no large-chunk warning
+- renderer entry remains around **170 kB**
+- lazy scene chunking remains intact
 
 ## Design Findings
-- **Dynamic imports only help when the module is not already pinned into the graph elsewhere.** Trying to lazy-load `PuzzleScene` from the main menu did not buy real savings because multiple other static imports already kept it hot.
-- **Manual chunking should stay conservative.** Vendor-focused chunking is stable; forcing internal source groups too aggressively can create circular chunk warnings and make output harder to reason about.
-- **Centralized identity helpers matter early.** Even before auth exists, centralizing player/profile lookup keeps sync migration paths clean.
+- **Stable profile IDs are the right next bridge** between local-only progression and future account auth.
+- **Display names should remain mutable and cosmetic**; persistence keys should not.
+- **Idle prefetching is a strong complement to lazy loading**: it keeps initial boot lighter while smoothing real user navigation to common menus.
 
 ## Recommended Next Steps
-1. Add an actual **account/auth identity layer** so achievement snapshots stop depending on mutable display names.
-2. Audit other large feature entry points for more **true lazy-load opportunities**.
-3. Consider a lightweight **asset prefetch strategy** for frequently opened scenes so lazy loading stays fast on production networks.
-4. Continue widening achievement sync coverage to other systems that can progress while offline and reconcile later.
+1. Add a true **authenticated account binding** so profile IDs can sync to real user accounts.
+2. Add **prefetch heuristics** based on actual menu selection/hover patterns, not just a fixed idle bundle warm-up.
+3. Consider widening structured identity usage into other persistence systems (character saves, emulator saves) once the auth story solidifies.
+4. Add a lightweight migration note for older local-only achievement data if profile-backed sync becomes canonical.
 
 ## Constraints Respected
 - No processes were killed.
-- Validation was completed before commit.
+- Validation completed before commit.
 - Pre-existing dirty submodule working trees in `bobsgameonlinejava` and `okgame` were left untouched.
