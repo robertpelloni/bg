@@ -1,85 +1,75 @@
-# Handoff — 2026-04-04 — Version 2.1.9
+# Handoff — 2026-04-04 — Version 2.1.10
 
 ## Agent
 GPT
 
 ## Session Focus
-Proceed from the successful static DreamHost deploy toward the most realistic production backend plan: verify the current hosting constraints, then prepare the codebase for a dedicated production websocket/backend host.
-
-## What I Verified
-### Static Frontend Deployment
-Confirmed live on DreamHost:
-- `https://bobsgame.com` serves the deployed `index.html`
-- built JS assets are accessible from the public domain
-
-### Backend Reality Check
-Confirmed:
-- `/socket.io` on `https://bobsgame.com` returns `404`
-- `node` exists on the DreamHost shell (`v12.22.9` observed)
-- `passenger-config` and `passenger-status` binaries exist
-- Passenger does not appear to be actively running for this current site/app context
-
-Conclusion:
-- the static frontend is deployed
-- the multiplayer/backend side still needs dedicated hosting/proxy configuration
-- the cleanest likely shape is a dedicated subdomain such as `ws.bobsgame.com`
+Proceed from backend-host preparation into the next practical step: add a simple health/smoke-test path for a future DreamHost backend subdomain so infrastructure can be verified before debugging Socket.io.
 
 ## What I Implemented
 
-### 1. Production Backend Host Override Support
+### 1. Backend Smoke-Test Endpoints
 Updated:
-- `bobsgameweb/src/shared/Config.ts`
+- `bobsgameweb/server/index.js`
 
-Implemented:
-- support for `VITE_SERVER_URL`
-- support for `VITE_BIG_DATA_URL`
-- fixed stale `APP_VERSION` drift
+Added plain HTTP routes on the same Node server used by Socket.io:
+- `GET /` → simple text response (`bob's game backend is running`)
+- `GET /healthz` → JSON health payload with:
+  - `ok`
+  - `service`
+  - `version`
+  - `time`
 
-Result:
-- the web build can now be pointed at a dedicated backend host without code edits
-- example target: `VITE_SERVER_URL=https://ws.bobsgame.com`
+Why this matters:
+- DreamHost/Passenger subdomain wiring can now be tested with simple HTTP before introducing websocket debugging complexity
+- if `ws.bobsgame.com/healthz` works, the app is at least attached and serving traffic
 
-### 2. Passenger-Friendly Server Entrypoint
+### 2. Dedicated Backend Subdomain Checklist
 Added:
-- `bobsgameweb/server/app.js`
+- `bobsgameweb/WS_BACKEND_SETUP.md`
 
-Purpose:
-- provides a simple startup target for DreamHost/Passenger-style Node hosting
-- boots the existing Socket.io server via `import './index.js'`
+Covers:
+- recommended `ws.bobsgame.com` topology
+- DreamHost panel steps
+- expected smoke-test curl commands
+- frontend rebuild command using `VITE_SERVER_URL`
+- debugging interpretations for `/healthz` vs `/socket.io`
 
-### 3. Production Env Example
-Added:
-- `bobsgameweb/.env.production.example`
-
-Purpose:
-- documents production override values for backend host and asset host
-- makes the dedicated-subdomain deployment path much easier to reproduce
-
-### 4. Deployment Documentation Upgrade
+### 3. Deployment Documentation Tightening
 Updated:
 - `bobsgameweb/DEPLOY.md`
 
 Added:
-- explicit recommendation for a dedicated backend subdomain
-- DreamHost-specific notes based on the live probe
-- concrete production build example using `VITE_SERVER_URL`
+- explicit `/healthz` verification step for the dedicated backend subdomain before rebuilding the frontend
+- clear pointer to `WS_BACKEND_SETUP.md`
 
 ## Validation Performed
 - `npm run build` in `bobsgameweb` ✅
-- live HTTP check against `https://bobsgame.com` ✅
-- live Socket.io path check against `https://bobsgame.com/socket.io/...` ❌ (returns `404`, as expected under current hosting shape)
+- static frontend remains live on `bobsgame.com` ✅
+
+## Production State Summary
+### Working now
+- static site is deployed and live on `bobsgame.com`
+
+### Not yet wired
+- backend subdomain not yet configured
+- `/socket.io` on the main domain still does not serve the multiplayer backend
 
 ## Recommended Next Steps
-1. Create/configure a dedicated backend subdomain such as `ws.bobsgame.com` in DreamHost.
-2. Point that subdomain at `~/bobsgame.com/server` as a Node/Passenger app if supported.
-3. Build/deploy the frontend with:
+1. Create/configure `ws.bobsgame.com` in DreamHost.
+2. Point it at `~/bobsgame.com/server` as a Node/Passenger app if supported.
+3. Verify:
+   ```bash
+   curl -i https://ws.bobsgame.com/healthz
+   ```
+4. Rebuild frontend with:
    ```bash
    VITE_SERVER_URL=https://ws.bobsgame.com npm run build
    ```
-4. Re-deploy static files after that build.
-5. Verify Socket.io connectivity on the new host, then retest multiplayer from the web client.
+5. Redeploy frontend static files.
+6. Test multiplayer.
 
 ## Constraints Respected
 - No processes were killed.
-- Static deployment was verified externally.
+- Static frontend deploy remains intact.
 - Pre-existing dirty submodule working trees in `bobsgameonlinejava` and `okgame` were left untouched.

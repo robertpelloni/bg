@@ -31,7 +31,7 @@
 - **Editors:** Map Editor, Game Rule Editor, and World Database Editor are 100% functional and synced.
 - **Mobile:** Web port is mobile-ready with touch controls and automated Capacitor builds.
 - **Backend:** Persistence, Elo, Matchmaking, and WebSocket gateways are established.
-- **Released:** Version 2.1.9 is ready for content creation.
+- **Released:** Version 2.1.10 is ready for content creation.
 - **Achievements System:** Web port now includes a persistent local achievement/stat tracker plus toast notifications. Use whole-second batching for long-running meta stats like playtime instead of per-frame persistence.
 - **Dialogue Metrics:** Only count NPC/player-initiated dialogue toward social/RPG interaction achievements; system prompts and console messages should not increment interaction stats.
 - **Replay VOD Progression:** Leaderboard replay viewing is now a meaningful meta-loop and can feed spectator/social achievements.
@@ -42,5 +42,6 @@
 - **Shared Persistence Identity:** Character saves and emulator state saves should move toward the same stable identity model as achievements, with server fallback support for legacy name-only data.
 - **Web Performance Pattern:** Prefer lazy scene imports for rarely used shells/tools and keep manual chunking limited to stable vendor groupings; over-eager source chunk rules can create circular-chunk warnings.
 - **Prefetch Pattern:** Once lazy loading is in place, combine idle prefetching for common scenes with selection-neighborhood prefetching for likely next transitions.
-- **Deploy Reality Check:** In this agent environment, `sshpass` is available, `scp` is available, and DreamHost static hosting works. However, DreamHost password auth may fail, `rsync` may not exist locally, `/socket.io` on `bobsgame.com` currently returns `404`, and a dedicated Passenger-backed backend host is likely the cleanest production shape.
+- **Deploy Reality Check:** In this agent environment, `sshpass` is available, `scp` is available, and DreamHost static hosting works. However, DreamHost password auth may fail, `/socket.io` on `bobsgame.com` currently returns `404`, and a dedicated Passenger-backed backend host is likely the cleanest production shape.
 - **DreamHost Backend Shape:** The most realistic path is static frontend on `bobsgame.com` plus Node/Socket.io on a separate subdomain such as `ws.bobsgame.com`, with the web build pointed there via `VITE_SERVER_URL`.
+- **Smoke-Test Principle:** Before debugging Socket.io/upgrade issues on DreamHost, first make sure the backend subdomain answers plain HTTP at `/healthz` and `/` from the Node app.

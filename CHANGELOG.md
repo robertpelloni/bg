@@ -1,5 +1,18 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.1.10] - 2026-04-04
+### Added
+- **Backend Smoke-Test Endpoints:** Added plain HTTP responses for `/` and `/healthz` in the Socket.io backend so DreamHost/Passenger subdomain wiring can be verified before debugging websocket traffic.
+- **DreamHost Backend Checklist:** Added `WS_BACKEND_SETUP.md` with a focused `ws.bobsgame.com` configuration and validation sequence.
+
+### Changed
+- **Deployment Guidance:** `DEPLOY.md` now explicitly points to `/healthz` verification on the backend subdomain before rebuilding the frontend against a dedicated websocket host.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.10`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, and config version string.
+
+### Verified
+- **Build:** `npm run build` passes in `bobsgameweb` after backend smoke-test additions.
+- **Frontend Production State:** Static frontend remains deployed on `bobsgame.com` while backend-subdomain preparation continues.
+
 ## [2.1.9] - 2026-04-03
 ### Added
 - **Passenger-Friendly Server Entrypoint:** Added `bobsgameweb/server/app.js` so the Socket.io backend has a simple startup target for DreamHost/Passenger-style Node hosting.
