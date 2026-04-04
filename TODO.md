@@ -46,6 +46,7 @@
 - [x] Add stable profile-ID scaffolding for achievement sync and background prefetching for common lazy-loaded scenes.
 - [x] Extend structured profile identity into character/emulator persistence and predictive menu prefetching.
 - [x] Improve deployment scripts/docs with Windows support, `scp` fallback, and explicit auth/setup guidance.
+- [x] Add production backend host override support and Passenger-friendly server entrypoint preparation.
 
 ### 6. Editor Functionality
 - [x] Port core RPG data structures (`AssetData`, `MapData`, `MapStateData`, `EventData`, `DoorData`).

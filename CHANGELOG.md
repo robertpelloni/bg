@@ -1,5 +1,20 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.1.9] - 2026-04-03
+### Added
+- **Passenger-Friendly Server Entrypoint:** Added `bobsgameweb/server/app.js` so the Socket.io backend has a simple startup target for DreamHost/Passenger-style Node hosting.
+- **Production Env Example:** Added `.env.production.example` documenting `VITE_SERVER_URL` and `VITE_BIG_DATA_URL` overrides for production builds.
+
+### Changed
+- **Config Flexibility:** `src/shared/Config.ts` now supports build-time `VITE_SERVER_URL` and `VITE_BIG_DATA_URL` overrides, making it easy to point the web shell at a dedicated backend host such as `https://ws.bobsgame.com`.
+- **Version Drift Fix:** Corrected `APP_VERSION` drift in `Config.ts` so the configuration layer no longer reported the stale `2.1.0` string.
+- **Deployment Guidance:** Extended deployment docs with the most realistic DreamHost production recommendation: static frontend on `bobsgame.com`, Node/Socket.io backend on a dedicated Passenger-backed subdomain.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.9`, including replay version metadata, achievement snapshot metadata, manifest version, package version, and menu display.
+
+### Verified
+- **Build:** `npm run build` passes in `bobsgameweb` after the configuration and deployment-prep changes.
+- **Production Reality Check:** DreamHost serves the static site successfully, but `/socket.io` on `bobsgame.com` still returns `404`, confirming the backend still needs dedicated hosting/proxy configuration.
+
 ## [2.1.8] - 2026-04-03
 ### Added
 - **Windows Deployment Script:** Added `scripts/deploy.ps1` for PowerShell-based deployment workflows on Windows machines.

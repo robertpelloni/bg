@@ -1,100 +1,85 @@
-# Handoff — 2026-04-03 — Version 2.1.8
+# Handoff — 2026-04-04 — Version 2.1.9
 
 ## Agent
 GPT
 
 ## Session Focus
-Attempt a real DreamHost deployment using the supplied credentials, then convert the observed environment/auth blockers into better deployment tooling and documentation.
+Proceed from the successful static DreamHost deploy toward the most realistic production backend plan: verify the current hosting constraints, then prepare the codebase for a dedicated production websocket/backend host.
 
-## What Happened
-### Live Deploy Attempt
-I attempted to reach:
-- host: `pdx1-shared-a1-33.dreamhost.com`
-- user: `robertpelloni`
+## What I Verified
+### Static Frontend Deployment
+Confirmed live on DreamHost:
+- `https://bobsgame.com` serves the deployed `index.html`
+- built JS assets are accessible from the public domain
 
-Observed:
-- host was reachable
-- `sshpass` is installed in the local agent environment
-- `rsync` is **not** installed locally
-- `scp` is available
-- password authentication with the supplied password failed:
-  - `Permission denied (publickey,password)`
+### Backend Reality Check
+Confirmed:
+- `/socket.io` on `https://bobsgame.com` returns `404`
+- `node` exists on the DreamHost shell (`v12.22.9` observed)
+- `passenger-config` and `passenger-status` binaries exist
+- Passenger does not appear to be actively running for this current site/app context
 
-So the blocker is no longer tooling alone — it is now specifically an authentication issue (wrong password and/or password SSH disabled on DreamHost).
+Conclusion:
+- the static frontend is deployed
+- the multiplayer/backend side still needs dedicated hosting/proxy configuration
+- the cleanest likely shape is a dedicated subdomain such as `ws.bobsgame.com`
 
 ## What I Implemented
 
-### 1. Deployment Script Upgrade
+### 1. Production Backend Host Override Support
 Updated:
-- `bobsgameweb/scripts/deploy.sh`
+- `bobsgameweb/src/shared/Config.ts`
 
 Implemented:
-- `set -euo pipefail`
-- support for `DEPLOY_USER`, `DEPLOY_HOST`, `DEPLOY_REMOTE_PATH`
-- support for `DEPLOY_PASSWORD` via `sshpass` if available
-- automatic fallback to `scp` when `rsync` is unavailable
-- remote directory creation before upload
-- optional remote post-deploy hooks:
-  - `DEPLOY_INSTALL_SERVER=1`
-  - `DEPLOY_RESTART_SERVER=1`
+- support for `VITE_SERVER_URL`
+- support for `VITE_BIG_DATA_URL`
+- fixed stale `APP_VERSION` drift
 
-### 2. Windows PowerShell Deployment Script
+Result:
+- the web build can now be pointed at a dedicated backend host without code edits
+- example target: `VITE_SERVER_URL=https://ws.bobsgame.com`
+
+### 2. Passenger-Friendly Server Entrypoint
 Added:
-- `bobsgameweb/scripts/deploy.ps1`
+- `bobsgameweb/server/app.js`
 
-Implemented:
-- PowerShell-friendly deployment flow for Windows users
-- supports `sshpass` + `scp` when available
-- supports same env-driven deploy controls as the bash script
+Purpose:
+- provides a simple startup target for DreamHost/Passenger-style Node hosting
+- boots the existing Socket.io server via `import './index.js'`
 
-### 3. Deployment Documentation Rewrite
+### 3. Production Env Example
+Added:
+- `bobsgameweb/.env.production.example`
+
+Purpose:
+- documents production override values for backend host and asset host
+- makes the dedicated-subdomain deployment path much easier to reproduce
+
+### 4. Deployment Documentation Upgrade
 Updated:
 - `bobsgameweb/DEPLOY.md`
 
-Added documentation for:
-- current real blockers discovered during live attempt
-- PowerShell usage
-- `scp` fallback behavior
-- env vars for deployment
-- recommended easiest future setup
-- explicit statement that SSH key auth is the best long-term solution
+Added:
+- explicit recommendation for a dedicated backend subdomain
+- DreamHost-specific notes based on the live probe
+- concrete production build example using `VITE_SERVER_URL`
 
 ## Validation Performed
 - `npm run build` in `bobsgameweb` ✅
-- live SSH connectivity attempt to DreamHost host ✅
-- password login using supplied credentials ❌
-
-## What You Need To Make This Easy
-The cleanest path is one of these:
-
-### Best Option: SSH key auth
-On your machine, once this works:
-1. generate or choose an SSH key
-2. add the public key to DreamHost for `robertpelloni`
-3. then deployment becomes as simple as:
-   ```bash
-   DEPLOY_INSTALL_SERVER=1 DEPLOY_RESTART_SERVER=1 ./scripts/deploy.sh
-   ```
-
-### Second-best Option: working password auth
-If password SSH is truly allowed, I need either:
-- the correct password, or
-- confirmation that DreamHost is configured to allow password SSH for that account
-
-Then the script can use:
-```bash
-DEPLOY_PASSWORD='...' DEPLOY_INSTALL_SERVER=1 DEPLOY_RESTART_SERVER=1 ./scripts/deploy.sh
-```
-
-### Helpful Optional Improvement
-Install `rsync` locally for faster incremental uploads. Not required anymore, because the scripts now fall back to `scp`.
+- live HTTP check against `https://bobsgame.com` ✅
+- live Socket.io path check against `https://bobsgame.com/socket.io/...` ❌ (returns `404`, as expected under current hosting shape)
 
 ## Recommended Next Steps
-1. Fix DreamHost auth first (prefer SSH key).
-2. Once auth works, rerun deploy using the upgraded script.
-3. If needed, verify remote Node/PM2 setup and domain routing for `bobsgame.com`.
+1. Create/configure a dedicated backend subdomain such as `ws.bobsgame.com` in DreamHost.
+2. Point that subdomain at `~/bobsgame.com/server` as a Node/Passenger app if supported.
+3. Build/deploy the frontend with:
+   ```bash
+   VITE_SERVER_URL=https://ws.bobsgame.com npm run build
+   ```
+4. Re-deploy static files after that build.
+5. Verify Socket.io connectivity on the new host, then retest multiplayer from the web client.
 
 ## Constraints Respected
 - No processes were killed.
-- Build validation completed.
+- Static deployment was verified externally.
 - Pre-existing dirty submodule working trees in `bobsgameonlinejava` and `okgame` were left untouched.

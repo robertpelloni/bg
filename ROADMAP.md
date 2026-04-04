@@ -1,7 +1,7 @@
 # Omni-Workspace Roadmap: bob's game / OKGame
 
 ## Status: Active Development
-**Current Version:** 2.1.8
+**Current Version:** 2.1.9
 
 ## 1. Documentation & Multi-Agent Alignment (COMPLETED)
 - [x] Establish root `UNIVERSAL_LLM_INSTRUCTIONS.md`.
@@ -73,3 +73,4 @@
 - [x] **Account-Ready Identity Scaffolding:** Added stable local profile IDs for achievement sync plus idle scene prefetching so cloud-progression migration paths and lazy-loaded UX are both cleaner.
 - [x] **Shared Persistence Identity:** Extended profile-aware identity handling into character and emulator persistence, and added predictive menu-selection prefetching for likely next scene transitions.
 - [x] **Deployment Tooling Upgrade:** Added Windows/PowerShell deployment support, `scp` fallback when `rsync` is unavailable, env-driven remote install/restart hooks, and documented the current DreamHost authentication blocker.
+- [x] **Production Backend Prep:** Added build-time `VITE_SERVER_URL` override support, corrected app-version config drift, and added a Passenger-friendly Node app entrypoint for a likely DreamHost websocket subdomain deployment shape.
