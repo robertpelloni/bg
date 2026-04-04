@@ -41,6 +41,7 @@
 - [x] Full Gamepad/Controller Support (UI Navigation and Haptic Feedback/Rumble).
 - [x] Add a persistent Achievement/Trophy system with an Achievements menu and unlock pop-up notifications.
 - [x] Wire editor activity and pause-menu access into the achievement metagame layer.
+- [x] Add achievement snapshot save/load scaffolding and World Database Editor progression hooks.
 
 ### 6. Editor Functionality
 - [x] Port core RPG data structures (`AssetData`, `MapData`, `MapStateData`, `EventData`, `DoorData`).

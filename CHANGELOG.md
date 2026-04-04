@@ -1,5 +1,20 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.1.4] - 2026-04-03
+### Added
+- **Achievement Snapshot Sync Scaffolding:** Added `saveAchievementData` / `loadAchievementData` support to the Socket.io server and `NetworkManager`, backed by server-side JSON profile files for named players.
+- **World Editor Progression Hooks:** Wired `WorldEditor.ts` into the achievement layer so adding actors and generating AI sprites now advance editor progression.
+- **Editor Toast Feedback:** Added `ToastManager`-based feedback for custom-game saves/shares, map saves/loads, and world-database operations so editor flows no longer rely solely on blocking browser alerts.
+- **New Editor Achievements:** Added new editor achievements for creating a world actor and generating an AI sprite.
+
+### Changed
+- **Achievement Manager Sync API:** Added snapshot export/merge plumbing so client-local progress can be merged with server profiles without rewriting scene logic.
+- **Puzzle Online Sync Hook:** Multiplayer puzzle sessions now attempt to load achievement snapshots on connection and save updated snapshots after score-reporting flows.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.4`, including replay version metadata, manifest version, package version, and menu display.
+
+### Verified
+- **TypeScript + Build:** `npx tsc --noEmit && npm run build` passes in `bobsgameweb`.
+
 ## [2.1.3] - 2026-04-03
 ### Added
 - **Pause-Menu Achievement Access:** Added an `Achievements` action to the puzzle pause overlay so the trophy cabinet is now reachable during active play sessions instead of only from the main menu.
