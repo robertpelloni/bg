@@ -49,6 +49,10 @@
 - [x] Add production backend host override support and Passenger-friendly server entrypoint preparation.
 - [x] Add backend smoke-test endpoints and a DreamHost `ws.bobsgame.com` setup checklist.
 - [x] Add provider-neutral backend deployment/runtime files (`.env`, PM2, Docker, startup docs).
+- [x] Add concrete Hetzner/VPS operational assets (nginx config, systemd unit, server setup guide).
+- [x] Add repeatable VPS automation scripts for backend upload and Ubuntu bootstrap.
+- [x] Add a higher-level Hetzner provisioning script that chains the common rollout steps.
+- [x] Add local helper scripts to verify backend readiness and rebuild/redeploy the frontend for the chosen backend host.
 
 ### 6. Editor Functionality
 - [x] Port core RPG data structures (`AssetData`, `MapData`, `MapStateData`, `EventData`, `DoorData`).

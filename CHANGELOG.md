@@ -1,5 +1,58 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.1.15] - 2026-04-04
+### Added
+- **Backend Verification Script:** Added `scripts/check-backend-host.sh` to verify `/`, `/healthz`, and `/socket.io` before switching the frontend to a production backend host.
+- **Frontend Switch-Over Script:** Added `scripts/rebuild-for-backend.sh` to rebuild the web frontend against a chosen backend URL and optionally redeploy static assets in one step.
+
+### Changed
+- **Hetzner Guide:** `HETZNER_SETUP.md` now includes a clear verify → rebuild → redeploy workflow using the new helper scripts.
+- **Backend Deploy Guide:** `BACKEND_DEPLOY.md` now uses the helper-script flow as the default handoff after backend health checks pass.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.15`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, config version string, and backend version string.
+
+### Verified
+- **Shell Syntax:** `bash -n` passes for the new verification/rebuild helper scripts.
+- **Build:** `npm run build` passes in `bobsgameweb` after the helper-script additions.
+
+## [2.1.14] - 2026-04-04
+### Added
+- **Hetzner Provisioning Script:** Added `scripts/provision-hetzner-backend.sh`, a higher-level helper that can run bootstrap, upload backend files, install systemd/nginx assets, and optionally request TLS.
+
+### Changed
+- **Hetzner Guide:** `HETZNER_SETUP.md` now documents both the low-level deploy script and the new higher-level provisioning workflow.
+- **Backend Provider Docs:** `BACKEND_DEPLOY.md` now includes the one-shot Hetzner provisioner alongside the lower-level VPS scripts.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.14`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, config version string, and backend version string.
+
+### Verified
+- **Shell Syntax:** `bash -n` passes for `scripts/provision-hetzner-backend.sh`.
+- **Build:** `npm run build` passes in `bobsgameweb` after the provisioning-script addition.
+
+## [2.1.13] - 2026-04-04
+### Added
+- **VPS Backend Deploy Script:** Added `scripts/deploy-backend-vps.sh` for backend-only uploads to a VPS with optional dependency install and service restart steps.
+- **Ubuntu Bootstrap Script:** Added `server/ops/bootstrap-ubuntu.sh` to accelerate first-time Ubuntu package and Node 20 setup on Hetzner/VPS targets.
+
+### Changed
+- **Hetzner Guide:** `HETZNER_SETUP.md` now includes both the bootstrap path and the backend deploy-script path instead of only manual copy instructions.
+- **Provider Docs:** `BACKEND_DEPLOY.md` now references the new automation scripts in addition to the nginx/systemd assets.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.13`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, config version string, and backend version string.
+
+### Verified
+- **Shell Syntax:** `bash -n` passes for the new VPS deploy/bootstrap scripts.
+- **Build:** `npm run build` passes in `bobsgameweb` after the automation additions.
+
+## [2.1.12] - 2026-04-04
+### Added
+- **Hetzner/VPS Setup Guide:** Added `HETZNER_SETUP.md` with a concrete Ubuntu + nginx + systemd + TLS rollout path for `ws.bobsgame.com`.
+- **Ops Config Assets:** Added example nginx config (`server/ops/nginx/ws.bobsgame.com.conf`) and systemd unit (`server/ops/systemd/bobsgameweb-server.service`) for the backend service.
+
+### Changed
+- **Backend Deployment Docs:** `BACKEND_DEPLOY.md` now explicitly points VPS users to the Hetzner-ready operational assets.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.12`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, config version string, and backend version string.
+
+### Verified
+- **Build:** `npm run build` passes in `bobsgameweb` after the Hetzner/VPS ops-asset additions.
+
 ## [2.1.11] - 2026-04-04
 ### Added
 - **Provider-Neutral Backend Deploy Guide:** Added `BACKEND_DEPLOY.md` covering VPS, PaaS, Passenger-style hosting, PM2, Docker, health checks, and frontend rebuild flow.

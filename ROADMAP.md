@@ -1,7 +1,7 @@
 # Omni-Workspace Roadmap: bob's game / OKGame
 
 ## Status: Active Development
-**Current Version:** 2.1.11
+**Current Version:** 2.1.15
 
 ## 1. Documentation & Multi-Agent Alignment (COMPLETED)
 - [x] Establish root `UNIVERSAL_LLM_INSTRUCTIONS.md`.
@@ -76,3 +76,7 @@
 - [x] **Production Backend Prep:** Added build-time `VITE_SERVER_URL` override support, corrected app-version config drift, and added a Passenger-friendly Node app entrypoint for a likely DreamHost websocket subdomain deployment shape.
 - [x] **Backend Smoke Test Path:** Added `/healthz` and root backend responses plus a dedicated `WS_BACKEND_SETUP.md` checklist so DreamHost subdomain verification can be done before attempting full Socket.io traffic.
 - [x] **Provider-Neutral Backend Runtime:** Added env-driven backend host/port/origin config, PM2 runtime support, Docker/runtime polish, and a provider-neutral `BACKEND_DEPLOY.md` guide for VPS/PaaS deployment paths.
+- [x] **Hetzner/VPS Ops Assets:** Added concrete nginx and systemd examples plus a step-by-step `HETZNER_SETUP.md` guide for bringing `ws.bobsgame.com` online behind nginx on Ubuntu.
+- [x] **VPS Automation Scripts:** Added a backend-only VPS deploy script plus an Ubuntu bootstrap script so Hetzner setup can move from documentation into repeatable command-based rollout.
+- [x] **One-Shot Hetzner Provisioner:** Added a higher-level `provision-hetzner-backend.sh` workflow that chains bootstrap, backend upload, systemd installation, nginx installation, and optional TLS into one guided path.
+- [x] **Switch-Over Helpers:** Added local scripts to verify a backend host and rebuild/redeploy the frontend against it once `ws.bobsgame.com` is live.

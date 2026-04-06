@@ -1,75 +1,69 @@
-# Handoff — 2026-04-04 — Version 2.1.11
+# Handoff — 2026-04-04 — Version 2.1.15
 
 ## Agent
 GPT
 
 ## Session Focus
-Resume the backend deployment-prep work and finish the provider-neutral runtime layer so the Socket.io service is easier to run on Hetzner, DigitalOcean, Railway, Render, or any other practical production backend host.
+Continue turning the Hetzner backend path into a fully executable operational workflow by adding the final local helper scripts needed right before backend go-live and frontend switch-over.
 
 ## What I Implemented
 
-### 1. Provider-Neutral Backend Runtime Config
-Updated:
-- `bobsgameweb/server/index.js`
-
-Implemented:
-- env-driven `HOST`
-- env-driven `PORT`
-- env-driven `ALLOWED_ORIGIN`
-- startup logging now reports:
-  - bind host/port
-  - allowed origin
-  - server version
-  - health endpoint
-
-Why it matters:
-- the backend can now run cleanly behind a VPS reverse proxy or a PaaS-assigned port without code edits
-
-### 2. Runtime Helper Files
+### 1. Backend Verification Helper
 Added:
-- `bobsgameweb/server/.env.example`
-- `bobsgameweb/server/ecosystem.config.cjs`
-- `bobsgameweb/BACKEND_DEPLOY.md`
+- `bobsgameweb/scripts/check-backend-host.sh`
 
-These provide:
-- example backend env vars
-- PM2 startup config
-- provider-neutral deploy notes for:
-  - VPS
-  - PaaS
-  - Passenger-style hosting
-  - Docker
+Purpose:
+- test a backend host with three concrete checks:
+  - `/`
+  - `/healthz`
+  - `/socket.io/?EIO=4&transport=polling`
 
-### 3. Backend Package/Docker Polish
+This gives a simple, repeatable gate before changing the frontend build to point at the new backend.
+
+### 2. Frontend Switch-Over Helper
+Added:
+- `bobsgameweb/scripts/rebuild-for-backend.sh`
+
+Purpose:
+- rebuild the frontend with a chosen backend URL via `BACKEND_URL`
+- optionally run static deploy immediately after build via:
+  - `DEPLOY_STATIC=1`
+  - `DEPLOY_HOST=dreamhost-bobsgame`
+
+### 3. Docs Updated
 Updated:
-- `bobsgameweb/server/package.json`
-- `bobsgameweb/server/Dockerfile`
+- `HETZNER_SETUP.md`
+- `BACKEND_DEPLOY.md`
 
-Implemented:
-- server package version aligned with current workspace progress
-- startup scripts for:
-  - `start`
-  - `start:passenger`
-  - `start:pm2`
-- Node engine expectation metadata
-- Dockerfile now includes additional runtime files and uses a leaner production install path
+Now the path is explicit:
+1. provision backend
+2. verify backend
+3. rebuild frontend against backend
+4. redeploy static frontend
+5. test production multiplayer
 
-### 4. Validation
-Ran:
-- `cd bobsgameweb && npm run build`
-- `cd bobsgameweb/server && node -e "import('./index.js'); setTimeout(()=>process.exit(0), 1200)"`
+## Validation Performed
+- `bash -n scripts/check-backend-host.sh` ✅
+- `bash -n scripts/rebuild-for-backend.sh` ✅
+- `npm run build` in `bobsgameweb` ✅
 
-Result:
-- frontend build passed
-- backend booted successfully and self-terminated after logging runtime info
+## Current Safe State
+### Web repo
+- latest helper-script work committed and pushed
+
+### Root repo
+- still blocked by active Git lock/process contention
+- no processes were killed
+- no unsafe lock removal while Git was active
+- root workspace sync for this exact step remains pending until the lock clears naturally
 
 ## Recommended Next Steps
-1. Choose the real backend host (Hetzner / DO / Railway / etc.).
-2. Stand up the backend using the new provider-neutral runtime files.
-3. Verify backend health at `/healthz`.
-4. Rebuild frontend with `VITE_SERVER_URL=https://YOUR-BACKEND-HOST`.
-5. Redeploy the static frontend.
+1. Once the Hetzner server is ready, use:
+   - `provision-hetzner-backend.sh`
+   - `check-backend-host.sh`
+   - `rebuild-for-backend.sh`
+2. If the root Git lock clears, sync the workspace docs/version bump for this step.
 
 ## Constraints Respected
 - No processes were killed.
-- Pre-existing dirty submodule working trees in `bobsgameonlinejava` and `okgame` were left untouched.
+- Safe repo integrity behavior was prioritized over forcing a locked root commit.

@@ -31,7 +31,7 @@
 - **Editors:** Map Editor, Game Rule Editor, and World Database Editor are 100% functional and synced.
 - **Mobile:** Web port is mobile-ready with touch controls and automated Capacitor builds.
 - **Backend:** Persistence, Elo, Matchmaking, and WebSocket gateways are established.
-- **Released:** Version 2.1.11 is ready for content creation.
+- **Released:** Version 2.1.15 is ready for content creation.
 - **Achievements System:** Web port now includes a persistent local achievement/stat tracker plus toast notifications. Use whole-second batching for long-running meta stats like playtime instead of per-frame persistence.
 - **Dialogue Metrics:** Only count NPC/player-initiated dialogue toward social/RPG interaction achievements; system prompts and console messages should not increment interaction stats.
 - **Replay VOD Progression:** Leaderboard replay viewing is now a meaningful meta-loop and can feed spectator/social achievements.
@@ -46,3 +46,5 @@
 - **DreamHost Backend Shape:** The most realistic path is static frontend on `bobsgame.com` plus Node/Socket.io on a separate subdomain such as `ws.bobsgame.com`, with the web build pointed there via `VITE_SERVER_URL`.
 - **Smoke-Test Principle:** Before debugging Socket.io/upgrade issues on DreamHost, first make sure the backend subdomain answers plain HTTP at `/healthz` and `/` from the Node app.
 - **Backend Runtime Pattern:** Keep backend runtime provider-neutral with env-driven `HOST`, `PORT`, and `ALLOWED_ORIGIN`, plus a PM2 ecosystem file and Docker support so moving between VPS and PaaS is low-friction.
+- **Hetzner Ops Pattern:** For VPS deployment, prefer nginx on `ws.bobsgame.com` proxying to a localhost-bound Node service managed by systemd. Keep service user non-login and separate from the SSH admin account.
+- **VPS Automation Pattern:** Pair written setup docs with concrete scripts: a local backend deploy script, a remote Ubuntu bootstrap script, a higher-level Hetzner provisioner, a backend verification script, and a frontend switch-over helper script.
