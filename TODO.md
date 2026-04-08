@@ -1,79 +1,118 @@
-# TODO List - Omni-Workspace
+# TODO List — bob's game Omni-Engine
 
-## Highest Priority: Web Port (`bobsgameweb`) Polish for Deployment
+**Last Updated**: 2026-04-08 | **Version**: 2.1.73
 
-### 1. Game Flow (Critical Path)
-- [x] **Wire GameOverScene:** When `GameLogic` emits `gameOver`, transition to `GameOverScene` with actual stats.
-- [x] **Version Display:** Read `VERSION.md` (or embed at build time) and display the version string in the main menu.
-- [x] **Options Menu Item:** Add "Options" back to the main menu items list.
-- [x] **Configurable Server URL:** Extracted `http://localhost:6065` to `Config.ts`.
+---
 
-### 2. Networking (`BobNet.ts` / `NetworkManager.ts`)
-- [x] Audit `BobNet.ts` against the Java server communication protocol.
-- [x] Ensure 100% protocol parity for multiplayer and online features.
-- [x] Handle GZip/Base64 JSON serialization edge cases using `pako`.
-- [x] Fix socket-to-EventEmitter event forwarding for `roomCreated`, `joinedRoom`, `gameStart`, `error`.
-- [x] Implement reconnection logic — if the socket disconnects, auto-reconnect with exponential backoff.
-- [x] Implement spectator mode support (watch matches without playing).
+## 🔴 Critical — Game Loop Integration
 
-### 3. Audio Engine
-- [x] Implement Web Audio API support for tracker music formats (MOD/S3M/XM/IT) using `chiptune3` and AudioWorklet.
-- [x] Create placeholder audio files in `data/audio/` so dev mode doesn't spam console with 404 warnings.
-- [x] Add a "Test Sound" button in Options to verify audio is working.
+### Wire ClientGameEngine into the main game loop
+- [ ] `Game.ts` should create a `ClientGameEngine` instance
+- [ ] Main game loop should call `clientEngine.update(dt)` each frame
+- [ ] Main game loop should call `clientEngine.render()` and add result to stage
+- [ ] Keyboard events should be forwarded to ControlsManager
+- [ ] Network events should be forwarded to NetworkManager
 
-### 4. Game Logic
-- [x] Achieved parity for `Piece` rotation sets (SRS, SEGA, NES, GB, DTET) and `DifficultyType`.
-- [x] Complete deep audit and port of `GameLogic.ts` core physics, Seeded RNG, and multiplayer garbage routing.
-- [x] Implement "Sprint" mode win condition (clear 40 lines as fast as possible).
-- [x] Implement "Ultra" mode timer (3-minute time limit, maximize score).
-- [x] Score saving: persist high scores to server via `reportScore` and fetch with `getLeaderboard`.
+### Wire BobsGame menu flow
+- [ ] Title screen should use `BobsGame` menu system (not custom MainMenuScene)
+- [ ] "Play Single Player" → difficulty select → controller select → start game
+- [ ] "Play Online" → network lobby → room select → start game
+- [ ] Game over → results screen → back to title
 
-### 5. UI / Menus
-- [x] Implement the visual tournament bracket tree rendering.
-- [x] Implement tournament room filtering in the Lobby.
-- [x] Implement the "TOURNAMENT RESULTS" screen with bracket visualization and session stats.
-- [x] Fix PixiJS v8 API in LobbyScene and SettingsScene.
-- [x] Show player list in lobby room (currently only shows count).
-- [x] Add room state display (LOBBY vs PLAYING) in room list.
-- [x] Implement "Quit to Menu" button during multiplayer games with proper disconnect.
-- [x] Add a "Connecting..." overlay when waiting for server connection.
-- [x] Add keyboard shortcut help overlay (F1 or ?).
-- [x] Full Gamepad/Controller Support (UI Navigation and Haptic Feedback/Rumble).
-- [x] Add a persistent Achievement/Trophy system with an Achievements menu and unlock pop-up notifications.
-- [x] Wire editor activity and pause-menu access into the achievement metagame layer.
-- [x] Add achievement snapshot save/load scaffolding and World Database Editor progression hooks.
-- [x] Split heavy web renderer bundles using lazy scene imports and manual vendor chunking.
-- [x] Add stable profile-ID scaffolding for achievement sync and background prefetching for common lazy-loaded scenes.
-- [x] Extend structured profile identity into character/emulator persistence and predictive menu prefetching.
-- [x] Improve deployment scripts/docs with Windows support, `scp` fallback, and explicit auth/setup guidance.
-- [x] Add production backend host override support and Passenger-friendly server entrypoint preparation.
-- [x] Add backend smoke-test endpoints and a DreamHost `ws.bobsgame.com` setup checklist.
-- [x] Add provider-neutral backend deployment/runtime files (`.env`, PM2, Docker, startup docs).
-- [x] Add concrete Hetzner/VPS operational assets (nginx config, systemd unit, server setup guide).
-- [x] Add repeatable VPS automation scripts for backend upload and Ubuntu bootstrap.
-- [x] Add a higher-level Hetzner provisioning script that chains the common rollout steps.
-- [x] Add local helper scripts to verify backend readiness and rebuild/redeploy the frontend for the chosen backend host.
+### Wire ND into gameplay
+- [ ] Pressing Enter in the RPG world should open the nD console
+- [ ] nD should zoom in with parabolic bounce easing
+- [ ] nD should contain the puzzle game (BobsGame)
+- [ ] Closing nD should zoom out and return to RPG world
 
-### 6. Editor Functionality
-- [x] Port core RPG data structures (`AssetData`, `MapData`, `MapStateData`, `EventData`, `DoorData`).
-- [x] Implement `Palette` and `Tileset` logic for 8x8 RPG tiles.
-- [x] Overhaul `MapEditor.ts` with full layer selection (17 layers) and real-time tile painting.
-- [x] Port the massive `EditorMain.java` functionality (Flood fill, Rect tool, Entity placement).
-- [x] Implement "Shift Map" features, Undo/Redo buffers, and "Random PNGs" export.
-- [x] Wire `CustomGameEditor.ts` to allow creating and saving custom game types/rules.
+## 🟡 High Priority — System Wiring
 
-### 7. Visual Polish & Extras
-- [x] Add particle effects for line clears (explosion/sparkle).
-- [x] Add screen shake on hard drop and garbage receive.
-- [x] Implement smooth piece drop animation (interpolated movement).
-- [x] Add combo counter popup text (DOUBLE!, TRIPLE!, TETRIS!, etc.).
-- [x] Animate the stats panel (score counter rolling up effect).
-- [x] Implement Base64 compressed Deep Links for Custom Games and Replays (Shareable Links).
-- [x] Advanced RPG Combat: Floating damage numbers, screen shake, hit flashes.
+### Map rendering
+- [ ] `MapManager` should load actual map data from JSON
+- [ ] `GameMap` should render tile layers using PixiJS sprites
+- [ ] `Cameraman` should follow the player with smooth scrolling
+- [ ] Entity rendering on top of map
 
-## Ongoing Maintenance
-- [x] Synchronize all submodules and merge feature branches across the monorepo.
-- [x] Keep `SUBMODULE_DASHBOARD.md` updated with every submodule version change.
-- [x] Resolve any conflicts intelligently without losing feature progress.
-- [x] Update `SUBMODULE_DASHBOARD.md` with current commit hashes.
-- [x] Merge any upstream changes for all forked submodules.
+### Event system
+- [ ] `EventManager` should process event scripts when entering maps
+- [ ] Event triggers (step on tile, interact with NPC, use item)
+- [ ] Dialogue boxes should appear when NPCs talk
+- [ ] Flags/skills should persist across map changes
+
+### Audio
+- [ ] Background music should play during gameplay
+- [ ] SFX should play on actions (step, interact, puzzle move, line clear)
+- [ ] Volume should respect GlobalSettings
+
+### Networking
+- [ ] Login flow (username/password → auth token → session)
+- [ ] Room creation/joining in the lobby
+- [ ] Real-time game state sync via Socket.io
+- [ ] P2P connections via WebRTC for low-latency gameplay
+
+## 🟢 Medium Priority — Polish & Features
+
+### UI Polish
+- [ ] Animated transitions between screens (fade, slide)
+- [ ] Responsive layout for different screen sizes
+- [ ] Gamepad navigation in all menus
+- [ ] Tooltip system for menu items
+- [ ] Notification system for online events
+
+### Puzzle Features
+- [ ] All 9 game types implemented (not just Marathon)
+- [ ] Ghost piece rendering
+- [ ] Hold piece functionality
+- [ ] Combo counter display
+- [ ] T-spin detection
+- [ ] Back-to-back bonus
+
+### RPG Features
+- [ ] Inventory management (use/equip items)
+- [ ] Turn-based battle system
+- [ ] Skill leveling system
+- [ ] Quest log
+- [ ] Mini-map
+
+### Editor Features
+- [ ] Map editor with tile painting
+- [ ] Sprite editor with pixel canvas
+- [ ] Event sheet editor (visual scripting)
+- [ ] Custom game type editor
+- [ ] Game sequence editor
+
+## 🔵 Low Priority — Infrastructure
+
+### Testing
+- [ ] Unit tests for puzzle logic (Grid, GameLogic, Piece rotations)
+- [ ] Unit tests for event system (EventScript parsing)
+- [ ] Integration tests for networking
+- [ ] E2E tests for game flow
+
+### Performance
+- [ ] Lazy-load heavy subsystems
+- [ ] Object pooling for frequently created/destroyed objects
+- [ ] Tile map batching for rendering
+- [ ] WebSocket message batching
+
+### DevOps
+- [ ] CI/CD pipeline (GitHub Actions)
+- [ ] Automated deployment on push to master
+- [ ] Preview deployments for PRs
+- [ ] Monitoring and alerting
+
+## 🐛 Known Bugs
+
+1. **NDDemoScene TypeScript errors** (2 errors) — NDPuzzleGame and LibretroGame don't properly extend MiniGameEngine. Pre-existing, not blocking build.
+2. **okgame C++ build failures** — Compile/link errors need resolution, vcpkg modernization
+3. **Version in root VERSION.md is out of sync** (shows 2.1.15, actual is 2.1.73) — Need to sync
+4. **Pre-existing LibretroGame/NDPuzzleGame** — These files exist but don't properly integrate with the new ND class
+
+## 📝 Code Quality
+
+- [ ] Add JSDoc comments to all public methods
+- [ ] Remove unused imports across all files
+- [ ] Ensure consistent error handling (try/catch with Logger)
+- [ ] Review all `TODO` comments in code and resolve or create issues
+- [ ] Audit barrel exports for completeness
+- [ ] Add input validation to public APIs

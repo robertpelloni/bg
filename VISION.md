@@ -1,44 +1,88 @@
-# VISION: The Omni-Engine (bob's game / OKGame)
+# VISION: bob's game — The Ultimate Omni-Engine
 
-## 1. The Ultimate Goal
-The vision for **bob's game / OKGame** has transcended a cross-platform puzzle game. It is the **Omni-Engine**—a massively multiplayer game creation ecosystem designed to achieve 100% feature parity, and 1:1 functionality (but *better*), with the six leading 2D engines: **Defold, LÖVE, Phaser, Construct, GameMaker, and RPG Maker**.
+## The Dream
 
-This involves a unified deterministic core implemented flawlessly across C++, Java, and TypeScript, enabling seamless MMO-scale multiplayer, global persistence, and hot-reloading across Desktop, Web, and Mobile.
+**bob's game** is not just a game. It is the **Omni-Engine** — a massively multiplayer game creation platform that transcends the boundaries between engine, editor, and game. The player plays games *inside* the game (on the "nD" virtual handheld console), creates games *with* the game (using built-in editors), and shares games *through* the game (via an online community hub).
 
-The Omni-Workspace acts as a "Single Source of Truth" where an RPG Maker-style database, Construct-style event sheets, Defold-style ECS, and GameMaker-style room editors all compile down into a universal, deterministic, multiplayer-native format.
+The world of bob's game is a **100×100 tile MMO overworld** where every player exists simultaneously. NPCs have full AI, dialogue trees, and schedules. Buildings are enterable and contain unique interiors. The world persists. The economy persists. Friendships persist. Tournaments persist. Everything is connected.
 
-## 2. Core Pillars
+## Core Concept: The nD (n-Dimensional Console)
 
-### A. Omni-Logic (The Deterministic Core & ECS)
-- **1:1 Behavioral Parity:** Every entity behavior (Platformer, 8-Direction, Bullet), every RPG event condition, every piece rotation (SRS, NES), and every RNG tick must produce identical results across C++, Java, and TypeScript.
-- **Deterministic ECS:** The game engine is designed as a strict Entity-Component-System state machine, allowing rollback netcode and absolute sync across the globe.
-- **Universal Serialization:** Utilizing GZip/Base64 GSON/JSON to serialize the entire GameMaker/RPG Maker style database (Maps, Actors, Items, Event Sheets) so it can be streamed from the Java Server to any C++ or Web client instantly.
+Every player carries an **nD** — a virtual handheld game console visible in-game as a 3D object. The nD is a **window into every game ever created**. It contains:
 
-### B. The Superset Feature Matrix
-- **Defold (Better):** A heavily typed, network-synced message-passing architecture that hot-reloads instantly across languages.
-- **LÖVE (Better):** Complete raw immediate-mode access to the GPU and Audio graph (WebGPU/Vulkan/OpenGL) wrapped in safe bindings, scriptable in Lua, TS, or C++.
-- **Phaser (Better):** Multi-threaded architecture leveraging WebWorkers and native compiled backends instead of single-threaded JS, with fractionally zoomed multi-target cameras.
-- **Construct (Better):** An **Omni-Event Sheet System** that compiles visual node blocks directly into highly optimized C++/TS code, supporting deeply nested conditions and actions.
-- **GameMaker (Better):** A collaborative, multiplayer map editor (Google Docs style) that surpasses the Room Editor, featuring infinite procedural layers and raw GML-equivalent script editing.
-- **RPG Maker (Better):** A fully decoupled, MMO-ready relational database (Actors, Classes, Items, Weapons, Armor, Enemies) with classic map event pages and conditions, executing asynchronously.
+- **Puzzle Mode**: The original "bob's game" — a Tetris-style puzzle game with 9 game types, 7 difficulties, multiplayer (local + online), tournaments, leaderboards, replays, and ELO ratings.
+- **Mini-Games**: Ping (Pong), Ramio (Breakout), and user-created games via the Custom Game Editor.
+- **Emulator Core**: Libretro-based emulation running natively in the nD screen (C++/JNI) and via WASM (web).
+- **Audio Visualizer**: libprojectM music visualization running inside the nD screen.
 
-### C. Technological Excellence & Modernization
-- **Modern Standards:**
-    - **C++:** SDL3, C++20, Modern Vulkan/OpenGL, EnTT (ECS).
-    - **Java:** Java 21 LTS, LibGDX 1.14.0, Netty TCP.
-    - **Web:** Vite, TypeScript 5+, PixiJS v8 (WebGPU), WebWorkers, WebRTC.
-- **Visual Sophistication & The nD:** Deep integration of `libprojectM` (audio visualizers) and `libretro` (native emulators). These run natively inside virtual screens (the "nD" handheld) seamlessly across Web (WASM), Java (JNI), and C++.
-- **Audio Fidelity:** A hybrid audio engine supporting both high-quality PCM and authentic tracker music (MOD/XM/S3M/IT) via libopenmpt across all ports.
-- **Console-Quality Metagame:** The engine should not stop at runtime parity; it must also provide a platform-level metagame layer including achievements, replay VODs, rankings, haptics, progression feedback, polished notification UX, in-session access paths, eventually cloud-synced progression, a stable identity model shared across persistence systems, and deployment tooling polished enough that publishing frontend and backend updates — including health checks, backend smoke tests, provider-neutral runtime portability, real VPS operational guidance, repeatable rollout scripts, one-shot provisioning workflows, and clean switch-over helpers — feels native too.
+The nD zooms in/out with **parabolic bounce easing** — a signature animation that makes opening it feel like a physical device unfolding in your hands.
 
-## 3. Structural Design & Submodules
-The monorepo is composed of specialized sub-projects:
-- `bobsgameonlinejava/`: The high-performance Java backend and legacy desktop powerhouse.
-- `bobsgameweb/`: The modern, zero-install web port (okgame v2.0) designed for bobsgame.com.
-- `okgame/`: The original C++ engine, optimized for low-latency native execution.
-- `references/`: Over 20+ reference implementations of editors (Aseprite, Tiled, Pixelorama) to inspire our creative toolset.
+## The Six Engine Superset
 
-## 4. Development Philosophy
-- **AI-First Orchestration:** Leveraging specialized AI agents (Gemini, Claude, GPT) for continuous development. Gemini handles large-scale analysis, Claude handles architecture/docs, and GPT handles rapid implementation.
-- **Self-Documenting:** All logic must be heavily commented, and all project metadata (Roadmap, Todo, Dashboard) must be updated autonomously.
-- **Zero-Stop Development:** The project is in a state of "continuous party"—development never stops, regressions are never accepted, and every build is better than the last.
+The Omni-Engine aims to be a **strict superset** of six major 2D game engines:
+
+1. **Defold → ECS Architecture**: Entity-Component-System with state history, rollback netcode, and hot message passing.
+2. **LÖVE → Raw Power**: Immediate-mode GPU access, shader programming, raw drawing hooks, audio graph manipulation.
+3. **Phaser → Web-Native**: Multi-threaded WebWorkers, WebGPU rendering, fractionally-zoomed multi-target cameras.
+4. **Construct → Visual Scripting**: Omni-Event Sheet system that compiles visual node blocks into optimized C++/TS.
+5. **GameMaker → Room Editor**: Collaborative Google Docs-style map editor with infinite procedural layers.
+6. **RPG Maker → RPG Database**: MMO-ready relational database for Actors, Skills, Items, Weapons, Enemies, with map event pages.
+
+## Technical Architecture
+
+### Three-Platform Deterministic Core
+
+| Platform | Language | Rendering | Audio | Networking |
+|---|---|---|---|---|
+| **Desktop (okgame)** | C++20 | SDL3 + Vulkan/OpenGL | libopenmpt + OpenAL | TCP/UDP P2P + WebSocket |
+| **Desktop (Java)** | Java 21 | LibGDX | libopenmpt + OpenAL | Netty TCP |
+| **Web (bobsgameweb)** | TypeScript 5+ | PixiJS v8 (WebGPU) | Web Audio API | Socket.io + WebRTC P2P |
+
+Every RNG tick, piece rotation, physics step, and entity behavior must produce **identical results** across all three platforms. This enables cross-platform multiplayer, deterministic replays, and AI training.
+
+### Web Engine Stack (187 Modules, 16 Subsystems)
+
+```
+src/renderer/engine/
+├── ecs/ (47)          Entity-Component-System
+├── rpg/ (40)          RPG Engine (events, GUI, saves, combat)
+├── puzzle/ (17)       Puzzle Game Engine (the core game)
+├── nd/ (12)           nD Mini-Game Console
+├── map/ (12)          Map System (tiles, areas, doors, lights)
+├── entity/ (11)       Entity System (sprites, characters, camera)
+├── shared/ (11)       Utilities (math, color, cache, settings)
+├── network/ (7)       Networking (Socket.io + WebRTC)
+├── text/ (6)          Text Rendering (bitmap fonts, typewriter)
+├── cinematics/ (5)    Cinematics (overlays, letterbox, glow)
+├── audio/ (5)         Audio Engine (Web Audio API)
+├── stadium/ (4)       Tournament System
+├── state/ (3)         State Management
+├── debug/ (3)         Debug Tools
+├── input/ (2)         Input System
+└── eventsheet/ (1)    Visual Scripting
+```
+
+## Deployment Architecture
+
+```
+bobsgame.com (Frontend)
+├── nginx on Hetzner VPS (5.161.250.43)
+├── Static files at /var/www/bobsgame.com/current
+├── SSL via Let's Encrypt
+└── Vite + TypeScript + PixiJS v8
+
+ws.bobsgame.com (Backend)
+├── nginx reverse proxy → localhost:6065
+├── Node.js + Socket.io + Express
+├── systemd service: bobsgameweb-server
+├── /opt/bobsgameweb/server
+└── Health check: /healthz
+```
+
+## The Ultimate Goal
+
+**Every feature works. Every menu is populated. Every button does something. The game is fun, polished, and complete.** The MMO world is alive with players. The nD contains infinite games. The editors create anything imaginable. The tournaments are competitive and fair. The community thrives.
+
+This is not a tech demo. This is not a prototype. This is **the finished product** — continuously improved, never regressing, always moving forward.
+
+*"Don't stop the party."*

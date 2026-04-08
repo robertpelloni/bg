@@ -1,82 +1,84 @@
-# Omni-Workspace Roadmap: bob's game / OKGame
+# ROADMAP: bob's game — The Ultimate Omni-Engine
 
-## Status: Active Development
-**Current Version:** 2.1.15
+## Current Version: 2.1.73 | Status: Active Development
 
-## 1. Documentation & Multi-Agent Alignment (COMPLETED)
-- [x] Establish root `UNIVERSAL_LLM_INSTRUCTIONS.md`.
-- [x] Synchronize and rewrite all sub-project agent instructions (`GEMINI.md`, `CLAUDE.md`, `GPT.md`).
-- [x] Create root `VISION.md`, `MEMORY.md`, and `DEPLOY.md`.
-- [x] Maintain `SUBMODULE_DASHBOARD.md` mapping 30+ components.
+---
 
-## 2. Java Backend & Native Polish (March 2026 - COMPLETED)
-- [x] **Map Editor Shift:** Implemented "Shift Map" features with Undo/Redo support.
-- [x] **Scene2D Modernization:** Implemented modern, animated dialogs (`Scene2DNumberDialog`, etc.).
-- [x] **Server Orchestration:** Implemented `TournamentManager` for automated recursive bracket generation.
-- [x] **Steam Integration:** Finalized C++ Steam integration for stats and persona sync.
+## Phase 1: Engine Porting ✅ COMPLETE (v2.1.58 – v2.1.73)
+**Goal**: Port all C++/Java engine systems to TypeScript web engine
 
-## 3. Web Port Core Functionality (COMPLETED)
-- [x] **Audio Parity:** Integrated `chiptune3` (AudioWorklet) for tracker music support (MOD/XM).
-- [x] **Networking Parity:** Implemented GZip/Base64 serialization and matched all packet constants.
-- [x] **Tournament UI:** Implemented visual bracket rendering and specialized results screen.
-- [x] **Puzzle Parity:** Achieved 100% logic parity for Piece rotation sets, RNG, and multiplayer garbage rules.
-- [x] **PixiJS v8 Migration:** Fixed all scenes to use the PixiJS v8 Graphics API (roundRect/fill/stroke).
-- [x] **Networking Event Forwarding:** Fixed socket-to-EventEmitter event bridging for lobby/room events.
-- [x] **Game Loop Fix:** Fixed ticker not starting due to premature `isRunning` flag.
-- [x] **Leaderboard Persistence:** Server now persists and serves leaderboard scores.
+- [x] 187 TypeScript modules across 16 subsystems
+- [x] Complete puzzle game engine (OKGame, BobsGame, Grid, GameLogic, Piece, Block)
+- [x] Complete RPG engine (EventManager, EventScript, GUI, Wallet, Clock, Player)
+- [x] Complete ECS (47 modules — behaviors, components, systems)
+- [x] Complete audio engine (AudioManager, AudioUtils, WaveData, OggDecoder)
+- [x] Complete networking (Socket.io, WebRTC P2P, ServerConnection)
+- [x] Complete map system (GameMap, MapManager, AutoTiler, AsepriteParser)
+- [x] Complete entity system (Sprites, Characters, Camera, PathFinder)
+- [x] Complete text system (BitmapFont, TextManager, DialogueBox, CaptionManager)
+- [x] nD mini-game console (ND, Wheel, NDMenu, Ping, Ramio)
+- [x] Tournament system (Stadium, TournamentManager)
+- [x] State management (StateManager, GameFlowStates)
+- [x] Client game engine (ClientGameEngine, BGClientEngine)
+- [x] Settings & persistence (GlobalSettings, GameSave, NetworkGameSave)
+- [x] Utilities (FileUtils, ManifestLoader, OKMath, OKColor, Cache, BobMenu)
 
-## 4. Web Port Deployment Readiness (Current Phase)
-- [x] **Custom Game Editor UI:** Fully wired the rule customization interface to the internal logic.
-- [x] **Aseprite Parity (Sprite Editor):** Enhance the `MapEditor.ts` to include a full pixel canvas with flood fill, onion skinning, and multi-frame support.
-- [x] **Asset Pipeline:** Hardened the `AssetLoader` with dynamic path resolution and dummy asset generation.
-- [x] **Version Display:** Show version number prominently in the main menu UI.
-- [x] **Game Over Screen Integration:** Wired GameOver flow to show stats and handle replay/exit logic.
-- [x] **Options Menu:** Functional volume sliders and "Test Sound" system.
-- [x] **Production Server URL:** Abstracted server configuration to `Config.ts`.
-- [x] **Responsive Layout:** Workspace-wide resize handling across all scenes and the virtual handheld.
+## Phase 2: Game Loop Integration 🔄 IN PROGRESS
+**Goal**: Wire up all systems into the actual running game
 
-## 5. The Omni-Engine Expansion (RPG Engine Parity Phase)
-- [x] **Defold Parity (ECS):** Created a deterministic Entity-Component-System with state history and network rollback.
-- [x] **Logic Hot-Reloading:** Implemented a `ScriptSystem` that allows behavior injection at runtime.
-- [x] **Deterministic Replays:** Engine now features 100% deterministic input logging and playback via `ReplayRecorder` and `ReplayPlayer`, essential for AI training and speedrun validation.
-- [x] **Phaser Parity (Rendering):** Robust multi-target camera system and WebWorker logic offloading.
-- [x] **LÖVE Parity (Scripting):** Immediate-mode shader and raw drawing hooks for custom entity behavior.
-- [x] **Construct Parity (Behaviors):** Attachable ECS behaviors (Platformer, 8-Direction) with visual script support.
-- [x] **GameMaker Parity (Persistence):** Collaborative map editor with real-time sync, server-side JSON storage, and advanced **Auto-Tiling Bitmask algorithms**.
-- [x] **RPG Maker Parity (Combat):** Fully animated Turn-Based Battle System featuring dynamic health bars, screen shake, hit flashes, and floating damage numbers.
-- [x] **RPG Maker Parity (Database):** Globally synced Relational Database for Actors, Skills, and Items.
-- [x] **The nD (Virtual Console):** Functional dual-screen virtual handheld running emulators and puzzles.
-- [x] **Spatial Audio:** 3D audio engine with dynamic listener tracking in the MMO world.
-- [x] **Developer Console:** In-game live command line for real-time world manipulation (~ key).
-- [x] **AI Asset Generation:** Prompt-based AI pipeline for generating NPC sprites and tiles.
-- [x] **Cross-Platform Tournament:** Competitive matchmaking and bracket orchestration in the backend.
-- [x] **Java Backend Modernization:** Implemented full MMO parity in the Java Netty `WebSocketGateway` (Room Management, Character Sync, Map Persistence, RPG Database), enabling it as a production-ready alternative to the Node.js prototype server.
-- [ ] **Libretro Integration (Native/Java):** Complete JNI and Native pipelines for emulator cores.
-- [ ] **ProjectM Integration (Native/Java):** Complete native bindings for audio visualizations.
+- [ ] **Wire ClientGameEngine as the running game engine** in the main game loop
+  - The Game.ts main loop should instantiate and run ClientGameEngine
+  - All subsystems (Player, GUI, Clock, Friends, Map, Events) should update each frame
+- [ ] **Wire BGClientEngine render pipeline** to actually render maps, entities, and GUI
+- [ ] **Wire ND into the game** — pressing Enter should open the nD with the puzzle game
+- [ ] **Wire BobsGame menu flow** — title screen → game type selection → difficulty → play
+- [ ] **Wire MapManager** to load and render actual map data
+- [ ] **Wire EventManager** to process event scripts on map triggers
+- [ ] **Wire AudioManager** to play music and SFX during gameplay
+- [ ] **Wire NetworkManager** for real multiplayer connections
+- [ ] **Wire TournamentManager** for bracket-style tournaments
 
-## 6. Native C++ Port (`okgame`) Modernization (In Progress)
-- [ ] **Build Recovery:** Resolve remaining compile/link errors.
-- [ ] **Vcpkg/Conan Conversion:** Modernize the C++ dependency management system.
-- [x] **WebSocket Lobby Parity:** C++ client now supports v2.1.1 spectator and tournament fields.
-- [x] **ECS Parity:** Ported core ECS systems and behaviors to C++.
+## Phase 3: Interactive Demos 📋 PLANNED
+**Goal**: Create playable demo scenes for each major subsystem
 
-## 7. Mobile & Unified Deployment (Future)
-- [x] **Deep Linking & Sharing:** Share custom game rules and deterministic replays instantly via base64 compressed URL hashes (e.g., `#play=...` and `#replay=...`).
-- [ ] **Capacitor Build:** Perform final validation of iOS and Android builds.
-- [x] **bobsgame.com:** Initial web port deployment successful.
-- [x] **Unified MMR:** Deployed the unified cross-platform Elo rating system, broadcast globally on `bobsgame.com`.
-- [x] **Leaderboard Replay VODs:** Added "Watch Replay" buttons directly to the Global Rankings scene, downloading and playing matches directly from the server.
-- [x] **Console Meta Layer:** Added a persistent Achievements/Trophies system, animated unlock toasts, and a browsable Achievement Cabinet scene with category filters and controller navigation.
-- [x] **In-Session Meta Access:** Added pause-menu access to the Achievement Cabinet and wired editor actions (custom game save/share, sprite drawing, map save scaffolding) into meta progression.
-- [x] **Achievement Sync Scaffolding:** Added server-side achievement snapshot save/load endpoints plus client merge/export plumbing so progression can begin following a player name across online sessions and editor tools.
-- [x] **Web Bundle Optimization:** Introduced lazy-loaded scene transitions and vendor chunk splitting, dropping the main renderer bundle to ~170 kB and eliminating the prior large-chunk build warning.
-- [x] **Account-Ready Identity Scaffolding:** Added stable local profile IDs for achievement sync plus idle scene prefetching so cloud-progression migration paths and lazy-loaded UX are both cleaner.
-- [x] **Shared Persistence Identity:** Extended profile-aware identity handling into character and emulator persistence, and added predictive menu-selection prefetching for likely next scene transitions.
-- [x] **Deployment Tooling Upgrade:** Added Windows/PowerShell deployment support, `scp` fallback when `rsync` is unavailable, env-driven remote install/restart hooks, and documented the current DreamHost authentication blocker.
-- [x] **Production Backend Prep:** Added build-time `VITE_SERVER_URL` override support, corrected app-version config drift, and added a Passenger-friendly Node app entrypoint for a likely DreamHost websocket subdomain deployment shape.
-- [x] **Backend Smoke Test Path:** Added `/healthz` and root backend responses plus a dedicated `WS_BACKEND_SETUP.md` checklist so DreamHost subdomain verification can be done before attempting full Socket.io traffic.
-- [x] **Provider-Neutral Backend Runtime:** Added env-driven backend host/port/origin config, PM2 runtime support, Docker/runtime polish, and a provider-neutral `BACKEND_DEPLOY.md` guide for VPS/PaaS deployment paths.
-- [x] **Hetzner/VPS Ops Assets:** Added concrete nginx and systemd examples plus a step-by-step `HETZNER_SETUP.md` guide for bringing `ws.bobsgame.com` online behind nginx on Ubuntu.
-- [x] **VPS Automation Scripts:** Added a backend-only VPS deploy script plus an Ubuntu bootstrap script so Hetzner setup can move from documentation into repeatable command-based rollout.
-- [x] **One-Shot Hetzner Provisioner:** Added a higher-level `provision-hetzner-backend.sh` workflow that chains bootstrap, backend upload, systemd installation, nginx installation, and optional TLS into one guided path.
-- [x] **Switch-Over Helpers:** Added local scripts to verify a backend host and rebuild/redeploy the frontend against it once `ws.bobsgame.com` is live.
+- [ ] Puzzle Game Demo — fully playable puzzle with BobsGame menu flow
+- [ ] RPG World Demo — walkable map with NPCs, dialogue, items
+- [ ] nD Console Demo — open nD, play mini-games, browse game library
+- [ ] Tournament Demo — create/join tournament, play bracket matches
+- [ ] ECS Demo — spawn entities with behaviors, watch them interact
+- [ ] Editor Demo — map editor, sprite editor, event sheet editor
+- [ ] Network Demo — connect to server, join room, play online
+
+## Phase 4: Content & Polish 📋 PLANNED
+**Goal**: Fill the game with content and polish the experience
+
+- [ ] Create actual map data (town, buildings, interiors, overworld)
+- [ ] Create sprite data (player characters, NPCs, enemies, items)
+- [ ] Create event scripts (story events, NPC dialogue, puzzle triggers)
+- [ ] Create music tracks and sound effects
+- [ ] Implement all 9 puzzle game types in PuzzleTypes
+- [ ] Complete the Custom Game Editor UI
+- [ ] Complete the Game Sequence Editor UI
+- [ ] Add achievement system integration
+- [ ] Add replay recording and VOD playback
+- [ ] Add deep linking for sharing custom games and replays
+
+## Phase 5: Native Engine Modernization 📋 PLANNED
+**Goal**: Modernize C++ and Java engines
+
+- [ ] **okgame C++**: Resolve compile/link errors, vcpkg/Conan modernization
+- [ ] **okgame C++**: Port latest web features back to native (tournament, replay)
+- [ ] **Java**: Complete Libretro JNI integration
+- [ ] **Java**: Complete libprojectM native bindings
+- [ ] **Java**: Ensure MMO server parity with Node.js backend
+
+## Phase 6: Mobile & Launch 📋 FUTURE
+**Goal**: Mobile apps and public launch
+
+- [ ] Capacitor iOS build validation
+- [ ] Capacitor Android build validation
+- [ ] Performance optimization (lazy loading, code splitting)
+- [ ] SEO and meta tags
+- [ ] Analytics and crash reporting
+- [ ] Community features (forums, chat, user profiles)
+- [ ] Monetization (if applicable)

@@ -1,50 +1,86 @@
-# MEMORY: Project Observations & Preferences
+# MEMORY: Project Observations, Patterns & Preferences
 
-## 1. Codebase Patterns
-- **C++:** Prefers `sp<T>` for `std::shared_ptr` and `ms<T>` for `std::make_shared`.
-- **C++:** Thread-safe methods should have a `_S` suffix.
-- **Java:** Uses LibGDX `Scene2D` for all UI components.
-- **Unified Logic:** The `Puzzle` logic must be kept in sync across `okgame`, `bobsgameonlinejava`, and `bobsgameweb`.
-- **ECS (Omni-Engine):** Standardized component types (Transform, Sprite, Behavior, Light, Combat, Pathfinding) across 3 languages using string-based type registration for 1:1 serialization.
-- **Visual Scripting:** Event Sheets use a nested JSON block structure (Conditions/Actions) interpreted by the `VisualScriptSystem`.
-- **Multi-Threading:** Heavy logic (A* pathfinding, simulation) is offloaded to `GameWorker` (TS) or background threads (C++/Java).
-- **Sub-pixel Rendering:** Pieces and entities use `lerp` for smooth visual movement between deterministic grid ticks.
+## Repository Structure
+- **Root workspace**: `C:/Users/hyper/workspace/bg/`
+- **bobsgameweb**: `C:/Users/hyper/workspace/bg/bobsgameweb/` (Vite + TS + PixiJS v8 web port)
+- **okgame**: `C:/Users/hyper/workspace/bg/okgame/` (C++20 + SDL3 native engine)
+- **bobsgameonlinejava**: `C:/Users/hyper/workspace/bg/bobsgameonlinejava/` (Java 21 + LibGDX)
+- All three are git submodules under `robertpelloni` on GitHub
+- Feature branches in bobsgameonlinejava (`fix-build-and-backport-gametype-*`, `modernize-codebase-final-final`) are 0 commits ahead of main — already merged, safe to ignore
 
-## 2. Environment Preferences
-- **Java:** Standardized on Java 21 LTS. Gradle builds should use `--no-daemon`.
-- **Versioning:** Single source of truth is the root `VERSION` file.
-- **Commits:** Conventional commits are required, referencing version bumps.
-- **Asset Resolution:** Use `BIG_DATA_URL` for absolute paths and the `manifest.json` for bulk asset queuing.
-- **Mobile (Web):** Use Capacitor for iOS/Android bridging and `TouchControls` for the virtual input layer.
+## Deployment Knowledge
+- **Frontend**: Hetzner VPS at `5.161.250.43`, nginx serves static files from `/var/www/bobsgame.com/current`
+- **Backend**: `ws.bobsgame.com`, Node.js Socket.io server at `/opt/bobsgameweb/server`, managed by systemd `bobsgameweb-server`
+- **Deploy scripts**: `scripts/deploy-frontend-hetzner.sh` and `scripts/deploy-backend-vps.sh`
+- **Must use `BACKEND_FORCE_TAR=1`** — rsync fails on Windows/Cygwin; tar-over-SSH works
+- **Build command**: `npx vite build` directly — `npm run build` fails with "paging file too small" git error on Windows
+- **SSL**: Let's Encrypt via certbot on the VPS
+- **Health check**: `curl -s https://ws.bobsgame.com/healthz`
 
-## 3. Recurring Issues & Fixes
-- **Merge Conflicts:** Intelligently solve conflicts by prioritizing the most recent feature additions.
-- **Detached HEAD:** Always ensure submodules are on a tracked branch (main/master).
-- **Gradle/Java 25:** Incompatibility resolved by pinning to Java 21.
-- **PIXI v8 API:** Standardized on options-object syntax for `Text`, `Graphics`, and `Filter`.
-- **Worker Typing:** Use `(self as any).postMessage` for correct Transferable overload support in Vite.
+## Version Management
+- Root `VERSION.md` contains just the version string (e.g., `2.1.73`)
+- Version must be bumped in: `VERSION.md`, `package.json`, `src/renderer/scenes/MainMenuScene.ts`, `server/index.js`
+- Version displayed in bottom-right of main menu
+- Every deploy gets a new version number
+- Commit message references version bump
 
-## 4. Current Work Context
-- **April 2, 2026:** Final Architectural Milestone complete.
-- **Omni-Engine:** Successfully transformed the puzzle game into a massive multi-port creation engine.
-- **MMORPG:** 100x100 world is functional with synced players, NPCs, AI, and combat.
-- **Editors:** Map Editor, Game Rule Editor, and World Database Editor are 100% functional and synced.
-- **Mobile:** Web port is mobile-ready with touch controls and automated Capacitor builds.
-- **Backend:** Persistence, Elo, Matchmaking, and WebSocket gateways are established.
-- **Released:** Version 2.1.15 is ready for content creation.
-- **Achievements System:** Web port now includes a persistent local achievement/stat tracker plus toast notifications. Use whole-second batching for long-running meta stats like playtime instead of per-frame persistence.
-- **Dialogue Metrics:** Only count NPC/player-initiated dialogue toward social/RPG interaction achievements; system prompts and console messages should not increment interaction stats.
-- **Replay VOD Progression:** Leaderboard replay viewing is now a meaningful meta-loop and can feed spectator/social achievements.
-- **Pause Access Pattern:** When adding metagame UX to active gameplay, prefer pause-menu entry points over modal hotkeys so controller users get consistent, discoverable access.
-- **Editor Progression Pattern:** Hook achievement stats to explicit editor intents (save, share, first meaningful draw, actor creation, AI generation) rather than every low-level edit event to avoid noisy progression inflation.
-- **Achievement Sync Strategy:** Merge server snapshots with local progress using numeric max + unlocked-id union. This is safe for cumulative stats and avoids deleting newer local progress when reconnecting from another device.
-- **Achievement Identity Pattern:** Centralize player-name/profile derivation for achievement sync in one helper instead of sprinkling raw `localStorage` lookups across scenes. A stable local `profileId` is now preferable to mutable display-name keys and should be the long-term bridge into real account auth.
-- **Shared Persistence Identity:** Character saves and emulator state saves should move toward the same stable identity model as achievements, with server fallback support for legacy name-only data.
-- **Web Performance Pattern:** Prefer lazy scene imports for rarely used shells/tools and keep manual chunking limited to stable vendor groupings; over-eager source chunk rules can create circular-chunk warnings.
-- **Prefetch Pattern:** Once lazy loading is in place, combine idle prefetching for common scenes with selection-neighborhood prefetching for likely next transitions.
-- **Deploy Reality Check:** In this agent environment, `sshpass` is available, `scp` is available, and DreamHost static hosting works. However, DreamHost password auth may fail, `/socket.io` on `bobsgame.com` currently returns `404`, and a dedicated Passenger-backed backend host is likely the cleanest production shape.
-- **DreamHost Backend Shape:** The most realistic path is static frontend on `bobsgame.com` plus Node/Socket.io on a separate subdomain such as `ws.bobsgame.com`, with the web build pointed there via `VITE_SERVER_URL`.
-- **Smoke-Test Principle:** Before debugging Socket.io/upgrade issues on DreamHost, first make sure the backend subdomain answers plain HTTP at `/healthz` and `/` from the Node app.
-- **Backend Runtime Pattern:** Keep backend runtime provider-neutral with env-driven `HOST`, `PORT`, and `ALLOWED_ORIGIN`, plus a PM2 ecosystem file and Docker support so moving between VPS and PaaS is low-friction.
-- **Hetzner Ops Pattern:** For VPS deployment, prefer nginx on `ws.bobsgame.com` proxying to a localhost-bound Node service managed by systemd. Keep service user non-login and separate from the SSH admin account.
-- **VPS Automation Pattern:** Pair written setup docs with concrete scripts: a local backend deploy script, a remote Ubuntu bootstrap script, a higher-level Hetzner provisioner, a backend verification script, and a frontend switch-over helper script.
+## TypeScript / PixiJS v8 Constraints
+- **No `strokeThickness`** on TextStyle — use `stroke` property instead
+- **No `FillGradient`** in TextStyle — it serializes to garbage; use `fill: [0xffffff, 0x00ffff]` color arrays
+- **`ImageData`** constructor needs `new Uint8ClampedArray()` for proper ArrayBuffer type
+- **`isolatedModules`** requires `export type { X }` for type-only re-exports
+- **MiniGameEngine.render()** returns void, not Container
+- **MiniGameEngine.container** is protected, accessible in subclasses
+- **BobMenu.cursorPosition** and **BobMenu.options** are private — use `getCursorPosition()`, `getOptionAt()`, `getCurrentOption()`, `getOptions()`, `setCursorPosition()`
+
+## API Patterns
+- **GameClock**: exported as `GameClock` from `./Clock`
+- **Wallet**: uses `.money` property (not getters/setters)
+- **GameSave**: static methods `loadFromLocal(slotIndex)` / `saveToLocal(slot)`
+- **Skill**: uses `getValue()`
+- **FriendCharacter.isOnline()**: is a method, not a property
+- **SpriteData**: `widthPixels`/`heightPixels` (not `getImageWidth`), `animationList` (not `getAnimationList`), `getAnimation()` (not `getAnimationByName()`), sequences have `name` not `frameSequenceName`
+- **BGClientEngine**: constructor requires `(container, width, height)`
+- **GUIManager**: constructor requires `(container, width, height)`, has `isAnyMenuOpen()` (not `isAnyPanelOpen()`)
+- **StatusBar**: constructor requires `StatusBarConfig { width, height? }`
+- **Player/Character**: x/y are public properties (no setPosition method)
+- **StateManager**: constructor requires a Container
+
+## Barrel Export Pattern
+- Every subsystem has `index.ts` with explicit named exports
+- Import from `./SubPanel` (same directory), not `../SubPanel`
+- Use `export type { X }` for type-only exports when `isolatedModules` is enabled
+
+## C++/Java → TypeScript Port Map
+- C++ `private` → TypeScript `protected` when subclass needs access
+- C++ UDP sockets → WebRTC DataChannels (`PeerConnection.ts`)
+- C++ OpenAL → Web Audio API (`AudioUtils.ts`)
+- Java `synchronized` methods → no-op in single-threaded JS
+- Java `ArrayList` → TypeScript `Array`
+- Java `HashMap` → TypeScript `Map` or `Record`
+- C++ `shared_ptr` → TypeScript direct references (GC handles memory)
+
+## Code Style
+- **Comments**: Explain what, why, and any non-obvious decisions. Don't comment self-explanatory code.
+- **Naming**: PascalCase for classes/interfaces/enums, camelCase for methods/properties/variables
+- **Imports**: Use barrel exports from subsystem index files
+- **Error handling**: Use try/catch with console.warn for non-critical failures
+- **No TODO blocks**: Either implement or create an issue in TODO.md
+
+## Session Protocol
+- **Start**: Read AGENTS.md, VISION.md, MEMORY.md, ROADMAP.md, TODO.md, HANDOFF.md
+- **During**: Update VERSION.md for each deploy, commit with version in message, push regularly
+- **End**: Update HANDOFF.md, MEMORY.md, ROADMAP.md, TODO.md with session progress
+
+## Known Issues (as of v2.1.73)
+- **NDDemoScene**: 2 pre-existing TypeScript errors (NDPuzzleGame and LibretroGame don't properly extend MiniGameEngine)
+- **okgame build**: C++ build has compile/link errors (needs vcpkg/Conan modernization)
+- **BobGameOnlineJava feature branches**: Local branches exist but are 0 ahead of main — already merged
+
+## Recurring Observations
+- The project uses a **monorepo with submodules** structure
+- Each submodule is independently deployable
+- Documentation must be updated in BOTH the submodule AND the root workspace
+- The `scripts/` directory contains deployment automation
+- The `docs/ai/` directory contains phase documentation (requirements, design, planning, implementation, testing)
+- The engine is designed for **deterministic cross-platform multiplayer**
