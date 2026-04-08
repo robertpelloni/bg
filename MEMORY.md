@@ -18,7 +18,7 @@
 - **Health check**: `curl -s https://ws.bobsgame.com/healthz`
 
 ## Version Management
-- Root `VERSION.md` contains just the version string (e.g., `2.1.73`)
+- Root `VERSION.md` contains just the version string (e.g., `2.1.75`)
 - Version must be bumped in: `VERSION.md`, `package.json`, `src/renderer/scenes/MainMenuScene.ts`, `server/index.js`
 - Version displayed in bottom-right of main menu
 - Every deploy gets a new version number
@@ -72,7 +72,7 @@
 - **During**: Update VERSION.md for each deploy, commit with version in message, push regularly
 - **End**: Update HANDOFF.md, MEMORY.md, ROADMAP.md, TODO.md with session progress
 
-## Known Issues (as of v2.1.73)
+## Known Issues (as of v2.1.75)
 - **NDDemoScene**: 2 pre-existing TypeScript errors (NDPuzzleGame and LibretroGame don't properly extend MiniGameEngine)
 - **okgame build**: C++ build has compile/link errors (needs vcpkg/Conan modernization)
 - **BobGameOnlineJava feature branches**: Local branches exist but are 0 ahead of main — already merged

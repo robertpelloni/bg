@@ -1,6 +1,6 @@
 # Submodule Dashboard
 
-**Last Updated**: 2026-04-08 | **Workspace Version**: 2.1.73
+**Last Updated**: 2026-04-08 | **Workspace Version**: 2.1.75
 
 ## Project Directory Structure
 
@@ -16,7 +16,7 @@ bg/                              (Root workspace — git monorepo)
 ├── DEPLOY.md                    Deployment instructions
 ├── ROADMAP.md                   Long-term feature roadmap
 ├── TODO.md                      Short-term task list
-├── VERSION.md                   Single source of truth for version (2.1.73)
+├── VERSION.md                   Single source of truth for version (2.1.75)
 ├── CHANGELOG.md                 Version history
 ├── HANDOFF.md                   Inter-model session handoff notes
 ├── SUBMODULE_DASHBOARD.md       This file
@@ -26,7 +26,7 @@ bg/                              (Root workspace — git monorepo)
 │   ├── server/                  Node.js Socket.io backend
 │   ├── scripts/                 Deploy scripts
 │   ├── dist/                    Build output
-│   ├── VERSION.md               2.1.73
+│   ├── VERSION.md               2.1.75
 │   ├── package.json             Dependencies and scripts
 │   └── vite.config.ts           Vite configuration
 │
@@ -57,7 +57,7 @@ bg/                              (Root workspace — git monorepo)
 
 | Submodule | Repository | Branch | Version | Status |
 |---|---|---|---|---|
-| **bobsgameweb** | robertpelloni/bobsgameweb | master | 2.1.73 | ✅ Deployed live at bobsgame.com + ws.bobsgame.com |
+| **bobsgameweb** | robertpelloni/bobsgameweb | master | 2.1.75 | ✅ Deployed live at bobsgame.com + ws.bobsgame.com |
 | **okgame** | robertpelloni/okgame | main | - | ⚠️ Build needs modernization |
 | **bobsgameonlinejava** | robertpelloni/bobsgameonlinejava | main | - | ✅ Reference source for porting |
 
