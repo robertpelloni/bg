@@ -1,4 +1,4 @@
-# Handoff — 2026-04-08 — Version 2.1.75
+# Handoff — 2026-04-08 — Version 2.1.77
 
 ## Agent
 Claude (Sonnet 4)
@@ -8,7 +8,7 @@ Massive engine porting sprint — ported all remaining C++/Java engine systems t
 
 ## What Was Accomplished
 
-### Engine Porting (v2.1.58 → v2.1.75, 16 deploys, 24 commits)
+### Engine Porting (v2.1.58 → v2.1.77, 16 deploys, 24 commits)
 
 Ported **35+ new TypeScript modules** growing the engine from 152 to **187 modules**:
 
@@ -18,7 +18,7 @@ Ported **35+ new TypeScript modules** growing the engine from 152 to **187 modul
 | v2.1.70 | EightDirectionBehavior, VisualScriptSystem, WheelItem, NDMenu, MapStateData, ManifestLoader | ~3,500 |
 | v2.1.71 | ClientGameEngine (1125-line Java), BobsGame (692-line C++), FileUtils | ~2,800 |
 | v2.1.72 | AudioUtils (366-line Java), PeerConnection (573-line C++ UDP → WebRTC) | ~1,800 |
-| v2.1.75 | ND (630-line Java console container), Easing additions | ~1,200 |
+| v2.1.77 | ND (630-line Java console container), Easing additions | ~1,200 |
 
 ### Build Fixes
 - Fixed OKGame private→protected field visibility for inheritance
@@ -41,7 +41,7 @@ Ported **35+ new TypeScript modules** growing the engine from 152 to **187 modul
 - **copilot-instructions.md**: Updated with project conventions
 - **SUBMODULE_DASHBOARD.md**: Complete rewrite with directory structure, subsystem breakdown, live endpoints
 - **HANDOFF.md**: This file
-- **VERSION.md**: Updated to 2.1.75
+- **VERSION.md**: Updated to 2.1.77
 
 ### Git Operations
 - Synced feature branches in bobsgameonlinejava (both are 0 ahead of main — already merged)
@@ -53,9 +53,9 @@ Ported **35+ new TypeScript modules** growing the engine from 152 to **187 modul
 ### What Works ✅
 - All 187 engine modules compile with 0 TypeScript errors
 - Build produces 175 KB main bundle (44 KB gzip)
-- Frontend deployed at https://bobsgame.com (v2.1.75)
-- Backend deployed at https://ws.bobsgame.com (v2.1.75)
-- Health check returns `{"ok":true,"version":"2.1.75"}`
+- Frontend deployed at https://bobsgame.com (v2.1.77)
+- Backend deployed at https://ws.bobsgame.com (v2.1.77)
+- Health check returns `{"ok":true,"version":"2.1.77"}`
 - All commits pushed to GitHub master
 
 ### What Doesn't Work Yet ❌
