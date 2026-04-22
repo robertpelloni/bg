@@ -26,17 +26,17 @@
 ## Phase 2: Game Loop Integration 🔄 IN PROGRESS
 **Goal**: Wire up all systems into the actual running game
 
-- [ ] **Wire ClientGameEngine as the running game engine** in the main game loop
+- [x] **Wire ClientGameEngine as the running game engine** in the main game loop
   - The Game.ts main loop should instantiate and run ClientGameEngine
   - All subsystems (Player, GUI, Clock, Friends, Map, Events) should update each frame
-- [ ] **Wire BGClientEngine render pipeline** to actually render maps, entities, and GUI
-- [ ] **Wire ND into the game** — pressing Enter should open the nD with the puzzle game
-- [ ] **Wire BobsGame menu flow** — title screen → game type selection → difficulty → play
-- [ ] **Wire MapManager** to load and render actual map data
-- [ ] **Wire EventManager** to process event scripts on map triggers
+- [x] **Wire BGClientEngine render pipeline** to actually render maps, entities, and GUI
+- [x] **Wire ND into the game** — pressing Enter should open the nD with the puzzle game
+- [x] **Wire BobsGame menu flow** — title screen → game type selection → difficulty → play
+- [x] **Wire MapManager** to load and render actual map data
+- [x] **Wire EventManager** to process event scripts on map triggers
 - [ ] **Wire AudioManager** to play music and SFX during gameplay
-- [ ] **Wire NetworkManager** for real multiplayer connections
-- [ ] **Wire TournamentManager** for bracket-style tournaments
+- [x] **Wire NetworkManager** for real multiplayer connections
+- [x] **Wire TournamentManager** for bracket-style tournaments
 
 ## Phase 3: Interactive Demos 📋 PLANNED
 **Goal**: Create playable demo scenes for each major subsystem
