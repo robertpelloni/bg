@@ -1,6 +1,6 @@
 # TODO List — bob's game Omni-Engine
 
-**Last Updated**: 2026-04-22 | **Version**: 2.1.79
+**Last Updated**: 2026-04-22 | **Version**: 2.1.81
 
 ---
 
@@ -15,9 +15,9 @@
 
 ### Wire BobsGame menu flow
 - [x] Title screen should use `BobsGame` menu system (not custom MainMenuScene)
-- [ ] "Play Single Player" → difficulty select → controller select → start game
+- [x] "Play Single Player" → difficulty select → controller select → start game
 - [ ] "Play Online" → network lobby → room select → start game
-- [ ] Game over → results screen → back to title
+- [x] Game over → results screen → back to title
 
 ### Wire ND into gameplay
 - [x] Pressing Enter in the RPG world should open the nD console
