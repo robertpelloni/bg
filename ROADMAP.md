@@ -41,7 +41,7 @@
 ## Phase 3: Interactive Demos 📋 PLANNED
 **Goal**: Create playable demo scenes for each major subsystem
 
-- [ ] Puzzle Game Demo — fully playable puzzle with BobsGame menu flow
+- [x] Puzzle Game Demo — fully playable puzzle with BobsGame menu flow
 - [ ] RPG World Demo — walkable map with NPCs, dialogue, items
 - [ ] nD Console Demo — open nD, play mini-games, browse game library
 - [ ] Tournament Demo — create/join tournament, play bracket matches

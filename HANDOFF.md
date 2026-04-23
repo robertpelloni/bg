@@ -1,32 +1,34 @@
-# Handoff — 2026-04-21 — Version 2.1.79
+# Handoff — 2026-04-22 — Version 2.1.81
 
 ## Agent
 Jules
 
 ## Session Focus
-Game Loop Integration (Phase 2 of ROADMAP.md) - Re-wiring Game.ts natively.
+Phase 3: Interactive Demos - Puzzle Game Demo
 
 ## What Was Accomplished
 
-### Complete Game Loop Rework
-- Entirely dropped the `SceneManager` requirement for the boot flow in `Game.ts`.
-- `Game.ts` now natively instantiates `ClientGameEngine` and the `ND` console directly in its constructor.
-- Removed legacy scenes like `MainMenuScene` and `EngineScene`. They were acting as unnecessary wrappers making the codebase bulky and confusing.
-- `Game.ts` properly directs input using `ControlsManager` either to the `ClientGameEngine` (RPG map) or the `ND` console based on the `ndOpen` state.
-- Successfully built via `npx tsc --noEmit` and `npx vite build` reflecting a smaller bundle footprint and a more streamlined architecture natively mapping inputs/updates to the right subsystems.
-
-### Menu Navigation & BobMenu
-- Replaced the legacy `MainMenuScene` completely. The game now boots up natively into the `ND` console overlay which displays the `BobsGame` title menu, implemented entirely through the `BobMenu` classes.
+### Puzzle Game Demo
+- Successfully connected `BobsGame.ts` native UI menus (`BobMenu`) to execute matches using the actual `GameLogic` engine ported from C++/Java.
+- Handled logic instantiation and rendered the grid utilizing `PuzzleRenderer` on the ND canvas.
+- Overrode the `update()` loop on `BobsGame` to dynamically fetch user inputs via `InputManager` and assign them directly to `PuzzlePlayer` variables (`UP_HELD`, `ROTATECW_HELD`, etc.).
+- Added fallback controls parsing to make sure Esc/X correctly exit or trigger appropriate actions.
 
 ## Current State
 
 ### What Works ✅
-- Compiles with 0 TypeScript errors.
-- `Game.ts` controls the game loop natively without requiring scene indirection.
-- Boots successfully directly into the `ND` overlay showing the game's native menu.
-- Inputs handle menu navigation perfectly.
+- Compiles cleanly and chunk optimization errors have been resolved for dynamic imports of the puzzle engine properties.
+- Opening the game renders the ND, from there you can navigate to Single Player, start a match on any difficulty, and the puzzle board generates dynamically. You can then drop blocks and pause/exit the game back to the menu.
 
 ### What Doesn't Work Yet / Next Steps ❌
-- Need to expand actual `BobsGame` menu triggers (like hooking into character creation/multiplayer lobbies) now that it's the primary way to interact.
-- Needs the actual RPG elements configured inside `ClientGameEngine` like actual maps/events logic loaded into `MapManager` and `EventManager`.
-- Native C++ engine refactoring based on these structural UI simplifications if applicable.
+- **RPG World Demo**: This is the next target for Phase 3. The `ClientGameEngine` is mapped and displays `DemoWorld`, but currently has no actual Map data parsing connected and loaded via `MapManager`.
+- **Tournament Demo**: Needs full tournament bracket simulation wiring.
+- **ND Console Demo**: Playable mini-games alongside `BobsGame` (Ping, Ramio) remain to be mapped back correctly inside the `NDDemoScene` replacement.
+
+## Constraints & Warnings
+- **DO NOT** kill any processes
+- **DO NOT** use `npm run build` — use `npx vite build`
+- **DO NOT** deploy without `BACKEND_FORCE_TAR=1`
+- **DO** bump version in 4 files on every deploy
+- **DO** commit and push between features
+- **DO** keep going autonomously

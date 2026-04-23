@@ -1,29 +1,29 @@
 # TODO List — bob's game Omni-Engine
 
-**Last Updated**: 2026-04-08 | **Version**: 2.1.73
+**Last Updated**: 2026-04-22 | **Version**: 2.1.79
 
 ---
 
 ## 🔴 Critical — Game Loop Integration
 
 ### Wire ClientGameEngine into the main game loop
-- [ ] `Game.ts` should create a `ClientGameEngine` instance
-- [ ] Main game loop should call `clientEngine.update(dt)` each frame
-- [ ] Main game loop should call `clientEngine.render()` and add result to stage
-- [ ] Keyboard events should be forwarded to ControlsManager
+- [x] `Game.ts` should create a `ClientGameEngine` instance
+- [x] Main game loop should call `clientEngine.update(dt)` each frame
+- [x] Main game loop should call `clientEngine.render()` and add result to stage
+- [x] Keyboard events should be forwarded to ControlsManager
 - [ ] Network events should be forwarded to NetworkManager
 
 ### Wire BobsGame menu flow
-- [ ] Title screen should use `BobsGame` menu system (not custom MainMenuScene)
+- [x] Title screen should use `BobsGame` menu system (not custom MainMenuScene)
 - [ ] "Play Single Player" → difficulty select → controller select → start game
 - [ ] "Play Online" → network lobby → room select → start game
 - [ ] Game over → results screen → back to title
 
 ### Wire ND into gameplay
-- [ ] Pressing Enter in the RPG world should open the nD console
+- [x] Pressing Enter in the RPG world should open the nD console
 - [ ] nD should zoom in with parabolic bounce easing
-- [ ] nD should contain the puzzle game (BobsGame)
-- [ ] Closing nD should zoom out and return to RPG world
+- [x] nD should contain the puzzle game (BobsGame)
+- [x] Closing nD should zoom out and return to RPG world
 
 ## 🟡 High Priority — System Wiring
 
