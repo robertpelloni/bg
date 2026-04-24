@@ -1,5 +1,27 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.1.82] - 2026-04-23
+### Added
+- **RPG World Demo**: Wired up proper RPG interactions within `ClientGameEngine`. Replaced `DemoWorld` dependencies with properly routed rendering mappings tying together the `Player`, collision map bounds from `MapManager` properties, and static input rendering enabling dialogue triggers from proximity NPCs.
+
+## [2.1.81] - 2026-04-23
+### Added
+- **Puzzle Game Demo**: Fully wired up the `BobsGame` menu flow directly into playable `GameLogic` matches. Added PIXI rendering integration using `PuzzleRenderer`. Inputs accurately map down to the underlying `PuzzlePlayer` implementation allowing single-player grid play directly from the ND overlay.
+
+## [2.1.80] - 2026-04-22
+### Added
+- **Submodule Updates**: Fetched and merged upstream changes across submodules (okgame, bobsgameonlinejava, bobcoin, etc).
+- **Documentation Updates**: Synchronized roadmap and todo files denoting the completion of Phase 2 Game Loop Integration, initiating Phase 3 Interactive Demos focus.
+- **Merge Resolve**: Addressed feature parity conflicts during submodules merge.
+
+## [2.1.79] - 2026-04-22
+### Added
+- **Game Loop Integration**: Wired ClientGameEngine as the primary engine in Game.ts, replacing MainMenuScene.
+- **ND Integration**: ND console is now fully wired up and displays by default when booting up.
+- **Render Pipeline**: BGClientEngine's render pipeline successfully wired into the main loop via ClientGameEngine.
+- **Menu Flow**: BobsGame title menu flow wired up and handles inputs.
+- **Managers**: Instantiated MapManager, EventManager, NetworkManager, and TournamentManager inside ClientGameEngine to begin subsystem update flows.
+
 ## [2.1.15] - 2026-04-04
 ### Added
 - **Backend Verification Script:** Added `scripts/check-backend-host.sh` to verify `/`, `/healthz`, and `/socket.io` before switching the frontend to a production backend host.
