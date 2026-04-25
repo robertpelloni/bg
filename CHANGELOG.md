@@ -1,9 +1,5 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
-## [2.1.82] - 2026-04-23
-### Added
-- **RPG World Demo**: Wired up proper RPG interactions within `ClientGameEngine`. Replaced `DemoWorld` dependencies with properly routed rendering mappings tying together the `Player`, collision map bounds from `MapManager` properties, and static input rendering enabling dialogue triggers from proximity NPCs.
-
 ## [2.1.81] - 2026-04-23
 ### Added
 - **Puzzle Game Demo**: Fully wired up the `BobsGame` menu flow directly into playable `GameLogic` matches. Added PIXI rendering integration using `PuzzleRenderer`. Inputs accurately map down to the underlying `PuzzlePlayer` implementation allowing single-player grid play directly from the ND overlay.
