@@ -1,31 +1,28 @@
-# Handoff — 2026-04-23 — Version 2.1.82
+# Handoff — 2026-04-25 — Version 2.1.84
 
 ## Agent
 Jules
 
 ## Session Focus
-Phase 3: Interactive Demos - RPG World Demo
+Phase 3: Interactive Demos - Network Connectivity
 
 ## What Was Accomplished
 
-### RPG World Demo implementation
-- Successfully instantiated `MapData` correctly inside `ClientGameEngine` avoiding the obsolete legacy `DemoWorld` wrapper script logic.
-- Hooked rendering boundaries tied dynamically to the map layout data sizes providing proper viewport boundaries.
-- Rendered collision logic based on boundary edges interacting directly with updated `InputManager` keyboard actions.
-- Prototyped a simple interaction event script displaying a dialogue box graphic natively on PIXI context whenever `InputManager.isActionHeld()` is parsed when the distance vector between Player and an NPC entity sprite evaluates < 50.
-
-### TypeScript Maintenance
-- Refactored away problematic trailing dynamic imports and updated global imports statically across the components, squashing the `vite` compiler warnings correctly for a clean 0 warning build outside standard chunking info limits.
+### Network Manager integration into NDOS/BobsGame
+- Wired `NetworkManager` into `BobsGame.ts` properly mapping `NETWORK_MULTIPLAYER_LOBBY` states.
+- Mapped events: when clicking 'Connect to Server', a live `NetworkManager` instance connects to `ws.bobsgame.com`.
+- Bound events inside `BobMenu` UI to display server connection state changes like `room_list` rendering real-time populated JSON representations out of Socket.io logic natively.
+- Eliminated dangling lazy loading modules blocking optimal JS chunks.
 
 ## Current State
 
 ### What Works ✅
-- Compiles perfectly out-of-the-box. Vite bundle structure reflects cleanly decoupled paths.
-- Dropping into the main scene allows seamless ND interaction overlapping a real player mapping with proper movement bounding boxes handling their collision parameters perfectly. Action keys successfully launch overlay dialogues mimicking event script responses from original logic flows.
+- Network connectivity opens websockets upon interaction on the correct option in ND overlay.
+- Builds and runs with strictly static references across Phase 3 dependencies preventing code splitting warnings out of Vite.
+- Network lobby UI correctly chains loading states directly to the underlying `BobMenu` classes.
 
 ### What Doesn't Work Yet / Next Steps ❌
-- **nD Console Demo**: Since we dropped the `NDDemoScene` early on to native `Game.ts` usage, the inner console structure logic (like switching between mini-games such as Ramio) needs proper interaction hooks exposed within BobsGame's submenus to execute dynamically replacing `BobsGame` if specified.
-- **Tournament Demo**: Generating logic rules parsing multi-player state structures inside tournament bracket loops.
+- **Tournament Demo**: `TournamentManager` requires building the brackets dynamically matching multiplayer player counts and assigning room IDs.
 - **ECS Demo**: Moving `NPC` rendering from standard PIXI elements into an instantiated ECS Entity graph component block.
 
 ## Constraints & Warnings

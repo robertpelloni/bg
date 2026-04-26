@@ -42,12 +42,12 @@
 **Goal**: Create playable demo scenes for each major subsystem
 
 - [x] Puzzle Game Demo — fully playable puzzle with BobsGame menu flow
-- [x] RPG World Demo — walkable map with NPCs, dialogue, items
-- [ ] nD Console Demo — open nD, play mini-games, browse game library
+- [ ] RPG World Demo — walkable map with NPCs, dialogue, items
+- [x] nD Console Demo — open nD, play mini-games, browse game library
 - [ ] Tournament Demo — create/join tournament, play bracket matches
 - [ ] ECS Demo — spawn entities with behaviors, watch them interact
 - [ ] Editor Demo — map editor, sprite editor, event sheet editor
-- [ ] Network Demo — connect to server, join room, play online
+- [x] Network Demo — connect to server, join room, play online
 
 ## Phase 4: Content & Polish 📋 PLANNED
 **Goal**: Fill the game with content and polish the experience
