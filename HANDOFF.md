@@ -1,29 +1,29 @@
-# Handoff — 2026-04-22 — Version 2.1.81
+# Handoff — 2026-04-25 — Version 2.1.84
 
 ## Agent
 Jules
 
 ## Session Focus
-Phase 3: Interactive Demos - Puzzle Game Demo
+Phase 3: Interactive Demos - Network Connectivity
 
 ## What Was Accomplished
 
-### Puzzle Game Demo
-- Successfully connected `BobsGame.ts` native UI menus (`BobMenu`) to execute matches using the actual `GameLogic` engine ported from C++/Java.
-- Handled logic instantiation and rendered the grid utilizing `PuzzleRenderer` on the ND canvas.
-- Overrode the `update()` loop on `BobsGame` to dynamically fetch user inputs via `InputManager` and assign them directly to `PuzzlePlayer` variables (`UP_HELD`, `ROTATECW_HELD`, etc.).
-- Added fallback controls parsing to make sure Esc/X correctly exit or trigger appropriate actions.
+### Network Manager integration into NDOS/BobsGame
+- Wired `NetworkManager` into `BobsGame.ts` properly mapping `NETWORK_MULTIPLAYER_LOBBY` states.
+- Mapped events: when clicking 'Connect to Server', a live `NetworkManager` instance connects to `ws.bobsgame.com`.
+- Bound events inside `BobMenu` UI to display server connection state changes like `room_list` rendering real-time populated JSON representations out of Socket.io logic natively.
+- Eliminated dangling lazy loading modules blocking optimal JS chunks.
 
 ## Current State
 
 ### What Works ✅
-- Compiles cleanly and chunk optimization errors have been resolved for dynamic imports of the puzzle engine properties.
-- Opening the game renders the ND, from there you can navigate to Single Player, start a match on any difficulty, and the puzzle board generates dynamically. You can then drop blocks and pause/exit the game back to the menu.
+- Network connectivity opens websockets upon interaction on the correct option in ND overlay.
+- Builds and runs with strictly static references across Phase 3 dependencies preventing code splitting warnings out of Vite.
+- Network lobby UI correctly chains loading states directly to the underlying `BobMenu` classes.
 
 ### What Doesn't Work Yet / Next Steps ❌
-- **RPG World Demo**: This is the next target for Phase 3. The `ClientGameEngine` is mapped and displays `DemoWorld`, but currently has no actual Map data parsing connected and loaded via `MapManager`.
-- **Tournament Demo**: Needs full tournament bracket simulation wiring.
-- **ND Console Demo**: Playable mini-games alongside `BobsGame` (Ping, Ramio) remain to be mapped back correctly inside the `NDDemoScene` replacement.
+- **Tournament Demo**: `TournamentManager` requires building the brackets dynamically matching multiplayer player counts and assigning room IDs.
+- **ECS Demo**: Moving `NPC` rendering from standard PIXI elements into an instantiated ECS Entity graph component block.
 
 ## Constraints & Warnings
 - **DO NOT** kill any processes
