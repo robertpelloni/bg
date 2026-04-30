@@ -24,7 +24,7 @@
 - [x] DemoWorld.loadFromMapData() bridges MapLoader tiles → DemoWorld Tile colors
 - [x] ClientGameEngine loads town map into DemoWorld on init
 - [ ] GameMap renders tile layers using PixiJS sprites
-- [ ] Cameraman follows player with smooth scrolling in MapManager context
+- [x] Smooth camera follow (lerp-based in DemoWorld)
 
 ### Wire BobsGame menu flow
 
@@ -47,10 +47,10 @@
 
 ### Network login/auth flow
 
-- [ ] Login screen (username + optional password → auth token → session)
+- [x] Login screen (username + optional password, auto-login, Socket.io identity)
 - [x] Session persistence (auto-login on return)
 - [x] Player profile API (GET/PUT /players/:id)
-- [ ] Room creation with authentication
+- [x] Room creation with authentication (requires setName)
 - [ ] P2P connections via WebRTC for low-latency gameplay
 
 ### Battle system
@@ -61,7 +61,7 @@
 - [x] Critical hit detection + heavy rumble
 - [x] Magic/special abilities (Fire/Ice/Lightning spells)
 - [x] Item usage in battle (healing herbs)
-- [ ] Party system (multiple party members)
+- [x] Party system (PartyManager + PartyScene, invite/kick/ready/XP sharing)
 - [x] Enemy AI patterns (normal/special/defend/desperate)
 
 ### Puzzle features
@@ -148,7 +148,7 @@
 - [x] Backend health check endpoints
 - [x] Dockerfile for server
 - [x] CI/CD pipeline (GitHub Actions — deploy.yml + quality.yml)
-- [ ] Automated deployment on push to master
+- [x] Automated deployment on push to master (GitHub Actions deploy.yml)
 - [ ] Preview deployments for PRs
 - [x] Monitoring and alerting (/stats endpoint with memory/connections/rooms)
 
