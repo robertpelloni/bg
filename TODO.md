@@ -59,8 +59,8 @@
 - [x] Damage popups with gravity animation
 - [x] Screen shake on hit
 - [x] Critical hit detection + heavy rumble
-- [ ] Magic/special abilities
-- [ ] Item usage in battle
+- [x] Magic/special abilities (Fire/Ice/Lightning spells)
+- [x] Item usage in battle (healing herbs)
 - [ ] Party system (multiple party members)
 - [x] Enemy AI patterns (normal/special/defend/desperate)
 
@@ -108,7 +108,7 @@
 - [x] Buff timers (cafe drinks)
 - [x] Achievement integration
 - [ ] Turn-based battle system integration with WorldScene
-- [ ] Skill leveling system
+- [x] Skill leveling system (STR/VIT/AGI/LUK + auto-allocate)
 - [ ] Equipment system
 - [ ] Quest log with real quest data
 
@@ -120,7 +120,7 @@
 - [x] Template library with built-in presets
 - [x] Share/import custom games via deep links
 - [x] Preset save/load slots
-- [ ] Sprite editor with pixel canvas
+- [x] Sprite editor with pixel canvas (16x16, 32 colors, tools, export)
 - [ ] Event sheet editor (visual scripting)
 - [x] Game sequence editor
 
@@ -138,7 +138,7 @@
 - [x] Lazy-load heavy subsystems (scene-level code splitting)
 - [x] Vendor chunking (pixi, audio, compression)
 - [x] Idle scene prefetching
-- [ ] Object pooling for frequently created/destroyed objects
+- [x] Object pooling (ObjectPool<T> generic class)
 - [ ] Tile map batching for rendering
 - [ ] WebSocket message batching
 
