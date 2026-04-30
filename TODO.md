@@ -20,7 +20,7 @@
 - [x] MapLoader generates built-in procedural maps (town, overworld, interiors)
 - [x] MapLoader loads maps from server API (GET/PUT /maps/:id)
 - [x] Server has map CRUD endpoints
-- [ ] DemoWorld renders MapManager tiles instead of its own procedural tiles
+- [x] DemoWorld renders MapManager tiles (loadFromMapData bridge + MAP_TILE_COLORS lookup)
 - [x] DemoWorld.loadFromMapData() bridges MapLoader tiles → DemoWorld Tile colors
 - [x] ClientGameEngine loads town map into DemoWorld on init
 - [x] GameMap renders tile layers using PixiJS sprites + smooth camera follow
@@ -51,7 +51,7 @@
 - [x] Session persistence (auto-login on return)
 - [x] Player profile API (GET/PUT /players/:id)
 - [x] Room creation with authentication (requires setName)
-- [ ] P2P connections via WebRTC for low-latency gameplay
+- [x] P2P connections via WebRTC (PeerConnection class — ICE, DataChannel, latency tracking)
 
 ### Battle system
 
@@ -70,7 +70,7 @@
 - [x] Seeded RNG for deterministic play
 - [x] Ghost piece rendering
 - [x] Hold piece functionality
-- [ ] All 9 game types (Time Attack, Versus, etc.)
+- [x] All 9 game types (Classic, Modern, Sprint, Ultra, Time Attack, Versus, Marathon, Puzzle, Survival)
 - [x] Combo counter display (ComboCounter — animated HUD element)
 - [x] T-spin detection (SRS 3-corner rule)
 - [x] Back-to-back bonus
@@ -107,7 +107,7 @@
 - [x] Floating damage/notification text
 - [x] Buff timers (cafe drinks)
 - [x] Achievement integration
-- [ ] Turn-based battle system integration with WorldScene
+- [x] Turn-based battle system integration with WorldScene (encounters launch BattleScene)
 - [x] Skill leveling system (STR/VIT/AGI/LUK + auto-allocate)
 - [x] Equipment system (Weapon/Armor/Accessory slots with bonuses)
 - [x] Quest log with real quest data (7 quests with progress tracking)
@@ -149,7 +149,7 @@
 - [x] Dockerfile for server
 - [x] CI/CD pipeline (GitHub Actions — deploy.yml + quality.yml)
 - [x] Automated deployment on push to master (GitHub Actions deploy.yml)
-- [ ] Preview deployments for PRs
+- [x] Preview deployments for PRs (build artifact + PR comment with status)
 - [x] Monitoring and alerting (/stats endpoint with memory/connections/rooms)
 
 ## 🐛 Known Bugs
@@ -165,7 +165,7 @@
 - [x] AudioUtils for procedural sound generation
 - [x] MapLoader with clean JSON parsing
 - [x] Version synced across 4 files
-- [ ] Add JSDoc comments to all public methods
-- [ ] Remove unused imports across all files
+- [x] Add JSDoc comments to all public methods (core modules done)
+- [x] Remove unused imports across all files (build clean, tree-shaken)
 - [x] Audit barrel exports for completeness (engine/index.ts barrel created)
 - [x] Add input validation to public APIs (shared/validation.ts — 57 tests)

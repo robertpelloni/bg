@@ -1,0 +1,68 @@
+name: PR Preview
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: bobsgameweb/package-lock.json
+
+      - name: Install dependencies
+        working-directory: bobsgameweb
+        run: npm ci --legacy-peer-deps
+
+      - name: Build
+        working-directory: bobsgameweb
+        run: npx vite build
+
+      - name: Upload PR preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-preview-${{ github.event.pull_request.number }}
+          path: bobsgameweb/dist/
+          retention-days: 3
+
+      - name: Comment PR with build status
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const buildUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = `## ✅ PR Build Successful\n\n` +
+              `Build artifacts are available for download from this workflow run.\n\n` +
+              `- **Build URL:** [View build logs](${buildUrl})\n` +
+              `- **Artifact:** \`pr-preview-${context.issue.number}\`\n` +
+              `- **Retention:** 3 days\n\n` +
+              `> Merge to \`master\` to deploy to production.`;
+            
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            
+            const existing = comments.find(c => c.body?.includes('PR Build Successful'));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body: body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body,
+              });
+            }
