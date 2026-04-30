@@ -80,7 +80,7 @@
 - [x] MapLoader with procedural generation
 - [x] Tile rendering using actual Tileset/Palette data (DefaultRPGTileset + TileRenderer)
 - [ ] Entity rendering on top of map layers
-- [ ] Smooth camera follow with bounds clamping
+- [x] Smooth camera follow with bounds clamping (lerp-based in DemoWorld)
 - [x] Map transition animations (fade, iris, blinds, slide, door)
 
 ## 🟢 Medium Priority — Polish & Features
@@ -128,7 +128,7 @@
 
 ### Testing
 
-- [ ] Unit tests for puzzle logic (Grid, GameLogic, Piece rotations)
+- [x] Unit tests for puzzle logic (60 tests: T-spin, B2B, scoring, level-up, combo, SRS kicks)
 - [x] Unit tests for event system (42 tests passing)
 - [ ] Integration tests for networking
 - [ ] E2E tests for game flow
@@ -140,17 +140,17 @@
 - [x] Idle scene prefetching
 - [x] Object pooling (ObjectPool<T> generic class)
 - [x] Tile map batching (TileBatcher class, color-grouped rendering)
-- [ ] WebSocket message batching
+- [x] WebSocket message batching (MessageBatcher class + server handler)
 
 ### DevOps
 
 - [x] Deploy scripts for frontend (Hetzner) and backend (VPS)
 - [x] Backend health check endpoints
 - [x] Dockerfile for server
-- [ ] CI/CD pipeline (GitHub Actions)
+- [x] CI/CD pipeline (GitHub Actions — deploy.yml + quality.yml)
 - [ ] Automated deployment on push to master
 - [ ] Preview deployments for PRs
-- [ ] Monitoring and alerting
+- [x] Monitoring and alerting (/stats endpoint with memory/connections/rooms)
 
 ## 🐛 Known Bugs
 
