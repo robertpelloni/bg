@@ -109,8 +109,8 @@
 - [x] Achievement integration
 - [ ] Turn-based battle system integration with WorldScene
 - [x] Skill leveling system (STR/VIT/AGI/LUK + auto-allocate)
-- [ ] Equipment system
-- [ ] Quest log with real quest data
+- [x] Equipment system (Weapon/Armor/Accessory slots with bonuses)
+- [x] Quest log with real quest data (7 quests with progress tracking)
 
 ### Editor Features
 
@@ -139,7 +139,7 @@
 - [x] Vendor chunking (pixi, audio, compression)
 - [x] Idle scene prefetching
 - [x] Object pooling (ObjectPool<T> generic class)
-- [ ] Tile map batching for rendering
+- [x] Tile map batching (TileBatcher class, color-grouped rendering)
 - [ ] WebSocket message batching
 
 ### DevOps

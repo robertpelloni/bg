@@ -1,0 +1,81 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: bobsgameweb/package-lock.json
+
+      - name: Install dependencies
+        working-directory: bobsgameweb
+        run: npm ci --legacy-peer-deps
+
+      - name: Build
+        working-directory: bobsgameweb
+        run: npx vite build
+
+      - name: Upload build artifacts
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: bobsgameweb/dist/
+          retention-days: 7
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: bobsgameweb/dist/
+
+      - name: Deploy frontend to Hetzner
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HETZNER_HOST }}
+          username: root
+          key: ${{ secrets.HETZNER_SSH_KEY }}
+          source: "bobsgameweb/dist/renderer/*"
+          target: "/var/www/bobsgame.com/current"
+          strip_components: 3
+
+      - name: Deploy backend to Hetzner
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HETZNER_HOST }}
+          username: root
+          key: ${{ secrets.HETZNER_SSH_KEY }}
+          source: "bobsgameweb/server/*"
+          target: "/tmp/bobsgameweb-server/"
+          strip_components: 2
+
+      - name: Restart backend service
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HETZNER_HOST }}
+          username: root
+          key: ${{ secrets.HETZNER_SSH_KEY }}
+          script: |
+            cp -r /tmp/bobsgameweb-server/* /opt/bobsgameweb/server/
+            systemctl restart bobsgameweb-server
+            sleep 2
+            systemctl is-active bobsgameweb-server
