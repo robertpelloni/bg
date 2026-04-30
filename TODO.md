@@ -13,7 +13,7 @@
 - [x] OptionsScene has live audio sliders with keyboard control
 - [x] Placeholder SFX and music generated as WAV files
 - [ ] Replace placeholder audio with actual game audio assets
-- [ ] Music crossfading between scenes (menu → game → battle)
+- [x] Music crossfading between scenes (AudioManager.crossfadeMusic)
 
 ### Wire MapManager into rendering
 
@@ -37,11 +37,11 @@
 
 - [x] EventManager has full flag/skill/dialogue/event system
 - [x] DefaultEvents registered on init (tutorial, NPC talk, area enter, bridge, explorer achievement)
-- [ ] Event triggers fire when entering maps (OnMapEnter)
-- [ ] Event triggers fire when stepping on tiles (OnTileStep)
-- [ ] Event triggers fire when interacting with NPCs (OnInteract)
-- [ ] Dialogue boxes appear from EventManager scripts
-- [ ] Flags/skills persist across map changes via GameSave
+- [x] Event triggers fire when entering maps (OnMapEnter)
+- [x] Event triggers fire when stepping on tiles (OnTileStep)
+- [x] Event triggers fire when interacting with NPCs (OnInteract)
+- [x] Dialogue boxes appear from EventManager scripts
+- [x] Flags/skills persist across map changes via GameSave
 
 ## 🟡 High Priority — Missing Features
 
@@ -78,10 +78,10 @@
 ### Map rendering
 
 - [x] MapLoader with procedural generation
-- [ ] Tile rendering using actual Tileset/Palette data
+- [x] Tile rendering using actual Tileset/Palette data (DefaultRPGTileset + TileRenderer)
 - [ ] Entity rendering on top of map layers
 - [ ] Smooth camera follow with bounds clamping
-- [ ] Map transition animations (fade, wipe)
+- [x] Map transition animations (fade, iris, blinds, slide, door)
 
 ## 🟢 Medium Priority — Polish & Features
 
@@ -92,10 +92,10 @@
 - [x] Toast notification system (ToastManager)
 - [x] Touch controls for mobile
 - [x] CRT post-processing filter
-- [ ] Responsive layout for different screen sizes
+- [x] Responsive layout for different screen sizes
 - [ ] Gamepad navigation in all menus
-- [ ] Tooltip system for menu items
-- [ ] Notification system for online events
+- [x] Tooltip system for menu items
+- [x] Notification system for online events
 
 ### RPG Features
 
@@ -122,14 +122,14 @@
 - [x] Preset save/load slots
 - [ ] Sprite editor with pixel canvas
 - [ ] Event sheet editor (visual scripting)
-- [ ] Game sequence editor
+- [x] Game sequence editor
 
 ## 🔵 Low Priority — Infrastructure
 
 ### Testing
 
 - [ ] Unit tests for puzzle logic (Grid, GameLogic, Piece rotations)
-- [ ] Unit tests for event system (EventScript parsing)
+- [x] Unit tests for event system (42 tests passing)
 - [ ] Integration tests for networking
 - [ ] E2E tests for game flow
 
