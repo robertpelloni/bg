@@ -48,8 +48,8 @@
 ### Network login/auth flow
 
 - [ ] Login screen (username + optional password → auth token → session)
-- [ ] Session persistence (auto-login on return)
-- [ ] Player profile API (GET/PUT /players/:id)
+- [x] Session persistence (auto-login on return)
+- [x] Player profile API (GET/PUT /players/:id)
 - [ ] Room creation with authentication
 - [ ] P2P connections via WebRTC for low-latency gameplay
 
@@ -62,7 +62,7 @@
 - [ ] Magic/special abilities
 - [ ] Item usage in battle
 - [ ] Party system (multiple party members)
-- [ ] Enemy AI patterns (not just random attack)
+- [x] Enemy AI patterns (normal/special/defend/desperate)
 
 ### Puzzle features
 
@@ -72,8 +72,8 @@
 - [x] Hold piece functionality
 - [ ] All 9 game types (Time Attack, Versus, etc.)
 - [ ] Combo counter display
-- [ ] T-spin detection
-- [ ] Back-to-back bonus
+- [x] T-spin detection (SRS 3-corner rule)
+- [x] Back-to-back bonus
 
 ### Map rendering
 
