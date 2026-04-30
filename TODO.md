@@ -12,7 +12,7 @@
 - [x] SettingsScene has live audio sliders (master, music, SFX)
 - [x] OptionsScene has live audio sliders with keyboard control
 - [x] Placeholder SFX and music generated as WAV files
-- [ ] Replace placeholder audio with actual game audio assets
+- [x] Replace placeholder audio with actual game audio assets (21 files: 19 SFX + 2 music)
 - [x] Music crossfading between scenes (AudioManager.crossfadeMusic)
 
 ### Wire MapManager into rendering
@@ -23,7 +23,7 @@
 - [ ] DemoWorld renders MapManager tiles instead of its own procedural tiles
 - [x] DemoWorld.loadFromMapData() bridges MapLoader tiles → DemoWorld Tile colors
 - [x] ClientGameEngine loads town map into DemoWorld on init
-- [ ] GameMap renders tile layers using PixiJS sprites
+- [x] GameMap renders tile layers using PixiJS sprites + smooth camera follow
 - [x] Smooth camera follow (lerp-based in DemoWorld)
 
 ### Wire BobsGame menu flow
@@ -71,7 +71,7 @@
 - [x] Ghost piece rendering
 - [x] Hold piece functionality
 - [ ] All 9 game types (Time Attack, Versus, etc.)
-- [ ] Combo counter display
+- [x] Combo counter display (ComboCounter — animated HUD element)
 - [x] T-spin detection (SRS 3-corner rule)
 - [x] Back-to-back bonus
 
@@ -93,7 +93,7 @@
 - [x] Touch controls for mobile
 - [x] CRT post-processing filter
 - [x] Responsive layout for different screen sizes
-- [ ] Gamepad navigation in all menus
+- [x] Gamepad navigation in all menus (MenuGamepadNavigator — analog + D-pad + face buttons)
 - [x] Tooltip system for menu items
 - [x] Notification system for online events
 
@@ -121,7 +121,7 @@
 - [x] Share/import custom games via deep links
 - [x] Preset save/load slots
 - [x] Sprite editor with pixel canvas (16x16, 32 colors, tools, export)
-- [ ] Event sheet editor (visual scripting)
+- [x] Event sheet editor (EventSheetEditorScene — node-based visual scripting)
 - [x] Game sequence editor
 
 ## 🔵 Low Priority — Infrastructure
@@ -130,8 +130,8 @@
 
 - [x] Unit tests for puzzle logic (60 tests: T-spin, B2B, scoring, level-up, combo, SRS kicks)
 - [x] Unit tests for event system (42 tests passing)
-- [ ] Integration tests for networking
-- [ ] E2E tests for game flow
+- [x] Integration tests for networking (44 tests: batching, rooms, parties, tournaments, ELO)
+- [x] E2E tests for game flow (36 tests: scene transitions, settings, game lifecycle, scores)
 
 ### Performance
 
@@ -167,5 +167,5 @@
 - [x] Version synced across 4 files
 - [ ] Add JSDoc comments to all public methods
 - [ ] Remove unused imports across all files
-- [ ] Audit barrel exports for completeness
-- [ ] Add input validation to public APIs
+- [x] Audit barrel exports for completeness (engine/index.ts barrel created)
+- [x] Add input validation to public APIs (shared/validation.ts — 57 tests)
