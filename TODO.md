@@ -79,7 +79,7 @@
 
 - [x] MapLoader with procedural generation
 - [x] Tile rendering using actual Tileset/Palette data (DefaultRPGTileset + TileRenderer)
-- [ ] Entity rendering on top of map layers
+- [x] Entity rendering on top of map layers (Y-sorted in DemoWorld)
 - [x] Smooth camera follow with bounds clamping (lerp-based in DemoWorld)
 - [x] Map transition animations (fade, iris, blinds, slide, door)
 
