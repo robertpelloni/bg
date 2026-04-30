@@ -1,34 +1,46 @@
-# Handoff — 2026-04-25 — Version 2.1.84
+# Handoff — 2026-04-29 — Version 2.2.5
 
 ## Agent
-Jules
 
-## Session Focus
-Phase 3: Interactive Demos - Network Connectivity
+Claude (Anthropic)
+
+## Session Summary
+
+Completed Phase 2-3 features and deployed to production.
 
 ## What Was Accomplished
 
-### Network Manager integration into NDOS/BobsGame
-- Wired `NetworkManager` into `BobsGame.ts` properly mapping `NETWORK_MULTIPLAYER_LOBBY` states.
-- Mapped events: when clicking 'Connect to Server', a live `NetworkManager` instance connects to `ws.bobsgame.com`.
-- Bound events inside `BobMenu` UI to display server connection state changes like `room_list` rendering real-time populated JSON representations out of Socket.io logic natively.
-- Eliminated dangling lazy loading modules blocking optimal JS chunks.
+### bobsgameweb (Web Engine — 295 TS files, 892 modules, 25 scenes)
 
-## Current State
+1. **AudioManager Wiring**: GlobalSettings → Howler AudioManager sync on init + live sliders
+2. **MapLoader** (NEW): Server API + procedural map generation (town, overworld, interiors)
+3. **Map Server API**: GET/PUT /maps/:id, GET /maps manifest
+4. **EventManager**: Wired into ClientGameEngine.update() loop
+5. **LoginScene** (NEW): Socket.io auth with auto-login, styled HTML form
+6. **TournamentScene** (NEW): Visual bracket tournament (4/8/16/32 players, ELO simulation)
+7. **GameSequenceEditorScene** (NEW): Campaign editor with share via deep links
+8. **Placeholder Audio**: 11 SFX + 2 music WAV files generated
+9. **Server Enhancement**: Tournament bracket generation for N players
+10. **DEPLOYED**: Frontend + Backend live on Hetzner, server v2.2.5 confirmed active
 
-### What Works ✅
-- Network connectivity opens websockets upon interaction on the correct option in ND overlay.
-- Builds and runs with strictly static references across Phase 3 dependencies preventing code splitting warnings out of Vite.
-- Network lobby UI correctly chains loading states directly to the underlying `BobMenu` classes.
+### okgame (C++ Engine)
 
-### What Doesn't Work Yet / Next Steps ❌
-- **Tournament Demo**: `TournamentManager` requires building the brackets dynamically matching multiplayer player counts and assigning room IDs.
-- **ECS Demo**: Moving `NPC` rendering from standard PIXI elements into an instantiated ECS Entity graph component block.
+- No changes
 
-## Constraints & Warnings
-- **DO NOT** kill any processes
-- **DO NOT** use `npm run build` — use `npx vite build`
-- **DO NOT** deploy without `BACKEND_FORCE_TAR=1`
-- **DO** bump version in 4 files on every deploy
-- **DO** commit and push between features
-- **DO** keep going autonomously
+### bobsgameonlinejava (Java Engine)
+
+- No changes
+
+## Production Status
+
+- **bobsgame.com**: Frontend deployed, 624 JS assets
+- **ws.bobsgame.com**: Backend v2.2.5, systemd active
+- **Git**: All changes uncommitted (persistent index.lock from external process)
+
+## Next Steps
+
+1. Commit when git lock clears
+2. Wire MapManager → DemoWorld rendering
+3. Event triggers (OnMapEnter, OnTileStep, OnInteract)
+4. Camera follow in WorldScene
+5. Real audio assets
