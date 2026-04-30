@@ -1,6 +1,6 @@
 # TODO List — bob's game Omni-Engine
 
-**Last Updated**: 2026-04-29 | **Version**: 2.2.5
+**Last Updated**: 2026-04-29 | **Version**: 2.2.7
 
 ---
 
@@ -21,6 +21,8 @@
 - [x] MapLoader loads maps from server API (GET/PUT /maps/:id)
 - [x] Server has map CRUD endpoints
 - [ ] DemoWorld renders MapManager tiles instead of its own procedural tiles
+- [x] DemoWorld.loadFromMapData() bridges MapLoader tiles → DemoWorld Tile colors
+- [x] ClientGameEngine loads town map into DemoWorld on init
 - [ ] GameMap renders tile layers using PixiJS sprites
 - [ ] Cameraman follows player with smooth scrolling in MapManager context
 
@@ -34,6 +36,7 @@
 ### Wire EventManager
 
 - [x] EventManager has full flag/skill/dialogue/event system
+- [x] DefaultEvents registered on init (tutorial, NPC talk, area enter, bridge, explorer achievement)
 - [ ] Event triggers fire when entering maps (OnMapEnter)
 - [ ] Event triggers fire when stepping on tiles (OnTileStep)
 - [ ] Event triggers fire when interacting with NPCs (OnInteract)
