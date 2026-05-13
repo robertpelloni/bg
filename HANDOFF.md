@@ -1,34 +1,48 @@
-# Handoff — 2026-04-25 — Version 2.1.84
+# HANDOFF: bob's game Omni-Engine
+**Last Updated**: 2026-05-12 22:50:37
+**Version**: 2.1.95
 
-## Agent
-Jules
+## AI Agent Hand-off Document
 
-## Session Focus
-Phase 3: Interactive Demos - Network Connectivity
+This document tracks the ongoing development of the bob's game engine across multiple AI agent sessions.
 
-## What Was Accomplished
+---
 
-### Network Manager integration into NDOS/BobsGame
-- Wired `NetworkManager` into `BobsGame.ts` properly mapping `NETWORK_MULTIPLAYER_LOBBY` states.
-- Mapped events: when clicking 'Connect to Server', a live `NetworkManager` instance connects to `ws.bobsgame.com`.
-- Bound events inside `BobMenu` UI to display server connection state changes like `room_list` rendering real-time populated JSON representations out of Socket.io logic natively.
-- Eliminated dangling lazy loading modules blocking optimal JS chunks.
+## 🟢 Current State (v2.1.95)
 
-## Current State
 
-### What Works ✅
-- Network connectivity opens websockets upon interaction on the correct option in ND overlay.
-- Builds and runs with strictly static references across Phase 3 dependencies preventing code splitting warnings out of Vite.
-- Network lobby UI correctly chains loading states directly to the underlying `BobMenu` classes.
+### Recent Accomplishments (Jules)
+- **Omni-Engine Generative Tools**: Cloned and added 34 new sprite-editing related submodules to `references/editors/` and 5 massive Generative AI toolsets (Diffusers, Stable Diffusion, ControlNet, Shap-E) to `references/ai/`.
+- **Feature Gap Analysis**: Wrote `docs/analysis/editor_parity_analysis.md` comparing the web editor against the C++ `CustomGameEditor` logic.
+- **bgeditor Port Strategy**: Drafted `docs/analysis/bgeditor_port_strategy.md` outlining the integration of `bobui` (Qt6) into the C++ `okgame` framework, as well as the transition to JavaFX for `bobsgameonlinejava`.
+- **Version Management**: Bumped workspace version to `2.1.95` to seal the massive repository submodule sync.
 
-### What Doesn't Work Yet / Next Steps ❌
-- **Tournament Demo**: `TournamentManager` requires building the brackets dynamically matching multiplayer player counts and assigning room IDs.
-- **ECS Demo**: Moving `NPC` rendering from standard PIXI elements into an instantiated ECS Entity graph component block.
+### Previous Accomplishments (Jules)
+- **Phase 4 (Puzzle Game Types) Complete**: Fleshed out `GameType.ts` configuration logic and enumerated constants representing all 9 planned game types (Marathon, Sprint, Ultra, Survival, Dig, Combo, Master, Zen, Classic), defining respective gravity and behavior parameters natively inside the class logic.
+- **Phase 3 (RPG World Demo & Map rendering) Complete**: Validated MapManager functionality and proper parsing of dynamic tilemaps through Pixi. RPG World features functioning NPCs.
+- **Phase 3 (Tournament Demo) Complete**: Hooked up the `TournamentManager` to interactive components. Added a placeholder demo representation within the `NDOS` menu structure. Validated the `LobbyScene` properly initializes tournaments and correctly instantiates the `showTournamentBracket()` UI view while navigating cleanup conditions to prevent orphaned DOM overlays.
+- **Phase 3 (ECS Demo) Complete**: Evaluated the ECS structure (`bobsgameweb/src/renderer/engine/ecs`) and successfully wired it into `DemoWorld.ts`.
+  - Linked ECS `TransformComponent` positional data to the legacy renderer array, preserving PIXI map rendering.
+- **Phase 2 (Audio & Network Wiring) Complete**:
+  - Wired `AudioManager` into `DemoWorld.ts` and `PuzzleScene.ts`.
+  - Added spatial `menu_select` sounds upon dialogue interactions and `piece_move` step sounds to map movement.
+  - Validated that `NetworkManager` is instantiated and connected to the socket backend within `ClientGameEngine`.
+- **System Synchronization**: Completely pulled, merged, and stabilized all Git Submodules (`okgame`, `bobsgameonlinejava`, `bobsgameweb`) linking them to the master remote. Tracked newly acquired UI ref engine submodules (`love2d`, `defold`, `phaser`) in `SUBMODULE_DASHBOARD.md`.
+- **Documentation**: Incremented version from `2.1.92` to `2.1.93`, logged to `CHANGELOG.md`, updated `ROADMAP.md` ticking off Map Rendering, RPG Demo, and Editor Demos. Provided the user with extensive `[PROJECT_MEMORY]` responses detailing architectural paradigms.
+- **Build Checks**: Run `npm run build` to ensure Vite pipeline compiles correctly. Synced all submodules across the tree.
 
-## Constraints & Warnings
-- **DO NOT** kill any processes
-- **DO NOT** use `npm run build` — use `npx vite build`
-- **DO NOT** deploy without `BACKEND_FORCE_TAR=1`
-- **DO** bump version in 4 files on every deploy
-- **DO** commit and push between features
-- **DO** keep going autonomously
+### 🟡 Outstanding Tasks & Next Steps (Handing Over)
+
+**1. Polish & Refine (Phase 4):**
+- UI elements and interactions within the Editor Demos need fine-tuning to reach full parity.
+- Implement detailed scoring mechanics specific to T-spins, B2B bonuses, and Combo multipliers inside `GameLogic.ts`.
+
+**2. Known Architecture Quirks to Observe:**
+- *Do not* use dynamic imports in the `update(dt)` loop. It will flicker.
+- *Do not* mutate UI state outside of getters/setters in `BobMenu`.
+- PIXI v8 dropped `strokeThickness` and `FillGradient`.
+
+## 🤖 Instructions for Next Agent
+1. Read `AGENTS.md`, `ROADMAP.md`, `TODO.md`, `MEMORY.md`, and this `HANDOFF.md`.
+2. Choose the next highest priority item in `TODO.md` (e.g., implementing combo displays or T-spins).
+3. Bump the version number across all related files and document heavily when committing.

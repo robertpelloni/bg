@@ -1,5 +1,68 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+
+
+
+
+
+
+
+
+## [2.1.93] - 2026-05-03
+### Added
+- Completed implementation of all 9 puzzle game variants (`Marathon`, `Sprint`, `Ultra`, `Survival`, `Dig`, `Combo`, `Master`, `Zen`, `Classic`).
+- Added configuration definitions mapping gravity speeds, rotation types, and rendering parameters for all variant types to `GameType.ts`.
+
+
+## [2.1.92] - 2026-05-01
+### Added
+- Completed massive synchronization sequence across the monorepo architecture.
+- Added unified `SUBMODULE_DASHBOARD.md` to map dependencies across Java, C++, and Typescript frameworks.
+
+
+## [2.1.91] - 2026-05-01
+### Added
+- Completed RPG World Demo and Editor Demo milestones.
+- Validated Map System functionality and JSON parsing via Pixi.
+- Added extensive submodules and libraries to the sync protocol.
+
+
+## [2.1.90] - 2026-04-30
+### Added
+- Completed Tournament Demo hooks in Phase 3.
+- Integrated `TournamentDemoWrapper` as a menu option within `NDOS`.
+- Addressed rendering issues involving uncleaned brackets within `LobbyScene`.
+- Fixed abstract class compliance for `TournamentDemoWrapper`.
+
+
+## [2.1.89] - 2026-04-29
+### Added
+- Completed `NetworkManager` events integration into `ClientGameEngine`.
+
+
+## [2.1.88] - 2026-04-29
+### Added
+- Wired `AudioManager` into gameplay.
+- Added background music to `DemoWorld.ts` and `PuzzleScene.ts`.
+- Added spatial movement sound effects to `DemoWorld.ts`.
+- Completes Phase 2 roadmap goal: "Wire AudioManager to play music and SFX during gameplay"
+
+
+## [2.1.87] - 2026-04-29
+### Added
+- Wired `AudioManager` into gameplay.
+- Background music correctly plays and stops inside `DemoWorld.ts` and `PuzzleScene.ts`.
+- Footstep sounds map to player actions inside the RPG demo logic.
+
+
+## [2.1.86] - 2026-04-29
+### Added
+- Phase 3: ECS Demo implementation.
+- Wired `DemoWorld` into the formal ECS `World` structure.
+- Migrated hardcoded NPC wander logic into ECS `NPCBehavior` and `BehaviorSystem`.
+- Connected ECS `TransformComponent` to `DemoWorld` entity rendering.
+
+
 ## [2.1.81] - 2026-04-23
 ### Added
 - **Puzzle Game Demo**: Fully wired up the `BobsGame` menu flow directly into playable `GameLogic` matches. Added PIXI rendering integration using `PuzzleRenderer`. Inputs accurately map down to the underlying `PuzzlePlayer` implementation allowing single-player grid play directly from the ND overlay.

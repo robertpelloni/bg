@@ -34,7 +34,7 @@
 - [x] **Wire BobsGame menu flow** — title screen → game type selection → difficulty → play
 - [x] **Wire MapManager** to load and render actual map data
 - [x] **Wire EventManager** to process event scripts on map triggers
-- [ ] **Wire AudioManager** to play music and SFX during gameplay
+- [x] **Wire AudioManager** to play music and SFX during gameplay
 - [x] **Wire NetworkManager** for real multiplayer connections
 - [x] **Wire TournamentManager** for bracket-style tournaments
 
@@ -42,11 +42,11 @@
 **Goal**: Create playable demo scenes for each major subsystem
 
 - [x] Puzzle Game Demo — fully playable puzzle with BobsGame menu flow
-- [ ] RPG World Demo — walkable map with NPCs, dialogue, items
+- [x] RPG World Demo — walkable map with NPCs, dialogue, items
 - [x] nD Console Demo — open nD, play mini-games, browse game library
 - [ ] Tournament Demo — create/join tournament, play bracket matches
-- [ ] ECS Demo — spawn entities with behaviors, watch them interact
-- [ ] Editor Demo — map editor, sprite editor, event sheet editor
+- [x] ECS Demo — spawn entities with behaviors, watch them interact
+- [x] Editor Demo — map editor, sprite editor, event sheet editor
 - [x] Network Demo — connect to server, join room, play online
 
 ## Phase 4: Content & Polish 📋 PLANNED
@@ -82,3 +82,12 @@
 - [ ] Analytics and crash reporting
 - [ ] Community features (forums, chat, user profiles)
 - [ ] Monetization (if applicable)
+
+## Phase 5: Omni-Engine Assimilation (In Progress)
+**Goal**: Integrate features from 34+ sprite/tilemap editors and provide Generative AI toolsets within the Omni-Engine (`bgeditor`).
+
+- [ ] Port `bgeditor` to C++ using Qt6 (`bobui`)
+- [ ] Port `bgeditor` to JavaFX
+- [ ] Implement Unified Sprite Canvas mimicking Aseprite & Pixelorama
+- [ ] Integrate text-to-sprite using local stable-diffusion pipelines
+- [ ] Integrate image-to-3d mesh via Shap-E
