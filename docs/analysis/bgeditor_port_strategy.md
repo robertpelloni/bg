@@ -19,3 +19,16 @@ Port the legacy Java `bgeditor` to:
 ## Web Strategy (`bobsgameweb`)
 - Utilize the `CustomGameEditorScene.ts`.
 - Expand UI components (using `@pixi/ui` or HTML DOM overlays) to mimic the complex panels of a native desktop application.
+
+## JavaFX Dependency Findings
+The `bobsgameonlinejava` repository does not currently list `JavaFX` in its `build.gradle` file.
+
+**Required `build.gradle` Additions:**
+```gradle
+dependencies {
+    implementation "org.openjfx:javafx-base:21"
+    implementation "org.openjfx:javafx-controls:21"
+    implementation "org.openjfx:javafx-swing:21" // For embedding LibGDX Lwjgl3AWTCanvas if necessary
+}
+```
+This is required to run the engine logic inside the JavaFX editor wrapper.

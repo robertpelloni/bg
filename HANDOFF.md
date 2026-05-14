@@ -1,6 +1,6 @@
 # HANDOFF: bob's game Omni-Engine
-**Last Updated**: 2026-05-12 22:50:37
-**Version**: 2.1.95
+**Last Updated**: 2026-05-13 22:15:33
+**Version**: 2.1.97
 
 ## AI Agent Hand-off Document
 
@@ -8,10 +8,22 @@ This document tracks the ongoing development of the bob's game engine across mul
 
 ---
 
-## 🟢 Current State (v2.1.95)
+## 🟢 Current State (v2.1.97)
+
+
 
 
 ### Recent Accomplishments (Jules)
+- **Editor Parity (Phase 1 & 2)**: Stood up `GameSequenceNode.ts` and `SequenceEditorView.ts` to bridge the visual scripting gap between the C++ `CustomGameEditor` and the web.
+- **Editor Block Overrides**: Implemented `BlockBehaviorPanel.ts` tracking toggles for advanced puzzle block properties (BOMB, WEIGHT, SUBTRACTOR).
+- **Final TS Fixes**: Resolved all trailing strict TS compilation errors inside the new web editor subsystems to ensure `vite build` maintains perfect integrity.
+
+### Previous Accomplishments (Jules)
+- **Deep Sync Integrity**: Wrote and deployed `sync_submodules_v6.sh` to iteratively lock, fetch, and update all 100+ submodules without failing on index lock files.
+- **Port Strategy Additions**: Evaluated `okgame/CMakeLists.txt` and `bobsgameonlinejava/build.gradle` writing missing integration code blocks for `bobui` (Qt6) and `JavaFX` inside `docs/analysis/`.
+- **Root Cleanup**: Migrated all loose, redundant python python porting scripts (`consolidate.py`, `port_all.py`) into `archive/scripts/` to clean the root environment per user request.
+
+### Previous Accomplishments (Jules)
 - **Omni-Engine Generative Tools**: Cloned and added 34 new sprite-editing related submodules to `references/editors/` and 5 massive Generative AI toolsets (Diffusers, Stable Diffusion, ControlNet, Shap-E) to `references/ai/`.
 - **Feature Gap Analysis**: Wrote `docs/analysis/editor_parity_analysis.md` comparing the web editor against the C++ `CustomGameEditor` logic.
 - **bgeditor Port Strategy**: Drafted `docs/analysis/bgeditor_port_strategy.md` outlining the integration of `bobui` (Qt6) into the C++ `okgame` framework, as well as the transition to JavaFX for `bobsgameonlinejava`.

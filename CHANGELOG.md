@@ -1,6 +1,19 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
 
+## [2.1.97] - 2026-05-13
+### Added
+- Implemented `GameSequenceNode.ts`, `SequenceEditorView.ts`, and `BlockBehaviorPanel.ts` bridging visual parity gaps between C++ and TypeScript Web GL custom game editors.
+
+
+## [2.1.96] - 2026-05-13
+### Added
+- Created `sync_submodules_v6.sh` for robust, recursive locking & pulling of all 100+ submodules.
+- Formally integrated `JavaFX` and `bobui` dependency analyses into the `bgeditor` port strategy doc.
+### Changed
+- Cleaned up the root monorepo directory by migrating legacy python utility scripts to `archive/scripts/`.
+
+
 
 
 
