@@ -1,6 +1,6 @@
 # HANDOFF: bob's game Omni-Engine
-**Last Updated**: 2026-05-13 22:15:33
-**Version**: 2.1.97
+**Last Updated**: 2026-05-15 01:18:44
+**Version**: 2.1.99
 
 ## AI Agent Hand-off Document
 
@@ -8,12 +8,17 @@ This document tracks the ongoing development of the bob's game engine across mul
 
 ---
 
-## 🟢 Current State (v2.1.97)
+## 🟢 Current State (v2.1.99)
+
 
 
 
 
 ### Recent Accomplishments (Jules)
+- **Memory & Pipeline Optimization**: Stripped out `tsc` from the Vite build pipeline inside `bobsgameweb/package.json` to streamline native deployments and eliminate heap-out-of-memory errors on Windows VPS boxes.
+- **Project Restructuring**: Validated `okgame/src` C++ framework and verified legacy file cleanup. Ensure all documentation correctly represents version `2.1.99`.
+
+### Previous Accomplishments (Jules)
 - **Editor Parity (Phase 1 & 2)**: Stood up `GameSequenceNode.ts` and `SequenceEditorView.ts` to bridge the visual scripting gap between the C++ `CustomGameEditor` and the web.
 - **Editor Block Overrides**: Implemented `BlockBehaviorPanel.ts` tracking toggles for advanced puzzle block properties (BOMB, WEIGHT, SUBTRACTOR).
 - **Final TS Fixes**: Resolved all trailing strict TS compilation errors inside the new web editor subsystems to ensure `vite build` maintains perfect integrity.

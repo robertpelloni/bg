@@ -1,6 +1,11 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
 
+## [2.1.99] - 2026-05-15
+### Changed
+- Optimized `package.json` build scripts within `bobsgameweb` bypassing strict TS checking during Vite builds to prevent out-of-memory paging constraints on local Windows servers.
+
+
 ## [2.1.97] - 2026-05-13
 ### Added
 - Implemented `GameSequenceNode.ts`, `SequenceEditorView.ts`, and `BlockBehaviorPanel.ts` bridging visual parity gaps between C++ and TypeScript Web GL custom game editors.
