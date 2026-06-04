@@ -1,0 +1,10 @@
+1. Implement Missing Puzzle Game Types (Phase 4)
+   - Check bobsgameweb/src/shared/puzzle/GameType.ts to see what puzzle game modes exist.
+   - Look at bobsgameweb/src/renderer/engine/puzzle/GameLogic.ts and verify if features like T-spin detection, Hold piece, and Combo counter are implemented.
+   - Begin wiring up specific logic differences per game type (if feasible).
+2. Verify puzzle features
+   - Run tests or check build.
+3. Commit and deploy
+   - Bump version, document changes.
+   - Update CHANGELOG.md, ROADMAP.md and HANDOFF.md.
+4. Submit

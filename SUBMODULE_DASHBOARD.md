@@ -1,93 +1,81 @@
-# Submodule Dashboard
+# Submodule Dashboard & Architecture Tree
 
-**Last Updated**: 2026-04-08 | **Workspace Version**: 2.1.75
+**Last Updated:** 2026-04-29
 
-## Project Directory Structure
+## Overview
+This document tracks all external submodules, library dependencies, and integrated porting tools referenced within the *bob's game Omni-Engine* monorepo. It serves as a unified reference map for where C++, Java, and Web logic originate, intersect, or diverge.
 
+---
+
+## 🏗️ Core Codebases
+
+| Submodule | Description | Location | Sync Status | Target Platform |
+|-----------|-------------|----------|-------------|-----------------|
+| **`okgame`** | Native C++20 engine utilizing SDL3, OpenGL, and raw deterministic loops. Needs vcpkg refactor. | `/okgame` | Active | Win/Mac/Linux |
+| **`bobsgameonlinejava`** | Legacy Java 21 engine utilizing LibGDX. Serves as the primary reference map for logic parity. | `/bobsgameonlinejava` | Active | Desktop |
+| **`bobsgameweb`** | TypeScript/PixiJS v8 port. Serves as the primary deployment for `bobsgame.com`. | `/bobsgameweb` | Active | Web (HTML5) |
+
+---
+
+## 📚 Integrated Libraries & Reference Submodules
+
+The following tools and libraries are tracked either directly via Git Submodule or through architectural assimilation to ensure the Omni-Engine maintains robust tooling parity.
+
+### 🎨 Sprite & Pixel Art Editors
+*To be implemented in `/src/renderer/editor/`*
+
+- [Aseprite](https://github.com/aseprite/aseprite) - Reference for frame sequence logic and color manipulation.
+- [Pixelorama](https://github.com/Orama-Interactive/Pixelorama) - Reference for Web-native sprite canvas editing.
+- [LibreSprite](https://github.com/LibreSprite/LibreSprite) - Reference for open-source feature parity.
+- [PixiEditor](https://github.com/PixiEditor/PixiEditor) - Layer logic and raster generation.
+- [Piskel](https://github.com/piskelapp/piskel) - Reference for browser-based real-time animation playback.
+- [Tile-Studio](https://github.com/Wiering/Tile-Studio) / [tilemap-studio](https://github.com/Rangi42/tilemap-studio) - Reference for Tile palette rendering and Map arrays.
+
+### 🕹️ Emulation & Compatibility
+- **Libretro / JNI** - Java JNI bindings for legacy game ROM compatibility are stored in `/bobsgameonlinejava`. To be ported to WebAssembly for `bobsgameweb`.
+- **ProjectM** - Native bindings tracked inside `okgame/lib/projectm`.
+
+### 🔊 Audio & Synthesis
+- **Howler.js** - Driving Web Audio API. See `/src/renderer/audio/AudioManager.ts`.
+- **Chiptune3.js** - Tracker music fallback for `.mod` and `.xm` files.
+
+### 🌐 Networking
+- **Socket.io** - Realtime lobby and meta-state syncing. Node backend located at `bobsgameweb/server/index.js`.
+- **WebRTC DataChannels** - High frequency deterministic loop updates across peers. Handled via `PeerConnection.ts`.
+
+---
+
+## 🛠️ Project Structure
+
+```text
+/ (Root Monorepo)
+├── AGENTS.md                   # AI tooling conventions & rules
+├── ROADMAP.md                  # High-level goals & Milestones
+├── TODO.md                     # Granular task lists
+├── CHANGELOG.md                # Version history
+├── VERSION.md                  # Current deployment string
+├── SUBMODULE_DASHBOARD.md      # This file
+│
+├── bobsgameweb/                # Web engine port (Primary Dev Branch)
+│   ├── src/renderer/           # TS + PixiJS logic
+│   │   ├── engine/             # Core ported systems (ECS, Network, Input)
+│   │   ├── scenes/             # Menu states & Views
+│   │   └── puzzle/             # BobsGame engine logic
+│   └── server/                 # Node.js + Socket.io Lobby backend
+│
+├── okgame/                     # C++ Native Port
+│   ├── src/                    # C++ Logic matching bobsgameweb
+│   └── lib/                    # C++ specific libs (ProjectM, SDL3)
+│
+└── bobsgameonlinejava/         # Java Legacy Port
+    ├── src/com/bobsgame/       # Original Java logic
+    └── libs/                   # Java specific jars
 ```
-bg/                              (Root workspace — git monorepo)
-├── AGENTS.md                    Multi-agent orchestration instructions
-├── CLAUDE.md                    Claude-specific instructions
-├── GEMINI.md                    Gemini-specific instructions
-├── GPT.md                       GPT-specific instructions
-├── copilot-instructions.md      GitHub Copilot instructions
-├── VISION.md                    Project vision and goals
-├── MEMORY.md                    Ongoing observations and patterns
-├── DEPLOY.md                    Deployment instructions
-├── ROADMAP.md                   Long-term feature roadmap
-├── TODO.md                      Short-term task list
-├── VERSION.md                   Single source of truth for version (2.1.75)
-├── CHANGELOG.md                 Version history
-├── HANDOFF.md                   Inter-model session handoff notes
-├── SUBMODULE_DASHBOARD.md       This file
-│
-├── bobsgameweb/                 Web port (Vite + TypeScript + PixiJS v8)
-│   ├── src/renderer/engine/     187 TypeScript modules, 16 subsystems
-│   ├── server/                  Node.js Socket.io backend
-│   ├── scripts/                 Deploy scripts
-│   ├── dist/                    Build output
-│   ├── VERSION.md               2.1.75
-│   ├── package.json             Dependencies and scripts
-│   └── vite.config.ts           Vite configuration
-│
-├── okgame/                      C++ native engine (SDL3 + C++20)
-│   ├── src/Engine/              Core engine (ECS, RPG, entity, map, etc.)
-│   ├── src/Puzzle/              Puzzle game engine
-│   ├── src/Utility/             Utilities (math, color, controls, etc.)
-│   └── build/                   CMake build output
-│
-├── bobsgameonlinejava/          Java engine (LibGDX + Java 21)
-│   ├── src/main/java/com/bobsgame/  Java source
-│   ├── libs/                    Native libraries
-│   └── references/              Editor references (Aseprite, Tiled, etc.)
-│
-├── docs/                        Workspace-level documentation
-│   ├── UNIVERSAL_LLM_INSTRUCTIONS.md
-│   ├── ARCHITECTURE_MANIFESTO.md
-│   ├── FINAL_PROJECT_SUMMARY.md
-│   └── ai/                      AI phase documentation
-│
-├── scripts/                     Automation scripts
-├── data/                        Shared data files
-├── logs/                        Operation logs
-└── steamworks_sdk_164/          Steam SDK (C++ integration)
-```
 
-## Submodule Status
+### 🤖 Generative AI Tools
+*To be evaluated for integration into generative asset workflows.*
 
-| Submodule | Repository | Branch | Version | Status |
-|---|---|---|---|---|
-| **bobsgameweb** | robertpelloni/bobsgameweb | master | 2.1.75 | ✅ Deployed live at bobsgame.com + ws.bobsgame.com |
-| **okgame** | robertpelloni/okgame | main | - | ⚠️ Build needs modernization |
-| **bobsgameonlinejava** | robertpelloni/bobsgameonlinejava | main | - | ✅ Reference source for porting |
-
-## Web Engine Subsystem Breakdown (bobsgameweb)
-
-| Subsystem | Modules | Key Components |
-|---|---|---|
-| ecs | 47 | Entity, World, behaviors, components, systems |
-| rpg | 40 | ClientGameEngine, BGClientEngine, events, GUI, saves |
-| puzzle | 17 | OKGame, BobsGame, Grid, GameLogic, Piece, Block |
-| nd | 12 | ND, Wheel, NDMenu, WheelItem, MiniGameEngine, Ping, Ramio |
-| map | 12 | GameMap, MapManager, AutoTiler, AsepriteParser, MapStateData |
-| entity | 11 | BobSprite, Character, Cameraman, PathFinder, Sprite |
-| shared | 11 | GlobalSettings, FileUtils, Cache, BobMenu, OKMath, OKColor |
-| network | 7 | NetworkManager, OKNet, ServerConnection, PeerConnection, BobsGameRoom |
-| text | 6 | TextManager, BitmapFont, DialogueBox, CaptionManager |
-| cinematics | 5 | CinematicsManager, ScreenOverlay, Letterbox, GlowTileBackground |
-| audio | 5 | AudioManager, AudioUtils, WaveData, OggDecoder |
-| stadium | 4 | OKGameStadium, TournamentManager |
-| state | 3 | StateManager, GameFlowStates |
-| debug | 3 | DebugConsole, Logger |
-| input | 2 | ControlsManager |
-| eventsheet | 1 | EventSheet |
-
-## Live Endpoints
-
-| Endpoint | URL | Purpose |
-|---|---|---|
-| Frontend | https://bobsgame.com | Static web app (PixiJS v8) |
-| Backend | https://ws.bobsgame.com | Socket.io server |
-| Health | https://ws.bobsgame.com/healthz | Service health check |
-| Socket.io | wss://ws.bobsgame.com/socket.io | WebSocket game connection |
-| GitHub | https://github.com/robertpelloni/bobsgameweb | Source repository |
+- [Diffusers](https://github.com/huggingface/diffusers) - Stable Diffusion orchestration.
+- [Shap-E](https://github.com/openai/shap-e) - Text/image to 3D.
+- [Stable Diffusion](https://github.com/CompVis/stable-diffusion) - Text-to-image base model.
+- [ControlNet](https://github.com/lllyasviel/ControlNet) - Granular control over diffusion models.

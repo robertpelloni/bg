@@ -67,3 +67,8 @@
 27. **Modding API**: Expose a safe subset of the engine API for user-created content. Custom maps, custom events, custom game rules.
 
 28. **Streaming Integration**: Twitch/Discord integration. Streamers can let chat vote on game types, difficulties, or send garbage blocks.
+
+## Omni-Engine Editor Ideation
+* **Unified Tool Palette:** Create a single, universal tool palette that abstracts the best features of Aseprite, LibreSprite, and PyxleOS into a unified WebGL/C++ layer.
+* **Text-to-Sprite Plugin:** Use `Diffusers` to build a real-time prompt box in the bgeditor. Output goes straight into the Aseprite-like timeline.
+* **3D Voxel Conversion:** Send 2D sprite frames to `Shap-E` to generate voxelized or mesh representations for 2.5D rendering options.
