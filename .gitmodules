@@ -1,114 +1,192 @@
 [submodule "bobsgameonlinejava"]
 	path = bobsgameonlinejava
 	url = https://github.com/robertpelloni/bobsgameonlinejava.git
+
 [submodule "okgame"]
 	path = okgame
 	url = https://github.com/robertpelloni/okgame
+
 [submodule "bobsgameweb"]
 	path = bobsgameweb
 	url = https://github.com/robertpelloni/bobsgameweb.git
+
+# ─── Reference submodules (code reference only ─ skip recursive clone) ───
+# These are pinned to upstream commits for documentation/reference purposes.
+# They are not needed for development. Set update=none so they are skipped
+# during `git submodule update --init --recursive` (e.g. Jules AI clone).
+# To clone them manually: git submodule update --init references/editors/<name>
+
 [submodule "references/editors/aseprite"]
 	path = references/editors/aseprite
 	url = https://github.com/aseprite/aseprite
+	update = none
+
 [submodule "references/editors/sprite-studio-64"]
 	path = references/editors/sprite-studio-64
 	url = https://github.com/tstamborski/sprite-studio-64
+	update = none
+
 [submodule "references/editors/stipple-effect"]
 	path = references/editors/stipple-effect
 	url = https://github.com/stipple-effect/stipple-effect
+	update = none
+
 [submodule "references/editors/Raylib-Examples"]
 	path = references/editors/Raylib-Examples
 	url = https://github.com/Pakz001/Raylib-Examples
+	update = none
+
 [submodule "references/editors/csprite"]
 	path = references/editors/csprite
 	url = https://github.com/csprite/csprite
+	update = none
+
 [submodule "references/editors/raster-master"]
 	path = references/editors/raster-master
 	url = https://github.com/RetroNick2020/raster-master
+	update = none
+
 [submodule "references/editors/Tile-Studio"]
 	path = references/editors/Tile-Studio
 	url = https://github.com/Wiering/Tile-Studio
+	update = none
+
 [submodule "references/editors/voidsprite"]
 	path = references/editors/voidsprite
 	url = https://github.com/counter185/voidsprite
+	update = none
+
 [submodule "references/editors/GrowTools"]
 	path = references/editors/GrowTools
 	url = https://github.com/GuckTubeYT/GrowTools
+	update = none
+
 [submodule "references/editors/retro-game-editor"]
 	path = references/editors/retro-game-editor
 	url = https://github.com/haroldo-ok/retro-game-editor
+	update = none
+
 [submodule "references/editors/SpeedEd"]
 	path = references/editors/SpeedEd
 	url = https://github.com/jval1972/SpeedEd
+	update = none
+
 [submodule "references/editors/aseprite-guide"]
 	path = references/editors/aseprite-guide
 	url = https://github.com/PandaDevOfficial/aseprite-guide
+	update = none
+
 [submodule "references/editors/tilemap-studio"]
 	path = references/editors/tilemap-studio
 	url = https://github.com/Rangi42/tilemap-studio
+	update = none
+
 [submodule "references/editors/tilemap-editor"]
 	path = references/editors/tilemap-editor
 	url = https://github.com/blurymind/tilemap-editor
+	update = none
+
 [submodule "references/editors/tactile"]
 	path = references/editors/tactile
 	url = https://github.com/albin-johansson/tactile
+	update = none
+
 [submodule "references/editors/Simple-Sprite-Tile-2D"]
 	path = references/editors/Simple-Sprite-Tile-2D
 	url = https://github.com/wmltogether/Simple-Sprite-Tile-2D
+	update = none
+
 [submodule "references/editors/bottled-up-tilemap"]
 	path = references/editors/bottled-up-tilemap
 	url = https://github.com/Dark-Peace/bottled-up-tilemap
+	update = none
+
 [submodule "references/editors/DTile"]
 	path = references/editors/DTile
 	url = https://github.com/MagnonGames/DTile
+	update = none
+
 [submodule "references/editors/Pixelorama"]
 	path = references/editors/Pixelorama
 	url = https://github.com/Orama-Interactive/Pixelorama
+	update = none
+
 [submodule "references/editors/PixiEditor"]
 	path = references/editors/PixiEditor
 	url = https://github.com/PixiEditor/PixiEditor
+	update = none
+
 [submodule "references/editors/LibreSprite"]
 	path = references/editors/LibreSprite
 	url = https://github.com/LibreSprite/LibreSprite
+	update = none
+
 [submodule "references/editors/rx"]
 	path = references/editors/rx
 	url = https://github.com/cloudhead/rx
+	update = none
+
 [submodule "references/editors/piskel"]
 	path = references/editors/piskel
 	url = https://github.com/piskelapp/piskel
+	update = none
+
 [submodule "references/editors/blockbench"]
 	path = references/editors/blockbench
 	url = https://github.com/JannisX11/blockbench
+	update = none
+
 [submodule "references/editors/Cytopia"]
 	path = references/editors/Cytopia
 	url = https://github.com/CytopiaTeam/Cytopia
+	update = none
+
 [submodule "references/editors/goxel"]
 	path = references/editors/goxel
 	url = https://github.com/guillaumechereau/goxel
+	update = none
+
 [submodule "references/editors/tiled"]
 	path = references/editors/tiled
 	url = https://github.com/mapeditor/tiled
+	update = none
+
 [submodule "references/editors/OgmoEditor3-CE"]
 	path = references/editors/OgmoEditor3-CE
 	url = https://github.com/Ogmo-Editor-3/OgmoEditor3-CE
+	update = none
+
 [submodule "references/editors/grafx2"]
 	path = references/editors/grafx2
 	url = https://github.com/miniupnp/grafx2
+	update = none
+
 [submodule "references/editors/grafx2-dos"]
 	path = references/editors/grafx2-dos
 	url = https://github.com/deverac/grafx2-dos
+	update = none
+
 [submodule "references/editors/PyxleOS"]
 	path = references/editors/PyxleOS
 	url = https://github.com/Dakkra/PyxleOS
+	update = none
+
 [submodule "references/ai/diffusers"]
 	path = references/ai/diffusers
 	url = https://github.com/huggingface/diffusers
+	update = none
+
 [submodule "references/ai/shap-e"]
 	path = references/ai/shap-e
 	url = https://github.com/openai/shap-e
+	update = none
+
 [submodule "references/ai/stable-diffusion"]
 	path = references/ai/stable-diffusion
 	url = https://github.com/CompVis/stable-diffusion
+	update = none
+
 [submodule "references/ai/ControlNet"]
 	path = references/ai/ControlNet
 	url = https://github.com/lllyasviel/ControlNet
+	update = none
