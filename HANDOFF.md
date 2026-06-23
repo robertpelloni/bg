@@ -1,6 +1,6 @@
 # HANDOFF: bob's game Omni-Engine
-**Last Updated**: 2026-05-15 01:18:44
-**Version**: 2.1.99
+**Last Updated**: 2026-06-22
+**Version**: 2.1.94
 
 ## AI Agent Hand-off Document
 
