@@ -19,7 +19,7 @@ jobs:
 
       - name: Install
         working-directory: bobsgameweb
-        run: npm ci --legacy-peer-deps
+        run: npm install --legacy-peer-deps
 
       - name: TypeScript Check
         working-directory: bobsgameweb
@@ -41,7 +41,7 @@ jobs:
 
       - name: Install
         working-directory: bobsgameweb
-        run: npm ci --legacy-peer-deps
+        run: npm install --legacy-peer-deps
 
       - name: Lint
         working-directory: bobsgameweb

@@ -21,7 +21,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: bobsgameweb
-        run: npm ci --legacy-peer-deps
+        run: npm install --legacy-peer-deps
 
       - name: Build
         working-directory: bobsgameweb
