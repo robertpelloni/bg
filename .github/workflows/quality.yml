@@ -14,8 +14,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
-          cache-dependency-path: bobsgameweb/package-lock.json
+          # cache: "npm"
+          # cache-dependency-path: bobsgameweb/package-lock.json
 
       - name: Install
         working-directory: bobsgameweb
@@ -36,8 +36,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
-          cache-dependency-path: bobsgameweb/package-lock.json
+          # cache: "npm"
+          # cache-dependency-path: bobsgameweb/package-lock.json
 
       - name: Install
         working-directory: bobsgameweb
