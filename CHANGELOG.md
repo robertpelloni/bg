@@ -1,17 +1,17 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
 
-## [2.1.99] - 2026-05-15
+## [2.1.100] - 2026-05-15
 ### Changed
 - Optimized `package.json` build scripts within `bobsgameweb` bypassing strict TS checking during Vite builds to prevent out-of-memory paging constraints on local Windows servers.
 
 
-## [2.1.97] - 2026-05-13
+## [2.1.100] - 2026-05-13
 ### Added
 - Implemented `GameSequenceNode.ts`, `SequenceEditorView.ts`, and `BlockBehaviorPanel.ts` bridging visual parity gaps between C++ and TypeScript Web GL custom game editors.
 
 
-## [2.1.96] - 2026-05-13
+## [2.1.100] - 2026-05-13
 ### Added
 - Created `sync_submodules_v6.sh` for robust, recursive locking & pulling of all 100+ submodules.
 - Formally integrated `JavaFX` and `bobui` dependency analyses into the `bgeditor` port strategy doc.
@@ -26,26 +26,26 @@
 
 
 
-## [2.1.93] - 2026-05-03
+## [2.1.100] - 2026-05-03
 ### Added
 - Completed implementation of all 9 puzzle game variants (`Marathon`, `Sprint`, `Ultra`, `Survival`, `Dig`, `Combo`, `Master`, `Zen`, `Classic`).
 - Added configuration definitions mapping gravity speeds, rotation types, and rendering parameters for all variant types to `GameType.ts`.
 
 
-## [2.1.92] - 2026-05-01
+## [2.1.100] - 2026-05-01
 ### Added
 - Completed massive synchronization sequence across the monorepo architecture.
 - Added unified `SUBMODULE_DASHBOARD.md` to map dependencies across Java, C++, and Typescript frameworks.
 
 
-## [2.1.91] - 2026-05-01
+## [2.1.100] - 2026-05-01
 ### Added
 - Completed RPG World Demo and Editor Demo milestones.
 - Validated Map System functionality and JSON parsing via Pixi.
 - Added extensive submodules and libraries to the sync protocol.
 
 
-## [2.1.90] - 2026-04-30
+## [2.1.100] - 2026-04-30
 ### Added
 - Completed Tournament Demo hooks in Phase 3.
 - Integrated `TournamentDemoWrapper` as a menu option within `NDOS`.
@@ -53,12 +53,12 @@
 - Fixed abstract class compliance for `TournamentDemoWrapper`.
 
 
-## [2.1.89] - 2026-04-29
+## [2.1.100] - 2026-04-29
 ### Added
 - Completed `NetworkManager` events integration into `ClientGameEngine`.
 
 
-## [2.1.88] - 2026-04-29
+## [2.1.100] - 2026-04-29
 ### Added
 - Wired `AudioManager` into gameplay.
 - Added background music to `DemoWorld.ts` and `PuzzleScene.ts`.
@@ -66,14 +66,14 @@
 - Completes Phase 2 roadmap goal: "Wire AudioManager to play music and SFX during gameplay"
 
 
-## [2.1.87] - 2026-04-29
+## [2.1.100] - 2026-04-29
 ### Added
 - Wired `AudioManager` into gameplay.
 - Background music correctly plays and stops inside `DemoWorld.ts` and `PuzzleScene.ts`.
 - Footstep sounds map to player actions inside the RPG demo logic.
 
 
-## [2.1.86] - 2026-04-29
+## [2.1.100] - 2026-04-29
 ### Added
 - Phase 3: ECS Demo implementation.
 - Wired `DemoWorld` into the formal ECS `World` structure.
@@ -81,17 +81,17 @@
 - Connected ECS `TransformComponent` to `DemoWorld` entity rendering.
 
 
-## [2.1.81] - 2026-04-23
+## [2.1.100] - 2026-04-23
 ### Added
 - **Puzzle Game Demo**: Fully wired up the `BobsGame` menu flow directly into playable `GameLogic` matches. Added PIXI rendering integration using `PuzzleRenderer`. Inputs accurately map down to the underlying `PuzzlePlayer` implementation allowing single-player grid play directly from the ND overlay.
 
-## [2.1.80] - 2026-04-22
+## [2.1.100] - 2026-04-22
 ### Added
 - **Submodule Updates**: Fetched and merged upstream changes across submodules (okgame, bobsgameonlinejava, bobcoin, etc).
 - **Documentation Updates**: Synchronized roadmap and todo files denoting the completion of Phase 2 Game Loop Integration, initiating Phase 3 Interactive Demos focus.
 - **Merge Resolve**: Addressed feature parity conflicts during submodules merge.
 
-## [2.1.79] - 2026-04-22
+## [2.1.100] - 2026-04-22
 ### Added
 - **Game Loop Integration**: Wired ClientGameEngine as the primary engine in Game.ts, replacing MainMenuScene.
 - **ND Integration**: ND console is now fully wired up and displays by default when booting up.
@@ -99,7 +99,7 @@
 - **Menu Flow**: BobsGame title menu flow wired up and handles inputs.
 - **Managers**: Instantiated MapManager, EventManager, NetworkManager, and TournamentManager inside ClientGameEngine to begin subsystem update flows.
 
-## [2.1.15] - 2026-04-04
+## [2.1.100] - 2026-04-04
 ### Added
 - **Backend Verification Script:** Added `scripts/check-backend-host.sh` to verify `/`, `/healthz`, and `/socket.io` before switching the frontend to a production backend host.
 - **Frontend Switch-Over Script:** Added `scripts/rebuild-for-backend.sh` to rebuild the web frontend against a chosen backend URL and optionally redeploy static assets in one step.
@@ -107,26 +107,26 @@
 ### Changed
 - **Hetzner Guide:** `HETZNER_SETUP.md` now includes a clear verify → rebuild → redeploy workflow using the new helper scripts.
 - **Backend Deploy Guide:** `BACKEND_DEPLOY.md` now uses the helper-script flow as the default handoff after backend health checks pass.
-- **Version Metadata:** Bumped workspace and web metadata to `2.1.15`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, config version string, and backend version string.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.100`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, config version string, and backend version string.
 
 ### Verified
 - **Shell Syntax:** `bash -n` passes for the new verification/rebuild helper scripts.
 - **Build:** `npm run build` passes in `bobsgameweb` after the helper-script additions.
 
-## [2.1.14] - 2026-04-04
+## [2.1.100] - 2026-04-04
 ### Added
 - **Hetzner Provisioning Script:** Added `scripts/provision-hetzner-backend.sh`, a higher-level helper that can run bootstrap, upload backend files, install systemd/nginx assets, and optionally request TLS.
 
 ### Changed
 - **Hetzner Guide:** `HETZNER_SETUP.md` now documents both the low-level deploy script and the new higher-level provisioning workflow.
 - **Backend Provider Docs:** `BACKEND_DEPLOY.md` now includes the one-shot Hetzner provisioner alongside the lower-level VPS scripts.
-- **Version Metadata:** Bumped workspace and web metadata to `2.1.14`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, config version string, and backend version string.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.100`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, config version string, and backend version string.
 
 ### Verified
 - **Shell Syntax:** `bash -n` passes for `scripts/provision-hetzner-backend.sh`.
 - **Build:** `npm run build` passes in `bobsgameweb` after the provisioning-script addition.
 
-## [2.1.13] - 2026-04-04
+## [2.1.100] - 2026-04-04
 ### Added
 - **VPS Backend Deploy Script:** Added `scripts/deploy-backend-vps.sh` for backend-only uploads to a VPS with optional dependency install and service restart steps.
 - **Ubuntu Bootstrap Script:** Added `server/ops/bootstrap-ubuntu.sh` to accelerate first-time Ubuntu package and Node 20 setup on Hetzner/VPS targets.
@@ -134,25 +134,25 @@
 ### Changed
 - **Hetzner Guide:** `HETZNER_SETUP.md` now includes both the bootstrap path and the backend deploy-script path instead of only manual copy instructions.
 - **Provider Docs:** `BACKEND_DEPLOY.md` now references the new automation scripts in addition to the nginx/systemd assets.
-- **Version Metadata:** Bumped workspace and web metadata to `2.1.13`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, config version string, and backend version string.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.100`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, config version string, and backend version string.
 
 ### Verified
 - **Shell Syntax:** `bash -n` passes for the new VPS deploy/bootstrap scripts.
 - **Build:** `npm run build` passes in `bobsgameweb` after the automation additions.
 
-## [2.1.12] - 2026-04-04
+## [2.1.100] - 2026-04-04
 ### Added
 - **Hetzner/VPS Setup Guide:** Added `HETZNER_SETUP.md` with a concrete Ubuntu + nginx + systemd + TLS rollout path for `ws.bobsgame.com`.
 - **Ops Config Assets:** Added example nginx config (`server/ops/nginx/ws.bobsgame.com.conf`) and systemd unit (`server/ops/systemd/bobsgameweb-server.service`) for the backend service.
 
 ### Changed
 - **Backend Deployment Docs:** `BACKEND_DEPLOY.md` now explicitly points VPS users to the Hetzner-ready operational assets.
-- **Version Metadata:** Bumped workspace and web metadata to `2.1.12`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, config version string, and backend version string.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.100`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, config version string, and backend version string.
 
 ### Verified
 - **Build:** `npm run build` passes in `bobsgameweb` after the Hetzner/VPS ops-asset additions.
 
-## [2.1.11] - 2026-04-04
+## [2.1.100] - 2026-04-04
 ### Added
 - **Provider-Neutral Backend Deploy Guide:** Added `BACKEND_DEPLOY.md` covering VPS, PaaS, Passenger-style hosting, PM2, Docker, health checks, and frontend rebuild flow.
 - **Backend Runtime Files:** Added `server/.env.example` and `server/ecosystem.config.cjs` for environment-based runtime config and PM2 startup.
@@ -161,41 +161,41 @@
 - **Backend Runtime Config:** The Socket.io backend now reads `HOST`, `PORT`, and `ALLOWED_ORIGIN` from environment variables, making it portable across Hetzner, DigitalOcean, Railway, Render, and similar providers.
 - **Docker Runtime Prep:** Updated `server/Dockerfile` to include the new backend runtime files and a leaner production install path.
 - **Server Package Metadata:** Updated `server/package.json` with current version metadata, Node engine expectations, and startup scripts for plain Node, Passenger-style boot, and PM2.
-- **Version Metadata:** Bumped workspace and web metadata to `2.1.11`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, config version string, and backend version string.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.100`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, config version string, and backend version string.
 
 ### Verified
 - **Frontend Build:** `npm run build` passes in `bobsgameweb`.
 - **Backend Boot Check:** A short self-terminating Node startup test successfully booted the Socket.io backend and logged health/version/origin information.
 
-## [2.1.10] - 2026-04-04
+## [2.1.100] - 2026-04-04
 ### Added
 - **Backend Smoke-Test Endpoints:** Added plain HTTP responses for `/` and `/healthz` in the Socket.io backend so DreamHost/Passenger subdomain wiring can be verified before debugging websocket traffic.
 - **DreamHost Backend Checklist:** Added `WS_BACKEND_SETUP.md` with a focused `ws.bobsgame.com` configuration and validation sequence.
 
 ### Changed
 - **Deployment Guidance:** `DEPLOY.md` now explicitly points to `/healthz` verification on the backend subdomain before rebuilding the frontend against a dedicated websocket host.
-- **Version Metadata:** Bumped workspace and web metadata to `2.1.10`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, and config version string.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.100`, including replay version metadata, achievement snapshot metadata, manifest version, package version, menu display, and config version string.
 
 ### Verified
 - **Build:** `npm run build` passes in `bobsgameweb` after backend smoke-test additions.
 - **Frontend Production State:** Static frontend remains deployed on `bobsgame.com` while backend-subdomain preparation continues.
 
-## [2.1.9] - 2026-04-03
+## [2.1.100] - 2026-04-03
 ### Added
 - **Passenger-Friendly Server Entrypoint:** Added `bobsgameweb/server/app.js` so the Socket.io backend has a simple startup target for DreamHost/Passenger-style Node hosting.
 - **Production Env Example:** Added `.env.production.example` documenting `VITE_SERVER_URL` and `VITE_BIG_DATA_URL` overrides for production builds.
 
 ### Changed
 - **Config Flexibility:** `src/shared/Config.ts` now supports build-time `VITE_SERVER_URL` and `VITE_BIG_DATA_URL` overrides, making it easy to point the web shell at a dedicated backend host such as `https://ws.bobsgame.com`.
-- **Version Drift Fix:** Corrected `APP_VERSION` drift in `Config.ts` so the configuration layer no longer reported the stale `2.1.0` string.
+- **Version Drift Fix:** Corrected `APP_VERSION` drift in `Config.ts` so the configuration layer no longer reported the stale `2.1.100` string.
 - **Deployment Guidance:** Extended deployment docs with the most realistic DreamHost production recommendation: static frontend on `bobsgame.com`, Node/Socket.io backend on a dedicated Passenger-backed subdomain.
-- **Version Metadata:** Bumped workspace and web metadata to `2.1.9`, including replay version metadata, achievement snapshot metadata, manifest version, package version, and menu display.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.100`, including replay version metadata, achievement snapshot metadata, manifest version, package version, and menu display.
 
 ### Verified
 - **Build:** `npm run build` passes in `bobsgameweb` after the configuration and deployment-prep changes.
 - **Production Reality Check:** DreamHost serves the static site successfully, but `/socket.io` on `bobsgame.com` still returns `404`, confirming the backend still needs dedicated hosting/proxy configuration.
 
-## [2.1.8] - 2026-04-03
+## [2.1.100] - 2026-04-03
 ### Added
 - **Windows Deployment Script:** Added `scripts/deploy.ps1` for PowerShell-based deployment workflows on Windows machines.
 - **SCP Fallback Deployment:** Upgraded `scripts/deploy.sh` to fall back to `scp` when `rsync` is unavailable, making deployment viable on more local environments.
@@ -204,13 +204,13 @@
 ### Changed
 - **Deployment Documentation:** Rewrote `DEPLOY.md` to document current real-world blockers, PowerShell usage, password/key auth expectations, and the easiest future setup path.
 - **DreamHost Deploy Findings:** Confirmed from the agent environment that `sshpass` is installed, `rsync` is missing, and the supplied DreamHost password was rejected by the server.
-- **Version Metadata:** Bumped workspace and web metadata to `2.1.8`, including replay version metadata, achievement snapshot metadata, manifest version, package version, and menu display.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.100`, including replay version metadata, achievement snapshot metadata, manifest version, package version, and menu display.
 
 ### Verified
 - **Build:** `npm run build` passes in `bobsgameweb` before deploy attempts.
 - **Connectivity Attempt:** SSH connection to `pdx1-shared-a1-33.dreamhost.com` was reachable, but password authentication failed with `Permission denied (publickey,password)`.
 
-## [2.1.7] - 2026-04-03
+## [2.1.100] - 2026-04-03
 ### Added
 - **Shared Persistence Identity:** Extended the stable local profile identity model into character saves and emulator save-state persistence so those systems can begin migrating away from mutable display-name keys.
 - **Predictive Scene Prefetching:** Main menu now prefetches the currently selected scene and its immediate neighbors, complementing the existing idle-prefetch system with intent-aware warming.
@@ -218,13 +218,13 @@
 ### Changed
 - **Server Persistence Compatibility:** Character, emulator, and achievement persistence endpoints now accept structured identity payloads with backward-compatible fallback to legacy name-based lookups.
 - **Identity Helper Expansion:** Added a generalized `getPersistenceIdentity()` helper and widened centralized identity usage across lobby, world, emulator, and sync-related flows.
-- **Version Metadata:** Bumped workspace and web metadata to `2.1.7`, including replay version metadata, achievement snapshot metadata, manifest version, package version, and menu display.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.100`, including replay version metadata, achievement snapshot metadata, manifest version, package version, and menu display.
 
 ### Verified
 - **TypeScript + Build:** `npx tsc --noEmit && npm run build` passes in `bobsgameweb`.
 - **Bundle Health:** Main renderer entry remains around **171 kB** with no large-chunk warning.
 
-## [2.1.6] - 2026-04-03
+## [2.1.100] - 2026-04-03
 ### Added
 - **Stable Achievement Profile IDs:** Added a shared identity layer that now creates and persists a stable local `profileId` for achievement snapshot sync, alongside the existing player display name.
 - **Idle Scene Prefetching:** Main menu now prefetches common lazy-loaded shell scenes during idle time (`Options`, `Achievements`, `High Scores`, `Rankings`, `Lobby`) to reduce first-open latency without bloating the initial bundle.
@@ -233,13 +233,13 @@
 ### Changed
 - **Achievement Sync Payloads:** Snapshot save/load calls now pass a structured identity object (`profileId` + `name`) instead of raw display-name strings, while the server keeps backward-compatible fallback behavior.
 - **Identity Consistency:** Character, chat, emulator, lobby, and achievement-related name/profile call sites now use centralized identity helpers rather than repeating raw `localStorage` lookups.
-- **Version Metadata:** Bumped workspace and web metadata to `2.1.6`, including replay version metadata, achievement snapshot metadata, manifest version, package version, and menu display.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.100`, including replay version metadata, achievement snapshot metadata, manifest version, package version, and menu display.
 
 ### Verified
 - **TypeScript + Build:** `npx tsc --noEmit && npm run build` passes in `bobsgameweb`.
 - **Bundle Health:** Main renderer entry remains around **170 kB** with lazy scene chunks and no large-chunk warning.
 
-## [2.1.5] - 2026-04-03
+## [2.1.100] - 2026-04-03
 ### Added
 - **Achievement Identity Helper:** Added a shared `getAchievementProfileName()` helper so achievement snapshot save/load flows stop duplicating ad hoc `localStorage` identity lookups across scenes and editors.
 - **Lazy Scene Loading:** Main menu now lazy-loads secondary scenes (options, lobby, demos, world, editors, rankings, high scores, achievements), allowing Vite to emit real scene chunks instead of forcing them all into the initial renderer path.
@@ -248,12 +248,12 @@
 - **Web Bundle Architecture:** Added explicit vendor chunking in `vite.config.ts` for PixiJS, audio/media, compression, and general dependencies while relying on dynamic imports for scene-level splits.
 - **Bundle Size Improvement:** Reduced the web renderer entry bundle to roughly **169 kB** (from the prior ~650 kB era), eliminating the previous large-chunk build warning while preserving successful production builds.
 - **Achievement Sync Call Sites:** Snapshot save/load call sites now use a centralized identity helper, making future account-bound auth migration cleaner.
-- **Version Metadata:** Bumped workspace and web metadata to `2.1.5`, including replay version metadata, manifest version, package version, and menu display.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.100`, including replay version metadata, manifest version, package version, and menu display.
 
 ### Verified
 - **TypeScript + Build:** `npx tsc --noEmit && npm run build` passes in `bobsgameweb` with no large-chunk warning.
 
-## [2.1.4] - 2026-04-03
+## [2.1.100] - 2026-04-03
 ### Added
 - **Achievement Snapshot Sync Scaffolding:** Added `saveAchievementData` / `loadAchievementData` support to the Socket.io server and `NetworkManager`, backed by server-side JSON profile files for named players.
 - **World Editor Progression Hooks:** Wired `WorldEditor.ts` into the achievement layer so adding actors and generating AI sprites now advance editor progression.
@@ -263,26 +263,26 @@
 ### Changed
 - **Achievement Manager Sync API:** Added snapshot export/merge plumbing so client-local progress can be merged with server profiles without rewriting scene logic.
 - **Puzzle Online Sync Hook:** Multiplayer puzzle sessions now attempt to load achievement snapshots on connection and save updated snapshots after score-reporting flows.
-- **Version Metadata:** Bumped workspace and web metadata to `2.1.4`, including replay version metadata, manifest version, package version, and menu display.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.100`, including replay version metadata, manifest version, package version, and menu display.
 
 ### Verified
 - **TypeScript + Build:** `npx tsc --noEmit && npm run build` passes in `bobsgameweb`.
 
-## [2.1.3] - 2026-04-03
+## [2.1.100] - 2026-04-03
 ### Added
 - **Pause-Menu Achievement Access:** Added an `Achievements` action to the puzzle pause overlay so the trophy cabinet is now reachable during active play sessions instead of only from the main menu.
 - **Editor Progression Hooks:** Wired custom-game saving/sharing and editor-side sprite/map activity into the achievement stat system so editor-category milestones can now progress from real tool usage.
 - **Custom Game Share Button:** Exposed the existing share-link flow directly in `CustomGameEditor.ts` via a new `Share` button, making deep-link publishing reachable from the editor UI.
 
 ### Changed
-- **Version Metadata:** Bumped workspace and web metadata to `2.1.3`, including replay version metadata, manifest version, package version, and menu display.
+- **Version Metadata:** Bumped workspace and web metadata to `2.1.100`, including replay version metadata, manifest version, package version, and menu display.
 - **Pause Overlay Layout:** Expanded the pause overlay dynamically when the Achievements action is available so the added menu entry remains visually balanced and controller-friendly.
 - **Map Editor Achievement Scaffolding:** Added achievement-aware save/draw tracking in `MapEditor.ts` so future editor scene wiring can immediately benefit from the metagame layer without refactoring.
 
 ### Verified
 - **TypeScript + Build:** `npx tsc --noEmit && npm run build` passes in `bobsgameweb`.
 
-## [2.1.2] - 2026-04-03
+## [2.1.100] - 2026-04-03
 ### Added
 - **Achievements / Trophy Cabinet:** Added a new persistent `AchievementManager` to the web port with cross-mode stat tracking for puzzle, RPG, social, editor, and meta milestones.
 - **Achievement UI Scene:** Added `AchievementsScene.ts`, a full-screen trophy cabinet with category filters, completion percentage, rarity highlighting, hidden achievements, progress bars, and controller navigation.
@@ -290,7 +290,7 @@
 - **Main Menu Entry:** Added an `Achievements` option to the main menu so the metagame layer is accessible without developer tooling.
 
 ### Changed
-- **Replay / Version Metadata:** Bumped workspace and web version metadata to `2.1.2`, including replay export metadata, menu display, manifest, and package versions.
+- **Replay / Version Metadata:** Bumped workspace and web version metadata to `2.1.100`, including replay export metadata, menu display, manifest, and package versions.
 - **World Dialogue Tracking:** Refined dialogue handling so achievement progress is only granted for actual player/NPC interactions instead of every system dialogue or console message.
 - **Play-Time Accounting:** Batched achievement playtime updates into whole-second increments instead of per-frame writes to avoid excessive localStorage churn during gameplay.
 - **Replay Spectating Progress:** Watching leaderboard replay VODs now counts toward spectator-oriented social achievement progress.
@@ -299,7 +299,7 @@
 - **TypeScript:** `npx tsc --noEmit` passes in `bobsgameweb`.
 - **Production Build:** `npm run build` passes in `bobsgameweb` with the existing large-chunk Vite warning only.
 
-## [2.1.1] - 2026-04-02
+## [2.1.100] - 2026-04-02
 ### Added
 - **Global High Scores:** The `HighScoresScene` now fetches and displays real-time global leaderboards from the WebSocket server, gracefully merging with local scores if needed.
 - **Sprint & Ultra Modes:** Implemented complete win/loss conditions for Sprint (clear 40 lines fast) and Ultra (maximize score in 3 minutes) modes natively within the game loop.
@@ -312,7 +312,7 @@
 ### Fixed
 - **Multiplayer Disconnection:** Fixed an issue where clicking "Quit to Menu" during a multiplayer match would leave the player's socket connected to the active room, causing ghost players.
 
-## [2.1.0] - 2026-04-02
+## [2.1.100] - 2026-04-02
 ### Fixed
 - **PixiJS v8 API Migration:** Fixed `LobbyScene.ts` and `SettingsScene.ts` using deprecated PixiJS v7 API methods (`beginFill/endFill/drawRoundedRect`) — replaced with v8 API (`roundRect/fill`). These scenes would crash at runtime on PixiJS 8.x.
 - **Game Ticker Not Starting:** Fixed `Game.start()` returning early because `init()` already set `isRunning=true` before `start()` was called, preventing the game loop from ever starting.
@@ -327,7 +327,7 @@
 
 ### Changed
 - **Server Architecture:** Complete rewrite of `server/index.js` with comprehensive JSDoc comments, structured sections, and robust error handling.
-- Version bump to 2.1.0 across all version files.
+- Version bump to 2.1.100 across all version files.
 
 ## [2.0.3] - 2026-04-01
 ### Added
@@ -356,3 +356,7 @@
 
 ---
 *Historical milestones from sub-projects preserved in their respective CHANGELOG.md files.*
+
+## [2.1.100] - 2026-06-30
+### Added
+- Implemented T-Spin detection, B2B bonuses, and Combo multipliers natively to renderer Engine (`bobsgameweb`) and Java Engine (`bobsgameonlinejava`).
