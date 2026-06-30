@@ -1,6 +1,6 @@
 # TODO List — bob's game Omni-Engine
 
-**Last Updated**: 2026-04-22 | **Version**: 2.1.100
+**Last Updated**: 2026-04-22 | **Version**: 2.1.81
 
 ---
 
@@ -103,10 +103,10 @@
 
 ## 🐛 Known Bugs
 
-1. ~~**NDDemoScene TypeScript errors** (2 errors) — NDPuzzleGame and LibretroGame don't properly extend MiniGameEngine. Pre-existing, not blocking build.~~ (Fixed in v2.1.100/v2.1.100 via TournamentDemoWrapper abstract sync)
+1. ~~**NDDemoScene TypeScript errors** (2 errors) — NDPuzzleGame and LibretroGame don't properly extend MiniGameEngine. Pre-existing, not blocking build.~~ (Fixed in v2.1.86/v2.1.89 via TournamentDemoWrapper abstract sync)
 2. **okgame C++ build failures** — Compile/link errors need resolution, vcpkg modernization
-3. ~~**Version in root VERSION.md is out of sync** (shows 2.1.100, actual is 2.1.100) — Need to sync~~ (Fixed in v2.1.100+ version patch scripts)
-4. ~~**Pre-existing LibretroGame/NDPuzzleGame** — These files exist but don't properly integrate with the new ND class~~ (No longer blocking; replaced by proper TS structure in v2.1.100+)
+3. ~~**Version in root VERSION.md is out of sync** (shows 2.1.15, actual is 2.1.73) — Need to sync~~ (Fixed in v2.1.75+ version patch scripts)
+4. ~~**Pre-existing LibretroGame/NDPuzzleGame** — These files exist but don't properly integrate with the new ND class~~ (No longer blocking; replaced by proper TS structure in v2.1.86+)
 
 ## 📝 Code Quality
 

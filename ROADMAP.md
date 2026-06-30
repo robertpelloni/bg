@@ -1,10 +1,10 @@
 # ROADMAP: bob's game — The Ultimate Omni-Engine
 
-## Current Version: 2.1.100 | Status: Active Development
+## Current Version: 2.1.75 | Status: Active Development
 
 ---
 
-## Phase 1: Engine Porting ✅ COMPLETE (v2.1.100 – v2.1.100)
+## Phase 1: Engine Porting ✅ COMPLETE (v2.1.58 – v2.1.75)
 **Goal**: Port all C++/Java engine systems to TypeScript web engine
 
 - [x] 187 TypeScript modules across 16 subsystems
