@@ -11,17 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
-          cache-dependency-path: bobsgameweb/package-lock.json
+          # cache: "npm"
+          # cache-dependency-path: bobsgameweb/package-lock.json
 
       - name: Install dependencies
         working-directory: bobsgameweb
-        run: npm ci --legacy-peer-deps
+        run: npm install --legacy-peer-deps
 
       - name: Build
         working-directory: bobsgameweb
@@ -41,6 +43,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Download build artifacts
         uses: actions/download-artifact@v4
