@@ -23,7 +23,7 @@
 - [x] Settings & persistence (GlobalSettings, GameSave, NetworkGameSave)
 - [x] Utilities (FileUtils, ManifestLoader, OKMath, OKColor, Cache, BobMenu)
 
-## Phase 2: Game Loop Integration 🔄 IN PROGRESS
+## Phase 2: Game Loop Integration ✅ COMPLETE
 **Goal**: Wire up all systems into the actual running game
 
 - [x] **Wire ClientGameEngine as the running game engine** in the main game loop
@@ -38,7 +38,7 @@
 - [x] **Wire NetworkManager** for real multiplayer connections
 - [x] **Wire TournamentManager** for bracket-style tournaments
 
-## Phase 3: Interactive Demos 📋 PLANNED
+## Phase 3: Interactive Demos 🔄 IN PROGRESS
 **Goal**: Create playable demo scenes for each major subsystem
 
 - [x] Puzzle Game Demo — fully playable puzzle with BobsGame menu flow
