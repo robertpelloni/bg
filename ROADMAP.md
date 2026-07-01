@@ -1,10 +1,10 @@
 # ROADMAP: bob's game — The Ultimate Omni-Engine
 
-## Current Version: 2.1.102 | Status: Active Development
+## Current Version: 2.1.103 | Status: Active Development
 
 ---
 
-## Phase 1: Engine Porting ✅ COMPLETE (v2.1.102 – v2.1.102)
+## Phase 1: Engine Porting ✅ COMPLETE (v2.1.103 – v2.1.103)
 **Goal**: Port all C++/Java engine systems to TypeScript web engine
 
 - [x] 187 TypeScript modules across 16 subsystems
@@ -44,7 +44,7 @@
 - [x] Puzzle Game Demo — fully playable puzzle with BobsGame menu flow
 - [x] RPG World Demo — walkable map with NPCs, dialogue, items
 - [x] nD Console Demo — open nD, play mini-games, browse game library
-- [ ] Tournament Demo — create/join tournament, play bracket matches
+- [x] Tournament Demo — create/join tournament, play bracket matches
 - [x] ECS Demo — spawn entities with behaviors, watch them interact
 - [x] Editor Demo — map editor, sprite editor, event sheet editor
 - [x] Network Demo — connect to server, join room, play online
