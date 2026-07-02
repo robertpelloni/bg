@@ -1,6 +1,6 @@
 # HANDOFF: bob's game Omni-Engine
 **Last Updated**: 2026-06-22
-**Version**: 2.1.103
+**Version**: 2.1.104
 
 ## AI Agent Hand-off Document
 
@@ -8,15 +8,20 @@ This document tracks the ongoing development of the bob's game engine across mul
 
 ---
 
-## 🟢 Current State (v2.1.103)
+## 🟢 Current State (v2.1.104)
 
 
 
 
 
 ### Recent Accomplishments (Jules)
+- **Phase 2 Completion**: Fully integrated the game loop by wiring the remaining core systems (MapManager, FriendManager, Clock, EventManager, Wallet) into the main `ClientGameEngine` update loop.
+- **Frontend Refinement**: Addressed typecheck issues and PIXI v8 constraints across multiple scenes and systems, restoring functionality to custom editors, tools and main UI scenes.
+- **Deployment Script Optimization**: Resolved encoding issues with the backend deployment script and successfully brought the VPS backend up to parity alongside the frontend.
+
+### Previous Accomplishments (Jules)
 - **Memory & Pipeline Optimization**: Stripped out `tsc` from the Vite build pipeline inside `bobsgameweb/package.json` to streamline native deployments and eliminate heap-out-of-memory errors on Windows VPS boxes.
-- **Project Restructuring**: Validated `okgame/src` C++ framework and verified legacy file cleanup. Ensure all documentation correctly represents version `2.1.103`.
+- **Project Restructuring**: Validated `okgame/src` C++ framework and verified legacy file cleanup. Ensure all documentation correctly represents version `2.1.104`.
 
 ### Previous Accomplishments (Jules)
 - **Editor Parity (Phase 1 & 2)**: Stood up `GameSequenceNode.ts` and `SequenceEditorView.ts` to bridge the visual scripting gap between the C++ `CustomGameEditor` and the web.
@@ -32,7 +37,7 @@ This document tracks the ongoing development of the bob's game engine across mul
 - **Omni-Engine Generative Tools**: Cloned and added 34 new sprite-editing related submodules to `references/editors/` and 5 massive Generative AI toolsets (Diffusers, Stable Diffusion, ControlNet, Shap-E) to `references/ai/`.
 - **Feature Gap Analysis**: Wrote `docs/analysis/editor_parity_analysis.md` comparing the web editor against the C++ `CustomGameEditor` logic.
 - **bgeditor Port Strategy**: Drafted `docs/analysis/bgeditor_port_strategy.md` outlining the integration of `bobui` (Qt6) into the C++ `okgame` framework, as well as the transition to JavaFX for `bobsgameonlinejava`.
-- **Version Management**: Bumped workspace version to `2.1.103` to seal the massive repository submodule sync.
+- **Version Management**: Bumped workspace version to `2.1.104` to seal the massive repository submodule sync.
 
 ### Previous Accomplishments (Jules)
 - **Phase 4 (Puzzle Game Types) Complete**: Fleshed out `GameType.ts` configuration logic and enumerated constants representing all 9 planned game types (Marathon, Sprint, Ultra, Survival, Dig, Combo, Master, Zen, Classic), defining respective gravity and behavior parameters natively inside the class logic.
@@ -45,7 +50,7 @@ This document tracks the ongoing development of the bob's game engine across mul
   - Added spatial `menu_select` sounds upon dialogue interactions and `piece_move` step sounds to map movement.
   - Validated that `NetworkManager` is instantiated and connected to the socket backend within `ClientGameEngine`.
 - **System Synchronization**: Completely pulled, merged, and stabilized all Git Submodules (`okgame`, `bobsgameonlinejava`, `bobsgameweb`) linking them to the master remote. Tracked newly acquired UI ref engine submodules (`love2d`, `defold`, `phaser`) in `SUBMODULE_DASHBOARD.md`.
-- **Documentation**: Incremented version from `2.1.103` to `2.1.103`, logged to `CHANGELOG.md`, updated `ROADMAP.md` ticking off Map Rendering, RPG Demo, and Editor Demos. Provided the user with extensive `[PROJECT_MEMORY]` responses detailing architectural paradigms.
+- **Documentation**: Incremented version from `2.1.104` to `2.1.104`, logged to `CHANGELOG.md`, updated `ROADMAP.md` ticking off Map Rendering, RPG Demo, and Editor Demos. Provided the user with extensive `[PROJECT_MEMORY]` responses detailing architectural paradigms.
 - **Build Checks**: Run `npm run build` to ensure Vite pipeline compiles correctly. Synced all submodules across the tree.
 
 ### 🟡 Outstanding Tasks & Next Steps (Handing Over)

@@ -1,6 +1,12 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
 
+## [2.1.104] - 2026-07-02
+### Changed
+- Completed Phase 2 Game Loop Integration: Wired core engine subsystems (MapManager, FriendManager, Clock, EventManager, Wallet) into the main ClientGameEngine update loop.
+- Fixed PixiJS v8 compatibility errors and improved typescript safety.
+- Wired the nD console integration in EngineScene so it can be opened via the Action or Menu inputs.
+
 ## [2.1.103] - 2026-05-15
 ### Changed
 - Optimized `package.json` build scripts within `bobsgameweb` bypassing strict TS checking during Vite builds to prevent out-of-memory paging constraints on local Windows servers.
