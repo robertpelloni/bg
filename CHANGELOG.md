@@ -1,6 +1,14 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
 
+## [2.1.95] - 2026-07-08
+### Changed
+- Full multirepo sync: bobsgameweb v3.0.26, bobsgameonlinejava synced
+- Forward-merged bobsgameweb feature branch (Wasm, WebGPU, AI NPCs)
+- Merged bobui feature/audio-graph-native-linking-test (Go oscilloscope)
+- Fixed bobsgame.com SSL cert (renewed, webroot path fixed)
+- Updated submodule pointers across all layers
+
 ## [2.1.99] - 2026-05-15
 ### Changed
 - Optimized `package.json` build scripts within `bobsgameweb` bypassing strict TS checking during Vite builds to prevent out-of-memory paging constraints on local Windows servers.
