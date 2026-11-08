@@ -2,8 +2,9 @@
 set -euo pipefail
 
 # Build all web, server, and reference components across the monorepo
+ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 echo "=== Building bobsgameweb client ==="
-cd "$(dirname "$0")/../bobsgameweb"
+cd "$ROOT_DIR/bobsgameweb"
 
 if [ ! -d "node_modules" ]; then
     echo "Installing bobsgameweb dependencies..."
