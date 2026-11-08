@@ -1,8 +1,19 @@
 # TODO List — bob's game Omni-Engine
 
-**Last Updated**: 2026-04-22 | **Version**: 2.1.81
+**Last Updated**: 2026-07-08 | **Version**: 2.1.96
 
 ---
+
+## 🔴 Critical — Completed Subsystem & Dashboard Integration
+- [x] Wire missing scenes into Omni-Engine Dashboard (`MainMenuScene.ts`):
+  - [x] ShopScene (`Item Shop & Merchant`)
+  - [x] InventoryScene (`Equipment & Inventory`)
+  - [x] QuestLogScene (`Quest Log & Trackers`)
+  - [x] SkillTreeScene (`Skill Tree & Abilities`)
+- [x] Resolve Vite static asset import warning for `doors.json`
+- [x] Create consolidated scripts `scripts/run-servers.sh` and `scripts/build-all.sh`
+- [x] Nondestructively archive redundant/one-off utility scripts into `archive/`
+- [x] Expand test suite automation with Python test runner (`/home/jules/self_created_tools/test_runner.py` - 35/35 passing)
 
 ## 🔴 Critical — Game Loop Integration
 

@@ -1,4 +1,4 @@
-# DEPLOY: Deployment Instructions (v2.1.73)
+# DEPLOY: Deployment Instructions (v2.1.96)
 
 ## Architecture Overview
 
