@@ -1,6 +1,6 @@
 # bg — the bob's game umbrella workspace
 
-`bg` is the master workspace repository for **bob's game**: it ties together every engine implementation of the game plus the porting/consolidation tooling being used to modernize them. Version **2.1.95** (see `VERSION.md`). Default branch: `master`.
+`bg` is the master workspace repository for **bob's game**: it ties together every engine implementation of the game plus the porting/consolidation tooling being used to modernize them. Version **2.1.96** (see `VERSION.md`). Default branch: `master`.
 
 > **Alpha workspace.** This is a working developer tree, not a clean distributable repo — it contains logs, local databases, an SDK zip, and bot-session artifacts alongside the code and plans.
 

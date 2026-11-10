@@ -1,6 +1,23 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
 
+## [2.1.96] - 2026-07-08
+### Added
+- Integrated missing sub-scenes into the Omni-Engine Dashboard (`MainMenuScene.ts`):
+  - Added Item Shop & Merchant (`ShopScene`) under Creation & Editors category.
+  - Added Equipment & Inventory (`InventoryScene`) under Creation & Editors category.
+  - Added Quest Log & Trackers (`QuestLogScene`) under Community & Progress category.
+  - Added Skill Tree & Abilities (`SkillTreeScene`) under Community & Progress category.
+  - Implemented dynamic lazy-preloading and rich tooltips for all newly wired scenes.
+- Created consolidated root runner script `scripts/run-servers.sh` with start, stop, restart, and status subcommands for managing Vite dev server and AI proxy background services.
+- Created consolidated root build script `scripts/build-all.sh` orchestrating web engine builds and asset checks.
+- Created reusable Python test runner `/home/jules/self_created_tools/test_runner.py` verifying all 35 project test suites.
+
+### Changed
+- Resolved Vite build asset warning by placing `src/data/doors.json` locally in `bobsgameweb/src/data/` and updating `LegacyMapLoader.ts`.
+- Nondestructively archived temporary conversion and migration scripts from workspace root and `bobsgameweb/` into `archive/scripts/` and `archive/bobsgameweb/`.
+- Updated governance documentation (`ROADMAP.md`, `TODO.md`, `VISION.md`, `MEMORY.md`, `DEPLOY.md`, `IDEAS.md`, `HANDOFF.md`, `VERSION.md`).
+
 ## [2.1.95] - 2026-07-08
 ### Changed
 - Full multirepo sync: bobsgameweb v3.0.26, bobsgameonlinejava synced
