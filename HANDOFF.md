@@ -104,6 +104,15 @@ build was deployed straight to the VPS (SSH via `root@5.161.250.43`;
 - Not done: git push of bobsgameweb `e72495cf` (this session's token still
   returns 401; the root repo was pushed by the concurrent protocol process).
 
+## Follow-up (same day, 2026-11-13)
+- "Demo Battle" dashboard entry added (fabricated CombatComponents), so all
+  42 scenes are now reachable from the single dashboard page. Build clean
+  (`tsc` 0 errors, `vite build` ok), deployed to Hetzner prod (fresh backup
+  `/srv/www/bobsgame.com_backup_20261113b`), verified in the served bundle
+  (`Demo Battle` present, site 200, `/healthz` 3.0.34).
+- Pushed: bobsgameweb `main` = `e745e243` (cherry-picked via temp worktree;
+  local dirty tree untouched), root re-pinned to it.
+
 ## Next steps (priority order)
 1. Restore npm registry access (or run on an unrestricted machine):
    `cd bobsgameweb/server; npm install`, then verify WS server on 6065 and

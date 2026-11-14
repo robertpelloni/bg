@@ -6,7 +6,7 @@
 
 ## 🔴 Open — found 2026-11-13 (dashboard / tray / runtime audit)
 
-- [ ] **BattleScene has no dashboard entry**: it requires live `player`/`enemy` CombatComponents, so it stays reachable only via WorldScene NPC battles (Arena and Boss Rush already cover combat from the dashboard). Add a demo-battle entry with fabricated combatants if direct access is wanted.
+- [x] **BattleScene dashboard entry**: added "Demo Battle" (Play category) with fabricated player/enemy CombatComponents in the same field shape WorldScene passes for NPC battles — every scene is now reachable from the single dashboard page. Deployed to Hetzner prod 2026-11-13 (verified in the served bundle).
 - [ ] **Local WS server cannot start**: `bobsgameweb/server/node_modules` was never installed; `npm install` fails here with `ERR_SSL_TLSV1_ALERT_PROTOCOL_VERSION` from registry.npmjs.org. Run `cd bobsgameweb/server; npm install` on an unrestricted network, then `node server/index.js` (port 6065).
 - [ ] **Electron tray not yet run locally**: the Electron binary download hits the same npm TLS block. After a successful root `npm install`, run `npm run dev:electron` and verify the tray menu (Show/Hide, AI proxy 8080, Game Server 6065, Restart All, Quit Servers & Exit).
 - [ ] **Test suite cannot run**: 34 files in `bobsgameweb/src/__tests__/` but no runner installed and no `test` script in `package.json`. Add vitest + a `test` script and wire it into the build.
