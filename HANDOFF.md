@@ -160,6 +160,18 @@ VPS: disk filled to 100% by my `cp -r` deploy backups (brief 522 outage,
 self-recovered; load avg >100 from other host activity). Backups pruned to
 one frontend + one backend. Never `cp -r` the 3.4 GB site per deploy again.
 
+## Settings consolidation + defeat (2026-11-14)
+- Dashboard System tab now has ONE "Settings & Options" entry
+  (SettingsScene). OptionsScene is reached via its "Graphics & Haptics →"
+  button (pointerdown; CDP-synthesized clicks never fire Pixi handlers in
+  headless testing, so the link is verified by render + shared handler
+  pattern, not a headless click). Live-verified renders.
+- Demo Battle enemy retuned (HP 90 / ATK 17 / DEF 4): defeat verified live
+  (defend-spam → HP 0/100 → auto-exit to dashboard); the literal
+  "DEFEAT... You collapse." banner sits in a ~1s window between frames and
+  was not isolated in a screenshot — HP 0 frame + dashboard exit captured.
+- Screenshots for all passes: `%TEMP%\bg-verify\` (a–z, s–, d– series).
+
 ## Next steps (priority order)
 1. Restore npm registry access (or run on an unrestricted machine):
    `cd bobsgameweb/server; npm install`, then verify WS server on 6065 and
