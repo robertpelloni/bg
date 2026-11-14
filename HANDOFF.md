@@ -57,10 +57,13 @@ environment (npm TLS block below), so the tray is typechecked
   `okgame/` (C++) is registered in `.gitmodules` but not cloned here.
 
 Logs from this session: `bobsgameweb/logs/local-{ws,ai,web,electron}*.log`.
-Session-started processes (vite preview 3000, AI proxy 8080) stop when the
-session ends. Restart with:
-`cd bobsgameweb; npx vite preview --port 3000` and `node server/ai_proxy.js`;
-after npm access is restored also `node server/index.js`.
+
+**User constraint (2026-11-13, supersedes the local-run steps above): do not
+run local servers.** The session-started vite preview (3000) and AI proxy
+(8080) were stopped on request and ports verified free. Deploy live to
+Hetzner production only, when possible, and verify via
+`https://bobsgame.com/` and `https://ws.bobsgame.com/healthz` — never via
+localhost servers.
 
 ### Scripts & docs governance
 - New index: `docs/SCRIPTS_INVENTORY.md` (canonical deploy/build/run paths).
