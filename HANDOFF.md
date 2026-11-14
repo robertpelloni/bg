@@ -113,6 +113,34 @@ build was deployed straight to the VPS (SSH via `root@5.161.250.43`;
 - Pushed: bobsgameweb `main` = `e745e243` (cherry-picked via temp worktree;
   local dirty tree untouched), root re-pinned to it.
 
+## Live verification + fixes (2026-11-13, later — headless Edge/CDP, screenshots in `%TEMP%\bg-verify\`)
+Drove the real prod game (`https://bobsgame.com/#menu` — the dashboard's
+public route; the bare URL boots straight into the RPG world) at 1280x720,
+56–57 FPS, zero page errors in the final passes:
+- Dashboard renders as designed; Demo Battle starts; ATTACK (60→49 HP),
+  MAGIC/Lightning (49→15), ITEMS heal (99→100, "Restored 30 HP"), VICTORY
+  ("VICTORY! Enemy defeated.", enemy 0/60, "Warrior's Path" achievement),
+  exit back to dashboard, FLEE → dashboard. All observed on screenshots.
+- **Defeat is unreachable in the demo battle by balance**: enemy deals
+  3 (special ~4) per hit vs 100 player HP while the player kills it in
+  ~6 hits (~15 damage taken max). Needs a stronger demo enemy to demo.
+- **Player DEFEND did not exist** (menu was ATTACK/MAGIC/ITEMS/FLEE and the
+  `playerDefending` field was dead code). Added DEFEND: braces and halves
+  the next hit (observed "Blocked! Enemy deals only 1 damage!"). Live.
+- **Shop crashed from every entry point**: `ShopScene.shopConfig` was never
+  assigned in the constructor; `refreshUI()` threw on `.inventory`. Fixed at
+  the root (`this.shopConfig = config`), added regression test
+  `src/__tests__/shop-config.test.ts` (authored + typechecked; cannot run
+  until `tsx` is installable — same npm block). Shop now renders live.
+- **Play tab overflowed 720p** (14 items, last row clipped): rows compact
+  automatically when a category exceeds 6 rows. Battle menu also raised
+  clear of the page footer so FLEE is fully visible. All live on prod.
+- Not confirmed headlessly: world pause "Quit to Menu" is mouse-only (no
+  keyboard nav) and CDP mouse events never fired Pixi handlers in any pass
+  (keyboard input works everywhere). Worth a real-mouse check + keyboard
+  support for the pause menu.
+- Deployed with per-deploy VPS backups (`*_backup_20261113` … `e`).
+
 ## Next steps (priority order)
 1. Restore npm registry access (or run on an unrestricted machine):
    `cd bobsgameweb/server; npm install`, then verify WS server on 6065 and

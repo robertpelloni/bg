@@ -13,6 +13,10 @@
 - [x] **Production behind local**: ~~`ws.bobsgame.com/healthz` reported 3.0.10 vs local 3.0.34~~ — deployed to Hetzner 2026-11-13 (frontend + backend, remote backups `*_backup_20261113` kept on the VPS); `/healthz` now reports 3.0.34 and the served bundle contains the new dashboard entries.
 - [ ] **okgame (C++) not present locally**: registered in `.gitmodules` but not cloned in this workspace; C++ build status unverified here.
 - [ ] **Duplicate settings surfaces**: OptionsScene (Game Options) and SettingsScene (Engine Settings) are both on the dashboard with distinct scopes — keep both, but consider merging into one tabbed scene.
+- [x] **Shop crashed from every entry point** (found in live verification 2026-11-13): `ShopScene.shopConfig` was never assigned; fixed in the constructor + regression test `src/__tests__/shop-config.test.ts` (needs `tsx` to execute). Verified live: General Store renders from the dashboard.
+- [x] **Player DEFEND missing in battle**: added (halves next hit, uses the previously dead `playerDefending` flag), verified live ("Blocked! Enemy deals only 1 damage!").
+- [ ] **Demo-battle defeat unreachable**: enemy deals ~3/hit vs 100 HP while dying in ~6 hits. Give the demo enemy real teeth (or a second, harder demo opponent) so DEFEAT can be experienced.
+- [ ] **World pause menu is mouse-only**: "Quit to Menu" has no keyboard navigation, and headless CDP mouse events never fired Pixi handlers in testing (keyboard works everywhere else). Add keyboard support to the pause menu and re-verify Quit to Menu with a real mouse.
 
 ---
 
