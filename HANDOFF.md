@@ -88,11 +88,27 @@ other agents' chats this session.
   were already dirty at session start; left as found.
 - Root branch is `master`; bobsgameweb branch is `main`.
 
+## Deployed to Hetzner production (2026-11-13, after the audit above)
+Per the user's "no local servers, deploy live only" constraint, the verified
+build was deployed straight to the VPS (SSH via `root@5.161.250.43`;
+`ws.bobsgame.com` SSH does not answer on port 22 — both sites share this host):
+- Remote backups kept: `/srv/www/bobsgame.com_backup_20261113`,
+  `/opt/bobsgameweb/server_backup_20261113`.
+- Frontend: fresh `tsc` (0 errors) + `vite build`, uploaded to
+  `/srv/www/bobsgame.com`; `https://bobsgame.com/` returns 200 and the served
+  bundle contains the new "Inventory & Equipment" dashboard entry.
+- Backend: `server/` uploaded to `/opt/bobsgameweb/server`,
+  `systemctl restart bobsgameweb-server` (active);
+  `https://ws.bobsgame.com/healthz` now reports **3.0.34** (was 3.0.10),
+  socket.io polling handshake succeeds, journal shows a clean start.
+- Not done: git push of bobsgameweb `e72495cf` (this session's token still
+  returns 401; the root repo was pushed by the concurrent protocol process).
+
 ## Next steps (priority order)
 1. Restore npm registry access (or run on an unrestricted machine):
    `cd bobsgameweb/server; npm install`, then verify WS server on 6065 and
    the Electron tray end-to-end.
 2. Add vitest + `test` script; make the 34 test files runnable in CI.
-3. Deploy bobsgameweb 3.0.34+ to Hetzner (production still on 3.0.10).
+3. Push bobsgameweb `e72495cf` once GitHub auth is renewed in this environment.
 4. Optional: demo-battle dashboard entry; merge Options/Settings scenes.
 5. Clone/build `okgame` (C++) separately; run the Java gradle build.

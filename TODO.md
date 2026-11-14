@@ -10,7 +10,7 @@
 - [ ] **Local WS server cannot start**: `bobsgameweb/server/node_modules` was never installed; `npm install` fails here with `ERR_SSL_TLSV1_ALERT_PROTOCOL_VERSION` from registry.npmjs.org. Run `cd bobsgameweb/server; npm install` on an unrestricted network, then `node server/index.js` (port 6065).
 - [ ] **Electron tray not yet run locally**: the Electron binary download hits the same npm TLS block. After a successful root `npm install`, run `npm run dev:electron` and verify the tray menu (Show/Hide, AI proxy 8080, Game Server 6065, Restart All, Quit Servers & Exit).
 - [ ] **Test suite cannot run**: 34 files in `bobsgameweb/src/__tests__/` but no runner installed and no `test` script in `package.json`. Add vitest + a `test` script and wire it into the build.
-- [ ] **Production behind local**: `ws.bobsgame.com/healthz` reports 3.0.10 while local is 3.0.34. Deploy current bobsgameweb to Hetzner (frontend + backend, `BACKEND_FORCE_TAR=1`) after review.
+- [x] **Production behind local**: ~~`ws.bobsgame.com/healthz` reported 3.0.10 vs local 3.0.34~~ — deployed to Hetzner 2026-11-13 (frontend + backend, remote backups `*_backup_20261113` kept on the VPS); `/healthz` now reports 3.0.34 and the served bundle contains the new dashboard entries.
 - [ ] **okgame (C++) not present locally**: registered in `.gitmodules` but not cloned in this workspace; C++ build status unverified here.
 - [ ] **Duplicate settings surfaces**: OptionsScene (Game Options) and SettingsScene (Engine Settings) are both on the dashboard with distinct scopes — keep both, but consider merging into one tabbed scene.
 
