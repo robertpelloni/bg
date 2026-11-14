@@ -3,7 +3,7 @@
 `bg` is the master workspace repository for **bob's game**: it ties
 together every engine implementation of the game plus the
 porting/consolidation tooling being used to modernize them. Version
-**2.1.95** (see `VERSION.md`). Default branch: `master`.
+**2.1.100** (see `VERSION.md`). Default branch: `master`.
 
 > **Alpha workspace.** This is a working developer tree, not a clean
 > distributable repo — it contains logs, local databases, an SDK zip,

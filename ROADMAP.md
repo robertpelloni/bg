@@ -1,6 +1,12 @@
 # ROADMAP: bob's game — The Ultimate Omni-Engine
 
-## Current Version: 2.1.75 | Status: Active Development
+## Current Version: 2.1.100 | Status: Active Development
+
+> 2026-11-13: Dashboard consolidation audited — all 42 scenes are either on
+> the single MainMenu dashboard (4 categories, labels + tooltips) or are flow
+> scenes; Inventory/Shop/SkillTree/QuestLog added. Electron tray now controls
+> both local servers (AI proxy 8080 + WS game server 6065) including Quit.
+> Details in `HANDOFF.md`; open runtime blockers in `TODO.md`.
 
 ---
 

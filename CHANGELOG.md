@@ -1,5 +1,24 @@
 # CHANGELOG: bob's game / OKGame (Omni-Workspace)
 
+## [2.1.100] - 2026-11-13
+### Added
+- Dashboard: Inventory & Equipment, Shop & Trading, Skill Tree (Play) and Quest Log (Community) are now reachable from the consolidated MainMenu dashboard — previously only reachable in-world via WorldScene/DemoWorld. All carry descriptive labels and tooltips.
+- System tray: the Electron tray now controls the multiplayer WS game server (port 6065) in addition to the AI proxy (8080) — status lines, start/stop, Restart All Servers covering both, and Quit Servers & Exit stopping both. New IPC: `start-ws-server`, `stop-ws-server`, `get-server-status` (preload-exposed).
+- `docs/SCRIPTS_INVENTORY.md` and a nondestructive backup of legacy root porting scripts in `archive/scripts-legacy-2026-11-13/`.
+
+### Fixed
+- Version numbering: 2.1.96–2.1.99 changelog entries predate the 2.1.95 VERSION.md state (out of order). 2.1.100 supersedes them as the current umbrella version.
+
+### Verified
+- `npx tsc --noEmit` and `npx tsc -p tsconfig.main.json`: 0 errors. `npx vite build`: succeeds (all dashboard scenes code-split, including new Shop/QuestLog chunks).
+- Local web preview on port 3000: HTTP 200. AI proxy on 8080: running. Production `https://ws.bobsgame.com/healthz`: ok (still on 3.0.10 — deploy pending).
+
+### Known blockers
+- Local WS server cannot start: `server/node_modules` was never installed and `npm install` fails against registry.npmjs.org with `ERR_SSL_TLSV1_ALERT_PROTOCOL_VERSION` in this environment (retried twice, not circumvented). Same block stops the Electron binary download, so the tray build is typechecked but not yet run locally.
+- `bobsgameweb/src/__tests__/` (34 files) has no test runner installed and no `test` script.
+
+
+
 
 ## [2.1.95] - 2026-07-08
 ### Changed
