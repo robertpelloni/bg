@@ -13,6 +13,12 @@
 - `npx tsc --noEmit` and `npx tsc -p tsconfig.main.json`: 0 errors. `npx vite build`: succeeds (all dashboard scenes code-split, including new Shop/QuestLog chunks).
 - Local web preview on port 3000: HTTP 200. AI proxy on 8080: running. Production `https://ws.bobsgame.com/healthz`: ok (still on 3.0.10 — deploy pending).
 
+### Fixed (live-verified on prod, later 2026-11-13)
+- Battle: player DEFEND added (halves next hit; the `playerDefending` flag was dead code), battle menu raised clear of the page footer, dashboard Play rows compact automatically so all 14 entries fit 720p.
+- Shop crashed from every entry point (`shopConfig` never assigned in the constructor) — fixed at the root; regression test added at `bobsgameweb/src/__tests__/shop-config.test.ts`.
+- "Quit to Menu" never worked: pause menu was mouse-only, its Enter was consumed by an earlier input read, scene exit could strand the container, and the shared camera kept pointing at the destroyed world container and threw every frame (black screen). All four fixed and verified end-to-end on prod: pause → arrows → Quit → dashboard, zero page errors.
+- Incident: repeated full-site deploy backups filled the VPS disk (100%, brief 522s). Backups pruned to one frontend + one backend copy; the VPS also showed load averages >100 from other activity — deploy backups must be tarballs or skipped, not `cp -r` of the 3.4 GB site.
+
 ### Known blockers
 - Local WS server cannot start: `server/node_modules` was never installed and `npm install` fails against registry.npmjs.org with `ERR_SSL_TLSV1_ALERT_PROTOCOL_VERSION` in this environment (retried twice, not circumvented). Same block stops the Electron binary download, so the tray build is typechecked but not yet run locally.
 - `bobsgameweb/src/__tests__/` (34 files) has no test runner installed and no `test` script.

@@ -141,6 +141,25 @@ public route; the bare URL boots straight into the RPG world) at 1280x720,
   support for the pause menu.
 - Deployed with per-deploy VPS backups (`*_backup_20261113` … `e`).
 
+## Quit-to-Menu chain — fully fixed (2026-11-14)
+Four stacked defects, each proven by screenshot/console before fixing:
+mouse-only pause menu → added keyboard nav; Enter consumed by an earlier
+`isActionPressed()` read → pause input moved to the top of `onUpdate`;
+`Scene.onExit` removed the container only after `destroy()` → removal-first
++ try/catch; and the black-screen root cause — `WorldScene` repoints the
+shared `Camera` at its own container (`setContainer(this.worldContainer)`),
+that container is destroyed on exit, and `Game` calls `camera.update()`
+every frame, throwing forever and starving the Pixi renderer. Guard:
+`Camera.updateContainer` returns when the container is destroyed.
+Final proof on prod: Esc → ▼▼▼ Quit → dashboard renders, **zero page
+errors** (screenshots `%TEMP%\bg-verify\y4-*.png`, main chunk `VCQS5bVF` →
+current). Also note: the pause `Enter` fix commit (`b97d50ea` on origin)
+includes the previously deployed-but-uncommitted WorldScene 3.0.34 WIP, so
+the repo now matches what prod already ran.
+VPS: disk filled to 100% by my `cp -r` deploy backups (brief 522 outage,
+self-recovered; load avg >100 from other host activity). Backups pruned to
+one frontend + one backend. Never `cp -r` the 3.4 GB site per deploy again.
+
 ## Next steps (priority order)
 1. Restore npm registry access (or run on an unrestricted machine):
    `cd bobsgameweb/server; npm install`, then verify WS server on 6065 and

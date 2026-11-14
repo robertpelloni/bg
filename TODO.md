@@ -16,7 +16,7 @@
 - [x] **Shop crashed from every entry point** (found in live verification 2026-11-13): `ShopScene.shopConfig` was never assigned; fixed in the constructor + regression test `src/__tests__/shop-config.test.ts` (needs `tsx` to execute). Verified live: General Store renders from the dashboard.
 - [x] **Player DEFEND missing in battle**: added (halves next hit, uses the previously dead `playerDefending` flag), verified live ("Blocked! Enemy deals only 1 damage!").
 - [ ] **Demo-battle defeat unreachable**: enemy deals ~3/hit vs 100 HP while dying in ~6 hits. Give the demo enemy real teeth (or a second, harder demo opponent) so DEFEAT can be experienced.
-- [ ] **World pause menu is mouse-only**: "Quit to Menu" has no keyboard navigation, and headless CDP mouse events never fired Pixi handlers in testing (keyboard works everywhere else). Add keyboard support to the pause menu and re-verify Quit to Menu with a real mouse.
+- [x] **World pause menu keyboard + Quit to Menu** (fixed and live-verified 2026-11-13): pause menu now has arrow+Enter navigation shared with the mouse handler; Enter is read before the consuming input pass; `Scene.onExit` removes the container before `destroy()`; `Camera.updateContainer` skips destroyed containers (the actual black-screen root cause). Verified on prod: Esc → ▼▼▼ → Enter → dashboard, zero page errors. Note: CDP-synthesized mouse clicks still never fired Pixi handlers in headless testing — real-mouse behavior of the pause buttons is inferred from the shared `activatePauseOption` handler, not independently confirmed.
 
 ---
 
