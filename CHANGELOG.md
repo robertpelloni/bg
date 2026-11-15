@@ -34,6 +34,14 @@
 - Fixed bobsgame.com SSL cert (renewed, webroot path fixed)
 - Updated submodule pointers across all layers
 
+## [2.1.95]
+### Changed
+- Finished Phase 2 Game Loop Integration.
+- Wired `ClientGameEngine` into the main `EngineScene` loop and rendered via `StateManager`.
+- Linked `EventManager`, `FriendManager`, `Player`, and `Wallet` synchronization into `ClientGameEngine.update`.
+- Integrated `GUIManager` into `ClientGameEngine.render` to display HUD and menus over the `DemoWorld`.
+
+
 ## [2.1.99] - 2026-05-15
 ### Changed
 - Optimized `package.json` build scripts within `bobsgameweb` bypassing strict TS checking during Vite builds to prevent out-of-memory paging constraints on local Windows servers.

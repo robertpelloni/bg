@@ -58,6 +58,19 @@ environment (npm TLS block below), so the tray is typechecked
 
 Logs from this session: `bobsgameweb/logs/local-{ws,ai,web,electron}*.log`.
 
+### Recent Accomplishments (Jules)
+- **Phase 2 Game Loop Integration Complete**:
+  - Wired `ClientGameEngine` into `EngineScene` and hooked it up to the main `Game.ts` ticker.
+  - Linked `FriendManager`, `EventManager`, `Player`, and `Wallet` updates directly into `ClientGameEngine.update`.
+  - Wired `GUIManager` into `ClientGameEngine.render` to properly layer the `DemoWorld` underneath the `StatusBar` and menus.
+  - Validated local `DemoWorld` UI interactions including `DialogueBox` rendering via `EventManager`.
+  - Fixed remaining UI layer masking anomalies by syncing `StatusBar` data logic directly inside the main `ClientGameEngine` update tick.
+
+### Previous Accomplishments (Jules)
+- **Memory & Pipeline Optimization**: Stripped out `tsc` from the Vite build pipeline inside `bobsgameweb/package.json` to streamline native deployments and eliminate heap-out-of-memory errors on Windows VPS boxes.
+- **Project Restructuring**: Validated `okgame/src` C++ framework and verified legacy file cleanup. Ensure all documentation correctly represents version `2.1.99`.
+
+
 **User constraint (2026-11-13, supersedes the local-run steps above): do not
 run local servers.** The session-started vite preview (3000) and AI proxy
 (8080) were stopped on request and ports verified free. Deploy live to
