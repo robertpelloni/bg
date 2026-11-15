@@ -4,6 +4,25 @@
 **Session agent**: muse-wonder-1.0 in Muse Code in C:\Users\hyper\workspace\bg on laptop
 **Recurring loop**: cron job `8ba45761`, every 15 minutes, prompt "please continue to proceed as you advise" (permanent, skips while a run is active)
 
+**Last Updated**: 2026-07-08
+**Version**: 2.1.96
+
+## Session Overview & Structural Shifts
+- **Omni-Engine Dashboard Consolidation**:
+  - `MainMenuScene.ts` in `bobsgameweb` had several functional RPG and progression scenes unreferenced in its navigation grid.
+  - Wired `ShopScene` (Item Shop & Merchant), `InventoryScene` (Equipment & Inventory), `QuestLogScene` (Quest Log & Trackers), and `SkillTreeScene` (Skill Tree & Abilities) into the unified menu system.
+  - Added rich tooltips, action dispatches, and prefetching for all new entries.
+- **Asset Cleanups & Vite Build Warnings**:
+  - Eliminated Vite public folder warning during `LegacyMapLoader` dynamic doors import by copying `data/doors.json` to `bobsgameweb/src/data/doors.json` and cleanly importing it.
+- **Workflow & Server Script Consolidation**:
+  - Created `scripts/run-servers.sh` supporting `start`, `stop`, `restart`, and `status` for background dev services (Vite server on port 3000, AI Proxy on port 8080).
+  - Created `scripts/build-all.sh` to handle dependencies, asset verification, and web building.
+  - Archived one-off conversion scripts into `archive/scripts/` and `archive/bobsgameweb/` nondestructively.
+- **Automated Verification**:
+  - Created Python test runner tool `/home/jules/self_created_tools/test_runner.py` verifying all 35 test suites (100% pass rate).
+  - Verified frontend UI visual output with Playwright across all 4 dashboard categories.
+
+
 ## What changed this session (2026-11-13)
 
 ### Dashboard consolidation — completed audit

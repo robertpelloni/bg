@@ -22,7 +22,21 @@
 - [x] **Demo-battle defeat unreachable**: enemy retuned 2026-11-14 (HP 90, ATK 17 → ~11/hit unblocked, 5 blocked). Verified live: defend-spam run reached HP 0/100 and auto-exited to the dashboard; winning now needs magic, heals, or crits.
 - [x] **World pause menu keyboard + Quit to Menu** (fixed and live-verified 2026-11-13): pause menu now has arrow+Enter navigation shared with the mouse handler; Enter is read before the consuming input pass; `Scene.onExit` removes the container before `destroy()`; `Camera.updateContainer` skips destroyed containers (the actual black-screen root cause). Verified on prod: Esc → ▼▼▼ → Enter → dashboard, zero page errors. Note: CDP-synthesized mouse clicks still never fired Pixi handlers in headless testing — real-mouse behavior of the pause buttons is inferred from the shared `activatePauseOption` handler, not independently confirmed.
 
+**Last Updated**: 2026-07-08 | **Version**: 2.1.96
+
+
 ---
+
+## 🔴 Critical — Completed Subsystem & Dashboard Integration
+- [x] Wire missing scenes into Omni-Engine Dashboard (`MainMenuScene.ts`):
+  - [x] ShopScene (`Item Shop & Merchant`)
+  - [x] InventoryScene (`Equipment & Inventory`)
+  - [x] QuestLogScene (`Quest Log & Trackers`)
+  - [x] SkillTreeScene (`Skill Tree & Abilities`)
+- [x] Resolve Vite static asset import warning for `doors.json`
+- [x] Create consolidated scripts `scripts/run-servers.sh` and `scripts/build-all.sh`
+- [x] Nondestructively archive redundant/one-off utility scripts into `archive/`
+- [x] Expand test suite automation with Python test runner (`/home/jules/self_created_tools/test_runner.py` - 35/35 passing)
 
 ## 🔴 Critical — Game Loop Integration
 

@@ -8,6 +8,9 @@
 > both local servers (AI proxy 8080 + WS game server 6065) including Quit.
 > Details in `HANDOFF.md`; open runtime blockers in `TODO.md`.
 
+## Current Version: 2.1.96 | Status: Active Development
+
+
 ---
 
 ## Phase 1: Engine Porting ✅ COMPLETE (v2.1.58 – v2.1.75)
