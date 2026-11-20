@@ -1,11 +1,16 @@
 # bg — the bob's game umbrella workspace
 
+> **CANONICAL BUILD IS THE WEB ENGINE (decision 2026-11-19, Robert Pelloni).**
+> `bobsgameweb` (TypeScript/PixiJS, live at bobsgame.com) is THE bob's game build.
+> The C++ (`okgame`) and Java (`bobsgameonlinejava`) engines in this workspace are
+> frozen as port sources — everything worthwhile in them is to be ported to the web
+> build as efficiently as reasonable, and no parallel engine development continues.
+
+
 `bg` is the master workspace repository for **bob's game**: it ties
 together every engine implementation of the game plus the
 porting/consolidation tooling being used to modernize them. Version
 **2.1.100** (see `VERSION.md`). Default branch: `master`.
-
-`bg` is the master workspace repository for **bob's game**: it ties together every engine implementation of the game plus the porting/consolidation tooling being used to modernize them. Version **2.1.96** (see `VERSION.md`). Default branch: `master`.
 
 
 > **Alpha workspace.** This is a working developer tree, not a clean
